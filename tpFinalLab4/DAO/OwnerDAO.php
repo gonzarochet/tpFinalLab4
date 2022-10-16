@@ -1,6 +1,7 @@
 <?php namespace DAO;
 
     use Models\Owner as Owner;
+    //prueba
     use Controllers\OwnerController as OwnerController;
 
     class OwnerDAO implements IOwnerDAO{
