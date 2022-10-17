@@ -8,5 +8,15 @@
         "lastName": "Rochet",
         "dateBirth": "2022-10-13",
         "petsList": "Login"
+    },
+    {
+        "id": "2",
+        "username": "silvinabenitez",
+        "email": "chinabenitez@gmail.com",
+        "password": "123456",
+        "firstName": "Silvina",
+        "lastName": "Benitez",
+        "dateBirth": "2022-10-19",
+        "petsList": "Login"
     }
 ]

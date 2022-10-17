@@ -12,40 +12,35 @@
     <title>Login Owner</title>
 </head>
 <body>
-    <form action = "<?php echo FRONT_ROOT?>Owner/Add" method="POST">
+    <form action = "<?php echo FRONT_ROOT?>User/Add" method="POST">
         <div>
-            <label for="">Id of Owner</label>
-            <input type = "text" name = "id">
-        </div>
-        <div>
-            <label for = "">Username of Owner</label>
+            <label for = "">Enter Username</label>
             <input type = "text" name = "username">
         </div>
         <div>
-            <label for = "">Email of Owner</label>
+            <label for = "">Enter your Email</label>
             <input type = "text" name = "email">
         </div>
         <div>
-            <label for = "">Password of Owner</label>
+            <label for = "">Choise your Password</label>
             <input type = "password" name = "password">
         </div>
         <div>
-            <label for="">First Name of Owner</label>
+            <label for="">Enter your First Name</label>
             <input type = "text" name="firstName">
         </div>
         <div>
-            <label for="">LastName of Owner</label>
+            <label for="">Enter your Last Name</label>
             <input type = "text" name="lastName">
         </div>
         <div> 
-            <label for=""> Date birth of Owner</label>
+            <label for="">Enter your date of birthday </label>
             <input type = "date" name = "dateBirth">
         </div>
-
         <input type="submit" name = "submit" value = "Login">
     </form>
     
-    <a class="" href="<?php echo FRONT_ROOT ?>Owner/Show">Listar Owners</a>
+    <a class="" href="<?php echo FRONT_ROOT ?>User/Show">Listar Users</a>
 
     <!-- Coolors Palette Widget -->
     <script src="https://coolors.co/palette-widget/widget.js"></script>

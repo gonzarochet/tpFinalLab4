@@ -1,6 +1,6 @@
 <?php namespace Models;
 
-abstract class User{
+class User{
 
     private $id;
     private $username;
@@ -95,7 +95,7 @@ abstract class User{
      */
     public function setLastName($lastName): self
     {
-        $this->lastname = $lastName;
+        $this->lastName = $lastName;
 
         return $this;
     }

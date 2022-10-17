@@ -5,7 +5,7 @@
     {
         public function Index($message = "")
         {
-            require_once(VIEWS_PATH."loginOwner.php");
+            require_once(VIEWS_PATH."registerUser.php");
         }        
     }
 ?>

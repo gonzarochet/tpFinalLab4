@@ -1,14 +1,15 @@
 <?php namespace DAO;
 
+    use Models\User as User;
     use Models\Owner as Owner;
     //prueba
     use Controllers\OwnerController as OwnerController;
 
-    class OwnerDAO implements IOwnerDAO{
+    class OwnerDAO implements IUserDAO{
 
         private $ownerList = array();
 
-        public function Add(Owner $owner){
+        public function Add(User $owner){
             $this->RetrieveData();
             array_push($this->ownerList,$owner);
             $this->SaveData();

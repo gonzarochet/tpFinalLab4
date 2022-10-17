@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Owners</title>
+    <title>List of User</title>
 </head>
 <body>
 <table>
@@ -23,17 +23,17 @@
     </thead>
     <tbody>
         <?php
-            foreach($ownerList as $owner)
+            foreach($userList as $user)
             {
                 ?>
                     <tr>
-                        <td><?php echo $owner->getId() ?></td>
-                        <td><?php echo $owner->getUsername() ?></td>
-                        <td><?php echo $owner->getEmail() ?></td>
-                        <td><?php echo $owner->getPassword() ?></td>
-                        <td><?php echo $owner->getLastName() ?></td>
-                        <td><?php echo $owner->getFirstName() ?></td>
-                        <td><?php echo $owner->getDateBirth() ?></td>
+                        <td><?php echo $user->getId() ?></td>
+                        <td><?php echo $user->getUsername() ?></td>
+                        <td><?php echo $user->getEmail() ?></td>
+                        <td><?php echo $user->getPassword() ?></td>
+                        <td><?php echo $user->getLastName() ?></td>
+                        <td><?php echo $user->getFirstName() ?></td>
+                        <td><?php echo $user->getDateBirth() ?></td>
                     </tr>
                 <?php
             }
