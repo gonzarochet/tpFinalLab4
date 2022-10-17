@@ -14,11 +14,12 @@
 <table>
     <thead>
         <th>Id</th>
-        <th>Apellido</th>
-        <th>Nombre</th>
-        <th>DNI</th>
-        <th>Age</th>
         <th>Username</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>LastName</th>
+        <th>FirstName</th>
+        <th>Date of Birth</th>
     </thead>
     <tbody>
         <?php
@@ -27,11 +28,12 @@
                 ?>
                     <tr>
                         <td><?php echo $owner->getId() ?></td>
+                        <td><?php echo $owner->getUsername() ?></td>
+                        <td><?php echo $owner->getEmail() ?></td>
+                        <td><?php echo $owner->getPassword() ?></td>
                         <td><?php echo $owner->getLastName() ?></td>
                         <td><?php echo $owner->getFirstName() ?></td>
-                        <td><?php echo $owner->getDni() ?></td>
-                        <td><?php echo $owner->getAge() ?></td>
-                        <td><?php echo $owner->getUsername() ?></td>
+                        <td><?php echo $owner->getDateBirth() ?></td>
                     </tr>
                 <?php
             }

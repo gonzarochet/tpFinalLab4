@@ -20,9 +20,9 @@ class OwnerController{
         require_once(VIEWS_PATH."listOwner.php");
     }
     //the parameters must be in order.
-    public function Add($dni,$id,$firstName,$lastName,$age,$username){
+    public function Add($id,$username,$email,$password,$firstName,$lastName,$dateBirth,$petsList){
         
-        $owner = new Owner($dni,$id,$firstName,$lastName,$age,$username);
+        $owner = new Owner($id,$username,$email,$password,$firstName,$lastName,$dateBirth,$petsList);
         /*$owner = new Owner("","","","","","");
         $owner->setId($id);
         $owner->setDni($dni);
@@ -31,7 +31,6 @@ class OwnerController{
         $owner->setAge($age);
         $owner->setUsername($username);*/
 
-        
 
         $this->ownerDAO->Add($owner);
 

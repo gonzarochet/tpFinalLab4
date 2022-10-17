@@ -1,31 +1,55 @@
 <?php namespace Models;
 
-use Models\Person as Person;
+use Models\User as User;
 
-class Owner extends Person{
+class Owner extends User{
 
-    private $username;
 
-    public function __construct($dni, $id, $firstName, $lastName, $age, $username){
-        parent::__construct($dni,$id,$firstName,$lastName,$age);
-        $this->username = $username;
+    
+    private $id; //the same as the User id. 
+    private $petsList;
+
+    public function __construct($id=null, $username=null,$email=null,$password=null, $firstName=null, $lastName=null,$dateBirth=null,$petsList=null){
+        parent::__construct($id,$username,$email,$password,$firstName,$lastName,$dateBirth);
+        $this->id = $id;
+        $this->petsList = $petsList;
+    
     }
 
 
+
     /**
-     * Get the value of username
+     * Get the value of id
      */
-    public function getUsername()
+    public function getId()
     {
-        return $this->username;
+        return $this->id;
     }
 
     /**
-     * Set the value of username
+     * Set the value of id
      */
-    public function setUsername($username): self
+    public function setId($id): self
     {
-        $this->username = $username;
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of petsList
+     */
+    public function getPetsList()
+    {
+        return $this->petsList;
+    }
+
+    /**
+     * Set the value of petsList
+     */
+    public function setPetsList($petsList): self
+    {
+        $this->petsList = $petsList;
 
         return $this;
     }

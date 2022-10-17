@@ -1,39 +1,25 @@
 <?php namespace Models;
 
-abstract class Person{
+abstract class User{
 
-    private $dni;
     private $id;
+    private $username;
+    private $email;
+    private $password;
     private $firstName;
     private $lastName;
-    private $age;
+    private $dateBirth;
 
-    public function __construct($dni,$id,$firstName,$lastName,$age){
-        $this->dni = $dni;
+    public function __construct($id=null,$username=null, $email=null, $password=null ,$firstName=null,$lastName=null,$dateBirth=null){
         $this->id = $id;
+        $this->username = $username;
+        $this->email = $email;
+        $this->password = $password;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-        $this->age = $age;
+        $this->dateBirth = $dateBirth;
     }
 
-
-    /**
-     * Get the value of dni
-     */
-    public function getDni()
-    {
-        return $this->dni;
-    }
-
-    /**
-     * Set the value of dni
-     */
-    public function setDni($dni): self
-    {
-        $this->dni = $dni;
-
-        return $this;
-    }
 
     /**
      * Get the value of id
@@ -52,6 +38,31 @@ abstract class Person{
 
         return $this;
     }
+
+    public function getUsername(){
+        return $this->username;
+    }
+
+    public function setUsername($newUsername){
+        $this->username = $newUsername;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
+
+    public function setEmail($newEmail){
+        $this->email = $newEmail;
+    }
+
+    public function getPassword(){
+        return $this->password;
+    }
+
+    public function setPassword($newPassword){
+        $this->password = $newPassword;
+    }
+
 
     /**
      * Get the value of nombre
@@ -92,17 +103,17 @@ abstract class Person{
     /**
      * Get the value of edad
      */
-    public function getAge()
+    public function getDateBirth()
     {
-        return $this->age;
+        return $this->dateBirth;
     }
 
     /**
      * Set the value of edad
      */
-    public function setAge($age): self
+    public function setDateBirth($dateBirth): self
     {
-        $this->age = $age;
+        $this->dateBirth = $dateBirth;
 
         return $this;
     }

@@ -1,10 +1,12 @@
 [
     {
-        "dni": "43592210",
         "id": "1",
+        "username": "gonzarochet",
+        "email": "gonzalorochet@gmail.com",
+        "password": "bgfngfn",
         "firstName": "Gonzalo",
         "lastName": "Rochet",
-        "age": "21",
-        "username": "gonzarochet"
+        "dateBirth": "2022-10-13",
+        "petsList": "Login"
     }
 ]

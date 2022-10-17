@@ -24,12 +24,14 @@
             $arraytoEncode = array();
 
             foreach($this->ownerList as $owner){
-                $valuesArray["dni"] = $owner->getDni();
                 $valuesArray["id"] = $owner->getId();
+                $valuesArray["username"] = $owner->getUsername();
+                $valuesArray["email"]= $owner->getEmail();
+                $valuesArray["password"]=$owner->getPassword();
                 $valuesArray["firstName"] = $owner->getFirstName();
                 $valuesArray["lastName"] = $owner->getLastName();
-                $valuesArray["age"] = $owner->getAge();
-                $valuesArray["username"] = $owner->getUsername();
+                $valuesArray["dateBirth"] = $owner->getDateBirth();
+                $valuesArray["petsList"] = $owner->getPetsList();
 
                 array_push($arraytoEncode,$valuesArray);
 
@@ -50,8 +52,8 @@
                 $arraytoDecode = ($jsonContent) ? json_decode($jsonContent,true) : array();
 
                 foreach($arraytoDecode as $valuesArray){
-                    $owner = new Owner($valuesArray["dni"],$valuesArray["id"], $valuesArray["firstName"],
-                    $valuesArray["lastName"],$valuesArray["age"],$valuesArray["username"]);
+                    $owner = new Owner($valuesArray["id"],$valuesArray["username"], $valuesArray["email"],$valuesArray["password"],$valuesArray["firstName"],
+                    $valuesArray["lastName"],$valuesArray["dateBirth"],$valuesArray["petsList"]);
                     /*
                     $owner->setId($valuesArray["id"]);
                     $owner->setDni($valuesArray["dni"]);
