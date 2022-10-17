@@ -1,0 +1,11 @@
+[
+    {
+        "idPet": 1,
+        "name": "Luna",
+        "owner": "1",
+        "vaccinationPlan": "Plan",
+        "birthDate": "2022-09-07",
+        "picture": "photo",
+        "breed": "Caniche"
+    }
+]
