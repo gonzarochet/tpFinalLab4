@@ -1,6 +1,6 @@
 <?php 
- require_once('nav.php');
-
+ require_once('nav.php');   
+   // $message ="";
 ?>
 
 
@@ -14,15 +14,16 @@
 </head>
 <body>
     <!-- En esta redirección debemos dirigir al HomeController, metodo register para verificar los datos :) -->
-    <form action = "<?php echo FRONT_ROOT?>User/Add" method="POST">
+    <form action = "<?php echo FRONT_ROOT?>Home/Register" method="POST">
         <div>
             <label for = "">Enter Username</label>
             <input type = "text" name = "username">
-            <span class = "error"></span>
+            <span class = "error"><?php echo $message?></span>
         </div>
         <div>
             <label for = "">Enter your Email</label>
             <input type = "text" name = "email">
+            <span class = "error"><?php echo $message?></span>
         </div>
         <div>
             <label for = "">Choise your Password</label>
@@ -40,11 +41,14 @@
             <label for="">Enter your date of birthday </label>
             <input type = "date" name = "dateBirth">
         </div>
-        <button type="submit"  class="btn" >Login</button>
+        <button type="submit"  class="btn">Register</button>
     
     </form>
+
+    <a class = "cancel-register" href="<?php echo FRONT_ROOT ?>Home/Index">I already have an account</a>
+
     
-    <a class="" href="<?php echo FRONT_ROOT ?>User/Show">Listar Users</a>
+    <!--<a class="" href="<?php echo FRONT_ROOT ?>User/Show">Listar Users</a>-->
 
     <!-- Coolors Palette Widget -->
     <script src="https://coolors.co/palette-widget/widget.js"></script>

@@ -27,7 +27,7 @@ class PetController
     {
         $owner = new Owner();
         //Para guardar el objeto owner completo
-        $owner->setId($ownerId);
+        $owner->getUser()->setId($ownerId);
         //$owner = $this->ownerDAO->GetOwnerById($ownerId); //lo busco por el ID en el owner DAO --> Hacer función
 
         $pet = new Pet();

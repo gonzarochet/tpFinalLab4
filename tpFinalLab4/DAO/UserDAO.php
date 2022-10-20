@@ -2,7 +2,7 @@
 
 Use Models\User as User;
 
-Use Controllers\UserController as UserController;
+Use Controllers\HomeController as HomeController;
 
 class UserDAO{
 
@@ -102,6 +102,36 @@ class UserDAO{
             $users = array_values($users); 
 
             return (count($users) > 0) ? $users[0] : null;
+        }
+    
+        public function isEmailExists($email){
+            $flag = false;
+
+            $this->RetrieveData();
+            
+            foreach($this->userList as $user){
+                if($user->getEmail()==$email){
+                    $flag = true;
+                    
+                }
+
+            }
+            return $flag;
+
+        }
+        public function isUsernameExists($username){
+            $flag = false;
+
+            $this->RetrieveData();
+            
+            foreach($this->userList as $user){
+                if($user->getUsername()==$username){
+                    $flag = true;
+                }
+
+            }
+            return $flag;
+
         }
 }
 

@@ -1,19 +1,26 @@
-<main class="d-flex align-items-center justify-content-center height-100" >
-     <div class="content">
-          <header class="text-center">
-               <h2>Login - Pet Hero</h2>
-          </header>
-
-          <form action="<?php echo FRONT_ROOT."Home/Login" ?>" method="post" class="login-form bg-dark-alpha p-5 bg-light">
-               <div class="form-group">
-                    <label for="">Email</label>
-                    <input type="text" name="email" class="form-control form-control-lg" placeholder="Ingresar usuario" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Choise your profile to Login</title>
+</head>
+<body>
+<div class="choise-login">
+     <div class = card-choise-login>
+          <div class = "title-choise-login">
+               <p>Login as...</p>
+          </div>
+          <div class = "choise-login-options">
+               <div id="button-option-owner">
+                    <a href="">Owner</a>
                </div>
-               <div class="form-group">
-                    <label for="">Contraseña</label>
-                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Ingresar constraseña" required>
+               <div id="button-option-keeper">
+                    <a href="">Keeper</a>
                </div>
-               <button class="btn btn-primary btn-block btn-lg" type="submit">Iniciar Sesión</button>
-          </form>
+          </div>
      </div>
-</main>
+</body>
+
+</html>
