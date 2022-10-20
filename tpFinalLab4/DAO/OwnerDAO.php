@@ -63,17 +63,16 @@
                 $arraytoDecode = ($jsonContent) ? json_decode($jsonContent,true) : array();
 
                 foreach($arraytoDecode as $valuesArray){
-                    $owner = new Owner($valuesArray["id"],$valuesArray["username"], $valuesArray["email"],$valuesArray["password"],$valuesArray["firstName"],
-                    $valuesArray["lastName"],$valuesArray["dateBirth"],$valuesArray["petsList"]);
-                    /*
-                    $owner->setId($valuesArray["id"]);
-                    $owner->setDni($valuesArray["dni"]);
-                    $owner->setFirstName($valuesArray["firstName"]);
-                    $owner->setLastName($valuesArray["lastName"]);
-                    $owner->setAge($valuesArray["age"]);
-                    $owner->serUsername($valuesArray["username"]);
-                    */
+                    var_dump($valuesArray);
+                    
+                    $owner = new Owner();
+                    foreach($valuesArray["user"] as $user){
+                        $userInsert = new User($user["id"],$user["username"],$user["email"],$user["password"],$user["firstName"],$user["lastName"],$user["dateBirth"]);
+                        $owner->setOwnerId($userInsert->getId());
+                        $owner->setUser($userInsert);
+                    }
                     array_push($this->ownerList,$owner);
+                    
                 }
             }
 

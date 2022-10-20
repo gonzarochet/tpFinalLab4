@@ -14,7 +14,7 @@
           </div>
           <div class = "choise-login-options">
                <div id="button-option-owner">
-                    <a href="">Owner</a>
+                    <a href=""><?php echo FRONT_ROOT ?>Owner/LoginOwner?></a>
                </div>
                <div id="button-option-keeper">
                     <a href="">Keeper</a>

@@ -11,6 +11,10 @@ class OwnerController{
     public function __construct(){
         $this->ownerDAO = new OwnerDAO();
     }
+    public function Index($message = "")
+    {
+        require_once(VIEWS_PATH."home.php");
+    }
 
     public function showAddView(){
         require_once(VIEWS_PATH."addOwner.php");
@@ -41,9 +45,22 @@ class OwnerController{
     }
 
     public function OwnerLogin(){
-        
         require_once(VIEWS_PATH."validate-session.php");
-        $user = $_SESSION["loggedUser"];
+        
+        if($_SESSION["loggedUser"]){
+            $user = $_SESSION["loggedUser"];
+            
+           
+
+
+
+
+        }else{
+            $this->Index("You must be logged");
+        }
+        
+        
+      
 
         // Validate if owner already exists with this user. If not it creates it with the add function. 
         $this->Add($user);
