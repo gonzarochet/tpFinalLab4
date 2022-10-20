@@ -1,3 +1,26 @@
 [
-    
+    {
+        "ownerId": 1,
+        "user": {
+            "userId": 2,
+            "username": "nicolK",
+            "email": "knicoletti@gmail.com",
+            "password": "159753",
+            "firstName": "Karina",
+            "lastName": "Nicoletti",
+            "dateBirth": "2022-08-31"
+        }
+    },
+    {
+        "ownerId": 2,
+        "user": {
+            "userId": 1,
+            "username": "gonzarochet",
+            "email": "rochetgonzalo@gmail.com",
+            "password": "bgfngfn",
+            "firstName": "Gonzalo",
+            "lastName": "Rochet",
+            "dateBirth": "2001-07-18"
+        }
+    }
 ]

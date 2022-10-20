@@ -29,15 +29,11 @@ class OwnerController{
         
         $owner = new Owner();
 
-        
-        $owner->setOwnerId(1); //Function get Next id
+        $owner->setOwnerId($this->ownerDAO->GetNextOwnerId()); 
         $owner->setUser($user);
-
 
         $this->ownerDAO->Add($owner);
 
-        //$this->showAddView();
-        //Redirect to dashboard with owner view.
     }
 
     public function Show(){
@@ -46,24 +42,32 @@ class OwnerController{
 
     public function OwnerLogin(){
         require_once(VIEWS_PATH."validate-session.php");
+        $user=$_SESSION["loggedUser"];
         
-        if($_SESSION["loggedUser"]){
-            $user = $_SESSION["loggedUser"];
-            
-           
-
-
-
-
+        //Esto no hace falta porque ya validás la sesión al requerir la vista validate-session
+        /*if($_SESSION["loggedUser"]){
+            $user = $_SESSION["loggedUser"]
         }else{
             $this->Index("You must be logged");
-        }
-        
-        
-      
+        }*/
 
-        // Validate if owner already exists with this user. If not it creates it with the add function. 
-        $this->Add($user);
+        
+        // Validate if owner already exists with this user. 
+        $userExistsInOwners = $this->ownerDAO->UserExistsInOwners($user);
+        
+        
+        if ($userExistsInOwners) // If exists --> shows owner dashboard
+        {
+            // necesito levantar el owner id?
+            require_once(VIEWS_PATH."owner-dashboard.php");
+
+        }else  //If not it creates the owner with the add function. 
+        {
+            $this->Add($user);
+            require_once(VIEWS_PATH."owner-dashboard.php");
+        }
+       
+       
 
 
 

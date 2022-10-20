@@ -24,7 +24,7 @@
                          <div class = "form-content"> 
                               <label for = "username">Enter your Email</label>
                               <br>
-                              <input type="text" name = "username"> 
+                              <input type="text" name = "email"> 
                               <span class = "error"><//?php echo $errUsername;?></span>
                          </div>
                          <div class = "form-content"> 
