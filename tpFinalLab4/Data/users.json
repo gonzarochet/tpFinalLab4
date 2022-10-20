@@ -7,5 +7,14 @@
         "firstName": "Gonzalo",
         "lastName": "Rochet",
         "dateBirth": "2001-07-18"
+    },
+    {
+        "id": 2,
+        "username": "silvinabenitez",
+        "email": "chinabenitez@gmail.com",
+        "password": "bgfngfn",
+        "firstName": "SIlvina",
+        "lastName": "Analia",
+        "dateBirth": "1973-10-02"
     }
 ]

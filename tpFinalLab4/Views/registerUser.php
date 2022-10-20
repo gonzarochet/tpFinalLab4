@@ -1,5 +1,10 @@
 <?php
 
+
+
+
+
+
 ?>
 
 
@@ -9,13 +14,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Owner</title>
+    <title>Register User</title>
 </head>
 <body>
+    <!-- En esta redirección debemos dirigir al HomeController, metodo register para verificar los datos :) -->
     <form action = "<?php echo FRONT_ROOT?>User/Add" method="POST">
         <div>
             <label for = "">Enter Username</label>
             <input type = "text" name = "username">
+            <span class = "error"></span>
         </div>
         <div>
             <label for = "">Enter your Email</label>
@@ -37,7 +44,7 @@
             <label for="">Enter your date of birthday </label>
             <input type = "date" name = "dateBirth">
         </div>
-        <input type="submit" name = "submit" value = "Login">
+        <input type="submit" name = "submit" value = "Register">
     </form>
     
     <a class="" href="<?php echo FRONT_ROOT ?>User/Show">Listar Users</a>
