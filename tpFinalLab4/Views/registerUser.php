@@ -1,9 +1,5 @@
-<?php
-
-
-
-
-
+<?php 
+ require_once('nav.php');
 
 ?>
 
@@ -44,7 +40,8 @@
             <label for="">Enter your date of birthday </label>
             <input type = "date" name = "dateBirth">
         </div>
-        <input type="submit" name = "submit" value = "Register">
+        <button type="submit"  class="btn" >Login</button>
+    
     </form>
     
     <a class="" href="<?php echo FRONT_ROOT ?>User/Show">Listar Users</a>

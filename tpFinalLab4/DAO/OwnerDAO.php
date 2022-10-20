@@ -2,16 +2,18 @@
 
     use Models\User as User;
     use Models\Owner as Owner;
-    //prueba
+    use DAO\IOwnerDAO as IOwnerDAO;
     use Controllers\OwnerController as OwnerController;
 
-    class OwnerDAO implements IUserDAO{
+    class OwnerDAO implements IOwnerDAO{
 
         private $ownerList = array();
 
-        public function Add(User $owner){
+        public function Add(Owner $owner){
             $this->RetrieveData();
+            
             array_push($this->ownerList,$owner);
+            
             $this->SaveData();
 
         }
@@ -26,14 +28,21 @@
             $arraytoEncode = array();
 
             foreach($this->ownerList as $owner){
-                $valuesArray["id"] = $owner->getId();
-                $valuesArray["username"] = $owner->getUsername();
-                $valuesArray["email"]= $owner->getEmail();
-                $valuesArray["password"]=$owner->getPassword();
-                $valuesArray["firstName"] = $owner->getFirstName();
-                $valuesArray["lastName"] = $owner->getLastName();
-                $valuesArray["dateBirth"] = $owner->getDateBirth();
-                $valuesArray["petsList"] = $owner->getPetsList();
+                
+                $valuesArray["ownerId"] = $owner->getOwnerId();
+                
+                var_dump($owner->getUser());
+                //To pull user values
+                $valuesArrayUser["userId"]=$owner->getUser()->getId();
+                $valuesArrayUser["username"]=$owner->getUser()->getUsername();
+                $valuesArrayUser["email"]=$owner->getUser()->getEmail();
+                $valuesArrayUser["password"]=$owner->getUser()->getPassword();
+                $valuesArrayUser["firstName"]=$owner->getUser()->getFirstName();
+                $valuesArrayUser["lastName"]=$owner->getUser()->getLastName();
+                $valuesArrayUser["dateBirth"]=$owner->getUser()->getDateBirth();
+
+                //Inserts User Array in the owner Array
+                $valuesArray["user"]=$valuesArrayUser;
 
                 array_push($arraytoEncode,$valuesArray);
 
