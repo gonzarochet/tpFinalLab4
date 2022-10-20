@@ -86,9 +86,23 @@ class UserDAO{
 
 
         }
-
         return $id;
     }
+
+    public function GetUserByEmail($email)
+        {
+            $user = null;
+
+            $this->RetrieveData();
+
+            $users = array_filter($this->userList, function($user) use($email){
+                return $user->getEmail() == $email;
+            });
+
+            $users = array_values($users); 
+
+            return (count($users) > 0) ? $users[0] : null;
+        }
 }
 
 

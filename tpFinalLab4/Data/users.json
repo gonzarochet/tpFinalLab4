@@ -7,5 +7,14 @@
         "firstName": "Gonzalo",
         "lastName": "Rochet",
         "dateBirth": "2001-07-18"
+    },
+    {
+        "id": 2,
+        "username": "nicolK",
+        "email": "knicoletti@gmail.com",
+        "password": "159753",
+        "firstName": "Karina",
+        "lastName": "Nicoletti",
+        "dateBirth": "2022-08-31"
     }
 ]

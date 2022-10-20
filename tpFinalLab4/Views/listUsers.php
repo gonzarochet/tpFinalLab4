@@ -1,5 +1,5 @@
 <?php namespace Views;
-
+require_once('nav.php');
 ?>
 
 <!DOCTYPE html>
