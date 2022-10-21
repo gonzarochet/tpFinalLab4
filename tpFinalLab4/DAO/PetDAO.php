@@ -2,19 +2,25 @@
 
     use Models\Pet as Pet;
     use DAO\IPetDAO as IPetDAO;
+    use Models\Owner as Owner;
+    use DAO\OwnerDAO as OwnerDAO;
 
     use Controllers\PetController as PetController;
 
     class PetDAO implements IPetDAO{
 
-        private $petList = array();
+        private $petList;
+        private $ownerList;
+
+        public function __construct()
+        {
+        $this->petList = array();
+        $this->ownerList = new ownerDAO();   //por qué lo tengo que inicializar en el constructor y no lo puedo llamar en la fx dps?
+        }
 
         public function Add(Pet $pet){
-            $this->RetrieveData();
-            $pet->setIdPet($this->GetNextId());     
-            
+            $this->RetrieveData(); 
             array_push($this->petList,$pet);
-            
             $this->SaveData();
         }
         
@@ -28,9 +34,10 @@
             $arraytoEncode = array();
 
             foreach($this->petList as $pet){
+                
                 $valuesArray["idPet"] = $pet->getIdPet();
                 $valuesArray["name"] = $pet->getName();
-                $valuesArray["owner"]= $pet->getOwner()->getId();
+                $valuesArray["ownerId"]= $pet->getOwner()->getOwnerId();
                 $valuesArray["vaccinationPlan"]=$pet->getVaccinationPlan();
                 $valuesArray["birthDate"]= $pet->getBirthDate();
                 $valuesArray["picture"]= $pet->getPicture();
@@ -56,11 +63,15 @@
                 $arraytoDecode = ($jsonContent) ? json_decode($jsonContent,true) : array();
 
                 foreach($arraytoDecode as $valuesArray){
-                    $pet = new Pet();
                     
+                    $owner = new Owner();
+                    //$ownerList = new OwnerDAO();
+                    $owner = $this->ownerList->GetOwnerByOwnerId($valuesArray["ownerId"]);
+                    
+                    $pet = new Pet();
                     $pet->setIdPet($valuesArray["idPet"]);
                     $pet->setName($valuesArray["name"]);
-                    //$pet->setOwner($valuesArray["owner"]);
+                    $pet->setOwner($owner);
                     $pet->setVaccinationPlan($valuesArray["vaccinationPlan"]);
                     $pet->setBirthDate($valuesArray["birthDate"]);
                     $pet->setPicture($valuesArray["picture"]);
@@ -72,11 +83,14 @@
             }
 
         }
-        private function GetNextId()
+        public function GetNextPetId()
         {
             $id = 0;
+            $this->RetrieveData();
             foreach($this->petList as $pet)
             {
+                $idPet=$pet->getIdPet();
+                
                 $id = ($pet->getIdPet() > $id) ? $pet->getIdPet() : $id;
             }
             return $id + 1;

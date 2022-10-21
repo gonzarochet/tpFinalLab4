@@ -107,6 +107,42 @@
             return $exists;
         }
 
+        public function GetOwnerByUserId($userId)
+        {
+            $ownerFound = new Owner();
+
+            $this->RetrieveData();
+            
+            foreach ($this->ownerList as $owner){
+
+                $user=$owner->getUser();
+                {                    
+                    if($user->getid()==$userId)
+                    {
+                        $ownerFound=$owner;
+                    }
+                }
+            }
+            return $ownerFound;
+        }
+
+        public function GetOwnerByOwnerId($ownerId)
+        {
+            $ownerFound = new Owner();
+
+            $this->RetrieveData();
+            
+            foreach ($this->ownerList as $owner)
+            {
+                if ($owner->getOwnerId()==$ownerId)
+                {
+                        $ownerFound=$owner;
+                }
+                
+            }
+            return $ownerFound;
+        }
+
         public function GetNextOwnerId()
         {
             $id = 0;

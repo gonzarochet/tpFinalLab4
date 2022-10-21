@@ -1,8 +1,8 @@
 <?php namespace Controllers;
 
 use Models\Pet as Pet;
-use Models\Owner as Owner;
 use DAO\PetDAO as PetDAO;
+use Models\Owner as Owner;
 use DAO\OwnerDAO as OwnerDAO;
 
 class PetController
@@ -16,6 +16,7 @@ class PetController
     }
 
     public function ShowAddView(){
+        // aca tengo que levantar el owner id?
         require_once(VIEWS_PATH."add-pet.php");
     }
     public function ShowListView(){
@@ -23,14 +24,14 @@ class PetController
         require_once(VIEWS_PATH."list-pets.php");
     }
 
-    public function Add($name,$birthDate, $ownerId,$vaccinationPlan, $picture,$breed)
+    public function Add($name,$birthDate,$vaccinationPlan, $picture,$breed)
     {
+        $user = $_SESSION["loggedUser"];        
         $owner = new Owner();
-        //Para guardar el objeto owner completo
-        $owner->getUser()->setId($ownerId);
-        //$owner = $this->ownerDAO->GetOwnerById($ownerId); //lo busco por el ID en el owner DAO --> Hacer función
-
+        $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); //lo busco por el user ID en el owner DAO 
+        
         $pet = new Pet();
+        $pet->setIdPet($this->petDAO->GetNextPetId());
         $pet->setName($name);
         $pet->setBirthDate($birthDate);
         $pet->setOwner($owner);
@@ -39,7 +40,6 @@ class PetController
         $pet->setBreed($breed);
         //$pet->setVideo($video);
         
-
         $this->petDAO->Add($pet);
         
         $this->ShowAddView();

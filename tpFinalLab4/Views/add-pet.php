@@ -1,6 +1,4 @@
-<?php
-    require_once('nav.php');
-?>
+
 
 
 <!DOCTYPE html>
@@ -21,10 +19,7 @@
             <label for="">Birth of Pet</label>
             <input type = "date" name = "birthDate">
         </div>
-        <div>
-            <label for = "">Owner id</label>
-            <input type = "text" name = "ownerId">
-        </div>
+        
         <div>
             <label for = "">VaccinationPlan</label>
             <input type = "text" name = "vaccinationPlan">
