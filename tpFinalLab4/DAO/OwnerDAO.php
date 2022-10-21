@@ -3,7 +3,7 @@
     use Models\User as User;
     use Models\Owner as Owner;
     use DAO\IOwnerDAO as IOwnerDAO;
-    use Controllers\OwnerController as OwnerController;
+    //use Controllers\OwnerController as OwnerController;
 
     class OwnerDAO implements IOwnerDAO{
 

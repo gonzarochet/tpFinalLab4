@@ -4,32 +4,33 @@ use Models\User as User;
 
 class Keeper extends User{
 
-    private $id; // the same as the user id. 
+    private $idKeeper;
+    private $user; // the same as the user id. 
     private $reputation;
 
 
-
+    /*
     public function __construct($id = null, $username = null, $email = null, $password=null, $firstName = null, $lastname = null, $dateBirth = null,$reputation = null){
         parent::__construct($id,$username,$email,$password,$firstName,$lastname,$dateBirth);
         $this->id = $id;
         $this->reputation = $reputation;
     }
+    */
 
     /**
      * Get the value of id
      */
-    public function getId()
+    public function getKeeperId()
     {
-        return $this->id;
+        return $this->idKeeper;
     }
 
     /**
      * Set the value of id
      */
-    public function setId($id): self
+    public function setKeeperId($idKeeper): self
     {
-        $this->id = $id;
-
+        $this->idKeeper = $idKeeper;
         return $this;
     }
 
@@ -49,6 +50,15 @@ class Keeper extends User{
         $this->reputation = $reputation;
 
         return $this;
+    }
+
+
+    public function setUser(User $user){
+        $this->user = $user;
+    }
+
+    public function getUser(){
+        return $this->user;
     }
 }
 

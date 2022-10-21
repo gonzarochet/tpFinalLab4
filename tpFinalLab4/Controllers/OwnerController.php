@@ -4,6 +4,7 @@ use Models\User as user;
 use Models\Owner as Owner;
 use DAO\OwnerDAO AS OwnerDAO;
 
+
 class OwnerController{
     
     private $ownerDAO;
@@ -43,14 +44,6 @@ class OwnerController{
     public function OwnerLogin(){
         require_once(VIEWS_PATH."validate-session.php");
         $user=$_SESSION["loggedUser"];
-        
-        //Esto no hace falta porque ya validás la sesión al requerir la vista validate-session
-        /*if($_SESSION["loggedUser"]){
-            $user = $_SESSION["loggedUser"]
-        }else{
-            $this->Index("You must be logged");
-        }*/
-
         
         // Validate if owner already exists with this user. 
         $userExistsInOwners = $this->ownerDAO->UserExistsInOwners($user);

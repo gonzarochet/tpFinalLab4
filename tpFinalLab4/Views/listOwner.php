@@ -8,7 +8,7 @@ require_once('nav.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of User</title>
+    <title>List of Owner</title>
 </head>
 <body>
 <table>
@@ -24,11 +24,11 @@ require_once('nav.php');
     </thead>
     <tbody>
         <?php
-            foreach($userOwner as $owner)
+            foreach($ownerList as $owner)
             {
                 ?>
                     <tr>
-                        <td><?php echo $owner->getId()?></td>
+                        <td><?php echo $owner->getOwnerId()?></td>
                         <td><?php echo $owner->getUser()->getId() ?></td>
                         <td><?php echo $owner->getUser()->getUsername() ?></td>
                         <td><?php echo $owner->getUser()->getEmail() ?></td>
