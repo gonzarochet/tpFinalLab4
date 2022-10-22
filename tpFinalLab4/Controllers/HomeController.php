@@ -72,7 +72,8 @@
             return $user;
     
         }
-
+        
+        // Esta logica es del dao. 
         private function AutoIncrementalID(){
             $id = $this->userDAO->getLastid() + 1;
             return $id;

@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Hero</title>
-    <link href="baseStyle.css" rel="stylesheet" media="all"> 
+    <link href="<?php echo CSS_PATH?>/styles" rel="stylesheet" media="all">
+
 </head>
 <body>
      <div class = "card-home">
@@ -13,7 +14,7 @@
                <div id="pic">
                     <picture>
                          <source srcset"" media="">
-                         <img src = "/images/petHeroLogo.png" class = "card-content-pic">
+                         <img src = "<?php echo IMAGES_PATH?>/petHeroLogo" class = "card-content-pic">
                     </picture>
                </div>
                <div class = "card-content-text">
@@ -34,13 +35,12 @@
                               <span class = "error"><//?php echo $errPassword;?></span>
                          </div>
                          <div class = "button-form">
-                              <input type="submit" href = "<?php echo FRONT_ROOT ?>Home/Login" value= "Login" ></input>
+                              <input id="button" type="submit" href = "<?php echo FRONT_ROOT ?>Home/Login" value= "Login" ></input>
                          </div>
-                         <hr>
+                         <p>or...</p>
                          <div class = "button-form">
-                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/ShowAddView">Register</a>
+                              <a href="<?php echo FRONT_ROOT ?>Home/showAddView">Register</a>
                          </div>
-
                     </form>
                </div>
           </div>

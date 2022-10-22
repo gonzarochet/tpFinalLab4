@@ -8,6 +8,118 @@ tomato: #fe654fff;
 
 */
 
-#error{
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.error{
     color: #ff0000;
 }
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Home (Login) */
+
+.card-home{
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+    width: 125%;
+}
+
+.card-content{
+    background: #fed99bff;
+    padding: 2%;   
+}
+
+.card-home .card-content img{
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin: 5%;
+}
+
+.card-content #pic{
+    display: flex;
+    justify-content: center;
+}
+.card-content-text .form-content{
+    margin-top: 10%;
+}
+.card-content-text h1{
+    margin-top: 5%;
+}
+
+.card-content-text .form-content input{
+   background-color: #d6efffff;
+   border-radius: 5%;
+   border: 0;
+   margin-top: 5%;
+   padding-top: 5%;
+   padding-bottom: 5%;
+   padding-left: 5%;
+   font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+   
+}
+
+.card-content-text .button-form{
+    display: flex;
+    justify-content: center;
+}
+
+
+.card-content-text .button-form input{
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    background-color: #d6efffff;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 15%;
+    padding-right: 15%;
+    border: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+
+}
+.card-content-text p{
+    display: flex;
+    justify-content: center;
+}
+
+
+.card-content .button-form  a{
+    background-color: #d6efffff;
+    border: 0;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 12%;
+    padding-right: 12%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    
+    
+}
+
+.card-content .button-form  a:visited{
+    color: black;
+}
+
+/* Home (Login) * --- Finish----/
+
+
+
