@@ -48,6 +48,29 @@ class PetController
         $this->ShowAddView();
     }
 
-    
+    public function ShowPetsByOwner (){
+        
+        $user = $_SESSION["loggedUser"];        
+        $ownerId=$this->ownerDAO->GetOwnerByUserId($user->getId())->getOwnerId();
+
+        $petList=$this->petDAO->GetAll();
+        $ownerPetList= array();
+
+        foreach($petList as $pet)
+        {
+            if($pet->getOwner()->getOwnerId() == $ownerId)
+            {
+                array_push($ownerPetList,$pet);
+            }
+        }
+
+        require_once(VIEWS_PATH."list-pets.php");
+    }
+    public function Remove($id)
+        {
+            $this->petDAO->Remove($id);
+
+            $this->ShowPetsByOwner();
+        }
 
 }

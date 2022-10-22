@@ -101,6 +101,17 @@
             return $id + 1;
         }
 
+        public function Remove($id)
+        {            
+            $this->RetrieveData();
+            
+            $this->petList = array_filter($this->petList, function($pet) use($id){                
+                return $pet->getIdPet() != $id;
+            });
+            
+            $this->SaveData();
+        }
+
     }
 
 ?>

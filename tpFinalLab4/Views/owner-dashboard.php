@@ -21,10 +21,13 @@
           </div>
           <div class = "choise-login-options">
                <div id="button-option-owner">
-                    <a href="<?php echo FRONT_ROOT ?>Pet/ShowAddView?>">Agregar Mascota</a> 
+                    <a href="<?php echo FRONT_ROOT ?>Pet/ShowAddView?>">Add Pet</a> 
                </div>
                <div id="button-option-keeper">
-                    <a href="">Consultar listado de keepers</a>
+                    <a href="<?php echo FRONT_ROOT ?>Pet/ShowPetsByOwner?>">Show my pets</a>
+               </div>
+               <div id="button-option-keeper">
+                    <a href="">Show Keepers List</a>
                </div>
           </div>
      </div>

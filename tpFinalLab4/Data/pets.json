@@ -2,38 +2,26 @@
     {
         "idPet": 1,
         "name": "Luna",
-        "ownerId": 1,
+        "ownerId": 2,
         "vaccinationPlan": "a",
         "birthDate": "2020-09-28",
         "picture": "https:\/\/www.animalfiel.com\/wp-content\/uploads\/2019\/03\/temperamento-del-caniche.jpg",
         "breed": "caniche",
         "video": "a",
-        "size": "small",
+        "size": "Small",
         "comments": "a"
     },
     {
         "idPet": 2,
         "name": "Lara",
-        "ownerId": 1,
+        "ownerId": 2,
         "vaccinationPlan": "https:\/\/images.ctfassets.net\/ub3bwfd53mwy\/21fFJFNxVlgbnVDB8XgRzG\/dc677b686a3b2e7db84bc279dcfac785\/puppy_vaccination_schedule.png?w=750",
         "birthDate": "2016-11-17",
         "picture": "https:\/\/encrypted-tbn0.gstatic.com\/images?q=tbn:ANd9GcRnWA4eOvA4MiHnB4uYU2QjIc9cl2NSbX0zsRIEL6rE&s",
         "breed": "Golden Retriever",
         "video": "Video",
-        "size": "big",
+        "size": "Big",
         "comments": "Perro obediente, se porta muy bien. "
-    },
-    {
-        "idPet": 3,
-        "name": "Pupi",
-        "ownerId": 1,
-        "vaccinationPlan": "https:\/\/images.ctfassets.net\/ub3bwfd53mwy\/21fFJFNxVlgbnVDB8XgRzG\/dc677b686a3b2e7db84bc279dcfac785\/puppy_vaccination_schedule.png?w=750",
-        "birthDate": "2018-07-11",
-        "picture": "https:\/\/t1.ea.ltmcdn.com\/es\/posts\/0\/2\/5\/5_parson_russell_terrier_24520_4_600.jpg",
-        "breed": "Otra",
-        "video": "https:\/\/www.youtube.com\/embed\/-pMG9U8mkps",
-        "size": "medium",
-        "comments": "no hay observaciones"
     },
     {
         "idPet": 4,
@@ -44,7 +32,19 @@
         "picture": "https:\/\/encrypted-tbn0.gstatic.com\/images?q=tbn:ANd9GcS6ilGxlQIfbb78TFU3101tQTL45NzaaFAxWl-z5kbC&s",
         "breed": "Caniche",
         "video": "https:\/\/www.youtube.com\/embed\/f8LGlQLB_Fc",
-        "size": "small",
+        "size": "Small",
         "comments": "No hay comentarios"
+    },
+    {
+        "idPet": 5,
+        "name": "Pupi",
+        "ownerId": 1,
+        "vaccinationPlan": "https:\/\/images.ctfassets.net\/ub3bwfd53mwy\/21fFJFNxVlgbnVDB8XgRzG\/dc677b686a3b2e7db84bc279dcfac785\/puppy_vaccination_schedule.png?w=750",
+        "birthDate": "2019-06-06",
+        "picture": "https:\/\/t1.ea.ltmcdn.com\/es\/posts\/0\/2\/5\/5_parson_russell_terrier_24520_4_600.jpg",
+        "breed": "Otra",
+        "video": "https:\/\/www.youtube.com\/embed\/-pMG9U8mkps",
+        "size": "Small",
+        "comments": "Perrito amigable"
     }
 ]
