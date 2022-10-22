@@ -32,6 +32,22 @@
             <label for="">Breed</label>
             <input type = "text" name="breed">
         </div>
+        <div>
+            <label for="">Size</label>
+            <select name="size">
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Big">Big</option>
+            </select>            
+        </div>
+        <div>
+            <label for="">Video</label>
+            <input type = "text" name="video">
+        </div>
+        <div>
+            <label for="">Comments</label>
+            <textarea name="comments" cols="50" rows="10"></textarea>
+        </div>
         
         <div>
             <input type="submit" class="btn" value = "Agregar"/>
