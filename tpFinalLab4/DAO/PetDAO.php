@@ -42,7 +42,9 @@
                 $valuesArray["birthDate"]= $pet->getBirthDate();
                 $valuesArray["picture"]= $pet->getPicture();
                 $valuesArray["breed"]=$pet->getBreed();
-                //$valuesArray["video"]=$pet->getVideo();
+                $valuesArray["video"]=$pet->getVideo();
+                $valuesArray["size"]=$pet->getSize();
+                $valuesArray["comments"]=$pet->getComments();
 
                 array_push($arraytoEncode,$valuesArray);
 
@@ -64,19 +66,22 @@
 
                 foreach($arraytoDecode as $valuesArray){
                     
-                    $owner = new Owner();
-                    //$ownerList = new OwnerDAO();
+                    //Busco el objeto owner en el DAO por ownerId
+                    $owner = new Owner();                    
                     $owner = $this->ownerList->GetOwnerByOwnerId($valuesArray["ownerId"]);
                     
+                    //Creo objeto Pet
                     $pet = new Pet();
                     $pet->setIdPet($valuesArray["idPet"]);
                     $pet->setName($valuesArray["name"]);
-                    $pet->setOwner($owner);
+                    $pet->setOwner($owner);                                 //Inserto objeto owner
                     $pet->setVaccinationPlan($valuesArray["vaccinationPlan"]);
                     $pet->setBirthDate($valuesArray["birthDate"]);
                     $pet->setPicture($valuesArray["picture"]);
                     $pet->setBreed($valuesArray["breed"]);
-                    //$pet->setVideo($valuesArray["video"]);
+                    $pet->setVideo($valuesArray["video"]);
+                    $pet->setSize($valuesArray["size"]);
+                    $pet->setComments($valuesArray["comments"]);
                     
                     array_push($this->petList,$pet);
                 }
@@ -94,6 +99,17 @@
                 $id = ($pet->getIdPet() > $id) ? $pet->getIdPet() : $id;
             }
             return $id + 1;
+        }
+
+        public function Remove($id)
+        {            
+            $this->RetrieveData();
+            
+            $this->petList = array_filter($this->petList, function($pet) use($id){                
+                return $pet->getIdPet() != $id;
+            });
+            
+            $this->SaveData();
         }
 
     }

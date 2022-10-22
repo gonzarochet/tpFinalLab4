@@ -21,10 +21,11 @@ class PetController
     }
     public function ShowListView(){
         $petList=$this->petDAO->GetAll();
+        $ownerList=$this->ownerDAO->GetAll();
         require_once(VIEWS_PATH."list-pets.php");
     }
 
-    public function Add($name,$birthDate,$vaccinationPlan, $picture,$breed)
+    public function Add($name,$birthDate,$vaccinationPlan, $picture,$breed, $size, $video, $comments)
     {
         $user = $_SESSION["loggedUser"];        
         $owner = new Owner();
@@ -38,11 +39,38 @@ class PetController
         $pet->setVaccinationPlan($vaccinationPlan);
         $pet->setPicture($picture);
         $pet->setBreed($breed);
-        //$pet->setVideo($video);
+        $pet->setSize($size);
+        $pet->setVideo($video);
+        $pet->setComments($comments);
         
         $this->petDAO->Add($pet);
         
         $this->ShowAddView();
     }
+
+    public function ShowPetsByOwner (){
+        
+        $user = $_SESSION["loggedUser"];        
+        $ownerId=$this->ownerDAO->GetOwnerByUserId($user->getId())->getOwnerId();
+
+        $petList=$this->petDAO->GetAll();
+        $ownerPetList= array();
+
+        foreach($petList as $pet)
+        {
+            if($pet->getOwner()->getOwnerId() == $ownerId)
+            {
+                array_push($ownerPetList,$pet);
+            }
+        }
+
+        require_once(VIEWS_PATH."list-pets.php");
+    }
+    public function Remove($id)
+        {
+            $this->petDAO->Remove($id);
+
+            $this->ShowPetsByOwner();
+        }
 
 }

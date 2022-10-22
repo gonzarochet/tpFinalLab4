@@ -22,5 +22,17 @@
             "lastName": "Rochet",
             "dateBirth": "2001-07-18"
         }
+    },
+    {
+        "ownerId": 3,
+        "user": {
+            "userId": 3,
+            "username": "user1",
+            "email": "user@gmail.com",
+            "password": "1234",
+            "firstName": "Maria",
+            "lastName": "Perez",
+            "dateBirth": "2005-06-28"
+        }
     }
 ]

@@ -7,7 +7,6 @@
     <title>List of Pets</title>
 </head>
 <body>
-<form action="<?php echo FRONT_ROOT ?>Pet/Remove" method="post">
 <table>
     <thead>
         <th>ID</th>
@@ -19,7 +18,7 @@
         <th>Vaccination Plan</th>
         <th>Video </th>
         <th>Comments </th>
-        <th>Delete Pet </th>        
+        <th>Owner</th>   
     </thead>
     <tbody>
         <?php
@@ -54,13 +53,12 @@
                         </iframe>
                         </td>
                         <td><?php echo $pet->getComments() ?></td>
-                        <td><button type="submit" name="id" class="btn" value="<?php echo $pet->getIdPet() ?>"> Remove </button> </td>                        
+                        <td><?php echo $pet->getOwner()->getOwnerId().": ".$pet->getOwner()->getUser()->getUsername() ?></td>                        
                     </tr>
                 <?php
             }
         ?>  
     </tbody>
-        </form>
 </table>
 </body>
 </html>
