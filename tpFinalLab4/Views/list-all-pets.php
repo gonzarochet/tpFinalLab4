@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Pets</title>
+    <link href="<?php echo CSS_PATH?>styles.css" rel="stylesheet" media="all">
 </head>
 <body>
 <table>
@@ -22,7 +23,7 @@
     </thead>
     <tbody>
         <?php
-            foreach($ownerPetList as $pet)
+            foreach($petList as $pet)
             {
                 ?>
                     <tr>                        
@@ -58,6 +59,7 @@
                 <?php
             }
         ?>  
+        
     </tbody>
 </table>
 </body>

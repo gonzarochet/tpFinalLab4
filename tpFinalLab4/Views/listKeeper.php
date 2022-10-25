@@ -1,7 +1,3 @@
-<?php namespace Views;
-require_once('nav.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +5,10 @@ require_once('nav.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Keeper</title>
+    <link href="<?php echo CSS_PATH?>styles.css" rel="stylesheet" media="all">
 </head>
 <body>
+<?php include("nav.php"); ?>
 <table>
     <thead>
         <th>idKeeper</th>
@@ -45,5 +43,6 @@ require_once('nav.php');
         </tr>
     </tbody>
 </table>
+<a class="" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashsboard</a>
 </body>
 </html>
