@@ -96,5 +96,15 @@
         public function Show(){
             $this->showListView();
         }
+
+        public function Logout()
+        {
+            if(isset($_SESSION["loggedUser"])){
+                session_destroy();
+                $this->Index();
+            }else{
+                $this->Index();
+            }
+        }
     }
 ?>

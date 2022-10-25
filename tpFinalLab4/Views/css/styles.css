@@ -18,11 +18,52 @@ tomato: #fe654fff;
     color: #ff0000;
 }
 
-body{
+
+
+/* Nav */
+
+header{
+    height: 70px;
+    background-color:#fe654fff;
+    padding: 0 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
+
+header h1{
+
+    padding-top: 25px;
+    font-family: 'Josefin Sans', sans-serif;
+    color:#fefeffff;
+}
+
+.logo{
+    width: 70px;
+    line-height: 70px;
+}
+
+nav{
+   margin-left: auto;
+  
+}
+nav ul li{
+    display: inline-block;
+}
+
+nav ul li a{
+    color:#fefeffff;
+    display: inline-block;
+    position: relative;
+    line-height: 70px;
+    padding: 0 8px;
+    font-family: 'Josefin Sans', sans-serif;
+    text-decoration: none;
+    
+}
+
+
+
+
+
 
 /* Home (Login) */
 
@@ -120,6 +161,144 @@ body{
 }
 
 /* Home (Login) * --- Finish----/
+
+/* LoginV -- Choise a prosfile to login */
+#principal{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+
+}
+.choise-login{
+   display: inline-block;
+   justify-content: center;
+   align-items: center;
+   padding: 15px;
+   box-sizing: border-box;
+   background-color: #fe654fff;
+   margin-right: 15%;
+   margin-left: 15%;
+}
+
+
+.title-choise-login p{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 50px;
+    color: #fefeffff;  
+}
+
+
+.card-choise-login{
+    display: flex;
+    align-items:center;
+    box-sizing: border-box;
+    padding-top: 15px;
+    margin-top: 15%;
+    margin-bottom: 15%;
+
+}
+
+#button-option a{
+
+    margin: 20px;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    background-color: #d6efffff;
+    padding: 15px;
+    
+
+    
+}
+
+/* Register User */
+.principal-register{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+    
+
+
+}
+
+.form-register{
+    display: inline-grid;
+    justify-content: flex-start;
+    background: #fed99bff;
+    padding: 5%; 
+    box-sizing: border-box;
+}
+
+.form-register h1{
+    font-size: 30px;
+    color: black;
+}
+
+.form-content-register input{
+    background-color: #d6efffff;
+    border-radius: 5%;
+    border: 0;
+    margin-top: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    
+ }
+
+ .form-content-register .error{
+    margin-top: 5%;
+ }
+.form-register .cancel-register{
+    background-color:#fe654fff;
+    border: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: 7%;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5%;
+    margin-top: 5%;
+    
+    
+}
+
+.form-register .btn{
+    background-color: #d6efffff;
+    border: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: 7%;
+    font-size: 14px;
+    padding: 5%;
+    margin-top: 5%;
+
+}
+.form-register .btn:hover{
+    padding: 7%;
+
+}
+.cancel-register a{
+    background-color: #fefeffff;
+}
+
+.form-content-register{
+    display: grid;
+    margin-top: 5%;
+}
+
+
+
+
+
+
+
+
 
 
 

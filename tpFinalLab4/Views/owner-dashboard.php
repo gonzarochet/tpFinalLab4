@@ -14,6 +14,7 @@
      <title>Owner Dashboard</title>
 </head>
 <body>
+<?php include("nav.php")?>
 <div class="choise-login">
      <div class = card-choise-login>
           <div class = "title-choise-login">

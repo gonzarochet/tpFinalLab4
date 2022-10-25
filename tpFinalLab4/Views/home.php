@@ -1,14 +1,15 @@
 
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Hero</title>
-    <link href="<?php echo CSS_PATH?>/styles" rel="stylesheet" media="all">
-
+    <link href="<?php echo CSS_PATH?>/styles.css" rel="stylesheet" media="all">
 </head>
-<body>
+<body> 
+     <?php include("nav.php");?>
      <div class = "card-home">
           <div class = "card-content">
                <div id="pic">

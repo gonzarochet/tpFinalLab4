@@ -25,5 +25,14 @@
         "firstName": "Maria",
         "lastName": "Perez",
         "dateBirth": "2005-06-28"
+    },
+    {
+        "id": 4,
+        "username": "bichobolita",
+        "email": "gonzarochet@gmail.com",
+        "password": "123456",
+        "firstName": "bicho",
+        "lastName": "Bolita",
+        "dateBirth": "2022-03-25"
     }
 ]

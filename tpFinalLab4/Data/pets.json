@@ -46,5 +46,17 @@
         "video": "https:\/\/www.youtube.com\/embed\/-pMG9U8mkps",
         "size": "Small",
         "comments": "Perrito amigable"
+    },
+    {
+        "idPet": 6,
+        "name": "Uma",
+        "ownerId": 2,
+        "vaccinationPlan": "complete",
+        "birthDate": "2022-10-06",
+        "picture": "https:\/\/www.google.com\/search?q=dog+images&oq=DOG+IMA&aqs=chrome.1.69i57j0i67j0i512l2j0i22i30l6.2523j0j7&sourceid=chrome&ie=UTF-8#imgrc=p3o-LU3X18oCSM",
+        "breed": "Cruza",
+        "video": "https:\/\/www.youtube.com\/watch?v=7bhKI0Mw6Yk&ab_channel=ExpertoAnimal",
+        "size": "Medium",
+        "comments": "Es hermosa!"
     }
 ]
