@@ -1,0 +1,32 @@
+[
+    {
+        "keeperId": 4,
+        "date": "2022-10-26",
+        "status": "Available"
+    },
+    {
+        "keeperId": 4,
+        "date": "2022-10-27",
+        "status": "Available"
+    },
+    {
+        "keeperId": 4,
+        "date": "2022-10-29",
+        "status": "Available"
+    },
+    {
+        "keeperId": 4,
+        "date": "2022-10-30",
+        "status": "Available"
+    },
+    {
+        "keeperId": 4,
+        "date": "2022-10-31",
+        "status": "Available"
+    },
+    {
+        "keeperId": 4,
+        "date": "2022-11-01",
+        "status": "Available"
+    }
+]

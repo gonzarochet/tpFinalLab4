@@ -47,7 +47,7 @@
                 require_once(VIEWS_PATH."loginV.php");
 
                 }else{
-                    $this->IndexRegister("The username already exists");
+                    $this->IndexRegister("The email already exists");
                 }
             }else{
                 $this->IndexRegister("The email already exists");
@@ -93,9 +93,6 @@
             require_once(VIEWS_PATH."listUsers.php");
         }
     
-        public function Show(){
-            $this->showListView();
-        }
 
         public function Logout()
         {

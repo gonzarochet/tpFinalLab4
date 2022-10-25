@@ -42,12 +42,16 @@ class KeeperController{
         $userExistsInKeepers = $this->keeperDAO->UserExistsInKeepers($user);
 
         if($userExistsInKeepers){
+            $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
             require_once(VIEWS_PATH."keeper-dashboard.php");
         }else{
             $this->Add($user);
+            $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
             require_once(VIEWS_PATH."keeper-dashboard.php");
         }
     }
+
+    
 
 
 

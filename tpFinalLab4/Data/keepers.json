@@ -13,7 +13,7 @@
         }
     },
     {
-        "keeperId": 2,
+        "keeperId": 3,
         "reputation": "",
         "user": {
             "userId": 3,
@@ -23,6 +23,19 @@
             "firstName": "Maria",
             "lastName": "Perez",
             "dateBirth": "2005-06-28"
+        }
+    },
+    {
+        "keeperId": 4,
+        "reputation": "",
+        "user": {
+            "userId": 2,
+            "username": "nicolK",
+            "email": "knicoletti@gmail.com",
+            "password": "159753",
+            "firstName": "Karina",
+            "lastName": "Nicoletti",
+            "dateBirth": "2022-08-31"
         }
     }
 ]

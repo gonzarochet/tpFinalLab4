@@ -2,7 +2,7 @@
 
 use Models\User as User;
 
-class Keeper extends User{
+class Keeper{
 
     private $idKeeper;
     private $user; // the same as the user id. 
