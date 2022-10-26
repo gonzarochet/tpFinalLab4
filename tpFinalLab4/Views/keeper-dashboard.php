@@ -26,7 +26,7 @@
                     <a href="<?php echo FRONT_ROOT ?>Calendar/ShowAddView?>">Set Available Dates</a> 
                </div>
                <div>
-                    <a href="<?php echo FRONT_ROOT ?>Calendar/ShowListView?>">List Available Dates</a>
+                    <a href="<?php echo FRONT_ROOT ?>Calendar/ShowListViewByKeeper?>">List Available Dates</a>
                </div>
                <div>
                     <a href="<?php echo FRONT_ROOT ?>Keeper/?>">--</a>

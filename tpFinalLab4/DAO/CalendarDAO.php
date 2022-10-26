@@ -21,9 +21,7 @@ class CalendarDAO implements ICalendarDAO
 
     public function Add(Calendar $calendar){
         $this->RetrieveData();
-        //var_dump($calendar);
         array_push($this->calendarList,$calendar);
-        //var_dump($this->calendarList);
         $this->SaveData();
     }
 
@@ -72,6 +70,22 @@ class CalendarDAO implements ICalendarDAO
         $jsonContent = json_encode($arraytoEncode, JSON_PRETTY_PRINT);
 
         file_put_contents('Data/calendar.json',$jsonContent);        
+    }
+
+    public function GetAllByKeeper($keeper)
+    {
+        $this->RetrieveData();
+        $keeperCalendarList = array();
+
+        foreach ($this->calendarList as $calendarItem)
+        {
+            if($calendarItem->getKeeper() == $keeper)
+            {
+                array_push($keeperCalendarList, $calendarItem);
+            }
+        }
+        return $keeperCalendarList;
+
     }
 }
 ?>

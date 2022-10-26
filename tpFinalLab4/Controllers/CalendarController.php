@@ -20,7 +20,13 @@ class CalendarController{
     }
 
     public function ShowListView(){
-        //$ownerList = $this->ownerCalendarDAO->GetAll();
+        $calendarList = $this->calendarDAO->GetAll();
+        require_once(VIEWS_PATH."listCalendarPeriod.php");
+    }
+
+    public function ShowListViewByKeeper(){
+        $keeper= $_SESSION["loggedKeeper"];
+        $calendarList = $this->calendarDAO->GetAllByKeeper($keeper);
         require_once(VIEWS_PATH."listCalendarPeriod.php");
     }
     
