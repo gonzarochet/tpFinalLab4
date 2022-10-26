@@ -16,7 +16,7 @@
     <section class="principal-register">
         <div class="form-register">
 
-            <form action="<?php echo FRONT_ROOT ?>Home/Register" method="POST">
+            <form action="<?php echo FRONT_ROOT ?>User/Register" method="POST">
                 <h1>Register</h1>
                 <div class="form-content-register">
                     <label for="">Choise an Username</label>

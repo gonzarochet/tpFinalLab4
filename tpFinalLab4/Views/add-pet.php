@@ -1,16 +1,17 @@
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Owner</title>
+    <title>Add Pet</title>
+    <link href="<?php echo CSS_PATH?>styles.css" rel="stylesheet" media="all">
 </head>
 <body>
+<?php include("nav.php"); ?>
     <form action = "<?php echo FRONT_ROOT?>Pet/Add" method="POST">
+    <h1>Add Pet</h1>
         <div>
             <label for = "">Name of Pet</label>
             <input type = "text" name = "name">
@@ -55,7 +56,7 @@
         
     </form>
     
-    <a class="" href="<?php echo FRONT_ROOT ?>Pet/ShowListView">Listar Pets</a>
+    <a class="" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashsboard</a>
 
     <!-- Coolors Palette Widget -->
     <script src="https://coolors.co/palette-widget/widget.js"></script>

@@ -19,7 +19,7 @@
                     </picture>
                </div>
                <div class = "card-content-text">
-                    <form action = "<?php echo FRONT_ROOT ?>Home/Login" method = "POST">
+                    <form action = "<?php echo FRONT_ROOT ?>User/Login" method = "POST">
                          <div>
                               <h1>Login</h1>
                          </div>
@@ -36,11 +36,11 @@
                               <span class = "error"><//?php echo $errPassword;?></span>
                          </div>
                          <div class = "button-form">
-                              <input id="button" type="submit" href = "<?php echo FRONT_ROOT ?>Home/Login" value= "Login" ></input>
+                              <input id="button" type="submit" href = "<?php echo FRONT_ROOT ?>User/Login" value= "Login" ></input>
                          </div>
                          <p>or...</p>
                          <div class = "button-form">
-                              <a href="<?php echo FRONT_ROOT ?>Home/showAddView">Register</a>
+                              <a href="<?php echo FRONT_ROOT ?>User/ShowAddView">Register</a>
                          </div>
                     </form>
                </div>

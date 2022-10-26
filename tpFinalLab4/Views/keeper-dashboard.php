@@ -13,6 +13,7 @@ use Models\user as User;
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Keeper dashboard</title>
      <link href="<?php echo CSS_PATH?>styles.css" rel="stylesheet" media="all">
+
 </head>
 
 <body>

@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Pets</title>
+    <link href="<?php echo CSS_PATH?>styles.css" rel="stylesheet" media="all">
 </head>
 <body>
+<?php include("nav.php"); ?>
 <form action="<?php echo FRONT_ROOT ?>Pet/Remove" method="post">
+<h1>Pets List</h1>
 <table>
     <thead>
         <th>ID</th>
@@ -59,8 +62,10 @@
                 <?php
             }
         ?>  
+        
     </tbody>
         </form>
 </table>
+<a class="" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashsboard</a>
 </body>
 </html>

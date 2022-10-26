@@ -73,7 +73,7 @@ class KeeperDAO implements IKeeperDAO{
                 $user->setDateBirth($userArray["dateBirth"]);
 
                 $keeper = new Keeper();
-                $keeper->setKeeperId($user->getId());
+                $keeper->setKeeperId($valuesArray["keeperId"]);
                 $keeper->setUser($user);
                 $keeper->setReputation($valuesArray["reputation"]);
 
@@ -111,6 +111,43 @@ class KeeperDAO implements IKeeperDAO{
         }
         return $id + 1;
     }
+
+    public function GetKeeperByUserId($userId)
+        {
+            $keeperFound = new Keeper();
+
+            $this->RetrieveData();
+            
+            foreach ($this->keeperList as $keeper){
+
+                $user=$keeper->getUser();
+                {                    
+                    if($user->getid()==$userId)
+                    {
+                        $keeperFound=$keeper;
+                    }
+                }
+            }
+            return $keeperFound;
+        }
+
+        public function GetKeeperByKeeperId($keeperId)
+        {
+            $keeperFound = new Keeper();
+
+            $this->RetrieveData();
+            
+            foreach ($this->keeperList as $keeper)
+            {
+                if ($keeper->getKeeperId()==$keeperId)
+                {
+                        $keeperFound=$keeper;
+                }
+                
+            }
+            return $keeperFound;
+        }
+
 
 
 
