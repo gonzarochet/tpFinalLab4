@@ -403,8 +403,8 @@ nav ul li a{
 /* Owner - Add PET */
 
 #add-pet-principal{
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 3%;
     box-sizing: border-box;
     display: flex;
@@ -414,7 +414,7 @@ nav ul li a{
 }
 
 .form-add-pet{
-    margin: 5%;
+    margin: 3%;
     padding: 2%;
 }
 
@@ -422,6 +422,8 @@ nav ul li a{
     margin-top:5%;
     display: grid;
 }
+
+
 
 .form-content-add-pet input{
     background-color: #d6efffff;
@@ -435,6 +437,145 @@ nav ul li a{
     font-family: 'Josefin Sans', sans-serif;
     font-size: 14px;
 }
+
+
+
+.form-content-add-pet select {
+    background-color: #d6efffff;
+    border-radius: 5%;
+    border: 0;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;  
+}
+
+.form-content-add-pet textarea{
+    background-color: #d6efffff;
+    border-radius: 5%;
+    border: 0;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px; 
+}
+
+.form-content-add-pet-btn{
+    display: flex;
+    justify-content: center;
+    border: 0;
+    margin: 1%;
+    padding: 1%;
+
+}
+
+.form-content-add-pet-btn input{
+    background-color:#fe654fff;
+    border-radius: 5%;
+    border: 0;
+    margin: 2%;
+    padding:  5%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+
+}
+.form-content-add-pet-btn input:hover{
+    padding: 7%;
+}
+
+.btn-goback{
+    text-decoration: none;
+    color:black;
+    text-transform: capitalize;
+    margin-top: 2%;
+}
+
+.btn-goback:hover{
+    font-size: 18px;
+}
+
+/* List Pets */
+
+.form-list-view-pet{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color:#fed99bff;
+}
+
+.form-list-view-pet h1{
+    margin-top: 2%;
+    margin-left: 2%;
+    font-size: 30px;
+}
+
+.list-pet{
+    background-color: #fefeffff;
+   border-collapse: collapse;
+   margin: 25px 0;
+   margin-left: 2%;
+   margin-right: 2%;
+   font-size: 0.9em;
+   min-width: 600px;
+   border-radius: 5px 5px 0 0;
+   overflow: hidden;
+   box-shadow: 0 0 20px rgba(0,0,0,0);
+}
+
+.list-pet thead th{
+    background-color:#d6efffff;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+
+}
+
+
+.list-pet th , .list-pet td{
+    padding: 12px 15px;
+
+}
+
+.list-pet tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+
+.list-pet tbody tr:last-of-type{
+    border-bottom: 2px solid #d6efffff;
+}
+
+.btn-list-pet{
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #fe654fff;
+    font-size: 20px;
+}
+
+.btn-table{
+    border: none;
+    padding: 5%;
+    background-color: #fe654fff;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #fefeffff;
+}
+.btn-table :hover{
+    padding: 8%;
+    background-color: #ff0000;
+}
+
+
+
 
 
 
