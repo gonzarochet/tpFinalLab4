@@ -22,6 +22,10 @@ class KeeperController{
         $keeperList = $this->keeperDAO->getAll();
         require_once(VIEWS_PATH."listKeeper.php");
     }
+    public function showListViewbyOwner(){
+        $keeperList = $this->keeperDAO->getAll();
+        require_once(VIEWS_PATH."listKeeperOwnerView.php");
+    }
 
     public function Add(User $user){
 

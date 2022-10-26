@@ -37,7 +37,7 @@ use Models\user as User;
                               <a href="<?php echo FRONT_ROOT ?>Pet/ShowPetsByOwner?>"class="btn">Show my pets</a>
                          </div>
                          <div id="owner-button-option">
-                              <a href="<?php echo FRONT_ROOT ?>Keeper/ShowListView?>"class="btn">Show Keepers List</a>
+                              <a href="<?php echo FRONT_ROOT ?>Keeper/ShowListViewbyOwner?>"class="btn">Show Keepers List</a>
                          </div>
                     </div>
                </div>

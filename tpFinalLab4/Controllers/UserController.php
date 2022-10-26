@@ -82,7 +82,7 @@ class UserController
         return $user;
     }
 
-    // Esta logica es del dao. 
+    // this logic is from DAO. 
     private function AutoIncrementalID()
     {
         $id = $this->userDAO->getLastid() + 1;
