@@ -3,20 +3,19 @@
     use Models\Pet as Pet;
     use DAO\IPetDAO as IPetDAO;
     use Models\Owner as Owner;
-    use DAO\OwnerDAO as OwnerDAO;
+    //use DAO\OwnerDAO as OwnerDAO;
     use Models\User as user;
-
     use Controllers\PetController as PetController;
 
     class PetDAO implements IPetDAO{
 
         private $petList;
-        private $ownerList;
+        //private $ownerList;
 
         public function __construct()
         {
         $this->petList = array();
-        $this->ownerList = new ownerDAO();   //por qué lo tengo que inicializar en el constructor y no lo puedo llamar en la fx dps?
+        //$this->ownerList = new ownerDAO();  
         }
 
         public function Add(Pet $pet){
