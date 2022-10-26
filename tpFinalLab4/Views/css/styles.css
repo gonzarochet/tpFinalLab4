@@ -256,7 +256,7 @@ nav ul li a{
  .form-content-register .error{
     margin-top: 5%;
  }
-.form-register .cancel-register{
+.form-register .cancel-register-register{
     background-color:#fe654fff;
     border: 0;
     font-family: 'Josefin Sans', sans-serif;
@@ -283,8 +283,8 @@ nav ul li a{
     padding: 7%;
 
 }
-.cancel-register a{
-    background-color: #fefeffff;
+.cancel-register-register a{
+    color: #fefeffff;
 }
 
 .form-content-register{

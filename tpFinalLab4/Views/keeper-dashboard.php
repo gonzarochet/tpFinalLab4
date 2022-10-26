@@ -37,9 +37,11 @@ use Models\user as User;
                     <div id="keeper-button-option">
                          <a href="<?php echo FRONT_ROOT ?>Calendar/ShowListViewByKeeper" class="btn">List Available Dates</a>
                     </div>
+                    <!--
                     <div id="keeper-button-option">
-                         <a href="<?php echo FRONT_ROOT ?>Keeper/?>" class="btn">--</a>
+                         <a href="<?php location:"loginV.php"?>" class="btn">Back to Choise Profile</a>
                     </div>
+                    -->
                </div>
           </div>
      </section>

@@ -47,7 +47,7 @@
                 <button type="submit" class="btn">Register</button>
 
             </form>
-            <a class="cancel-register" href="<?php echo FRONT_ROOT ?>Home/Index">I already have an account</a>
+            <a class="cancel-register-register" href="<?php echo FRONT_ROOT ?>Home/Index">I already have an account</a>
         </div>
 
     </section>
