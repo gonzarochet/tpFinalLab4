@@ -73,7 +73,7 @@ nav ul li a{
     box-sizing: border-box;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 18px;
-    width: 125%;
+    margin-top: 5%;
 }
 
 .card-content{
@@ -290,7 +290,118 @@ nav ul li a{
 .form-content-register{
     display: grid;
     margin-top: 5%;
+
 }
+
+
+/*owner-dashboard*/
+#owner-principal{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3%;
+    box-sizing: border-box;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color:#fed99bff;
+}
+
+#owner-principal #welcome-message{
+    margin-top: 5%;
+    margin-left: 2%;
+    padding-top: 2%;
+    font-size: 30px;
+}
+
+.owner-choise{
+    margin-top: 5%;
+    margin-left: 2%;
+    padding-top: 2%;
+    display: block;
+    padding-bottom: 2%;
+}
+
+.title-choise{
+    font-size: 25px;
+    margin-bottom: 2%;
+}
+.owner-choise-options{
+    display: block;
+    justify-content: space-between;
+    margin-bottom: 5%;
+    margin-right: 20%;
+    padding-right: 20%;
+}
+
+#owner-button-option{
+    margin-top: 5%;
+    padding-top: 5%;
+}
+#owner-button-option .btn{
+    margin-top: 2%;
+    padding: 2%;
+    background-color: #d6efffff;
+    text-decoration: none;
+}
+
+#owner-button-option .btn:hover{
+    padding: 5%;
+}
+
+/*owner-dashboard*/
+#keeper-principal{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3%;
+    box-sizing: border-box;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color:#fed99bff;
+}
+
+#keeper-principal #welcome-message{
+    margin-top: 5%;
+    margin-left: 2%;
+    padding-top: 2%;
+    font-size: 30px;
+}
+
+.keeper-choise{
+    margin-top: 5%;
+    margin-left: 2%;
+    padding-top: 2%;
+    display: block;
+    padding-bottom: 2%;
+}
+
+.title-choise{
+    font-size: 25px;
+    margin-bottom: 2%;
+}
+.keeper-choise-options{
+    display: block;
+    justify-content: space-between;
+    margin-bottom: 5%;
+    margin-right: 20%;
+    padding-right: 20%;
+}
+
+#keeper-button-option{
+    margin-top: 5%;
+    padding-top: 5%;
+}
+#keeper-button-option .btn{
+    margin-top: 2%;
+    padding: 2%;
+    background-color: #d6efffff;
+    text-decoration: none;
+}
+
+#keeper-button-option .btn:hover{
+    padding: 5%;
+}
+
+
+
 
 
 
