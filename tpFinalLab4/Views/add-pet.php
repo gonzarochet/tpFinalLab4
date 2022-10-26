@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Pet</title>
-    <link href="<?php echo CSS_PATH ?>styles.css" rel="stylesheet" media="all">
+    <link href="<?php echo CSS_PATH?>styles" rel="stylesheet" media="all">
+    
 </head>
 
 <body>

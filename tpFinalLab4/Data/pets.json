@@ -1,8 +1,19 @@
 [
     {
+        "owner": {
+            "ownerId": 2,
+            "user": {
+                "userId": 1,
+                "username": "gonzarochet",
+                "email": "rochetgonzalo@gmail.com",
+                "password": "bgfngfn",
+                "firstName": "Gonzalo",
+                "lastName": "Rochet",
+                "dateBirth": "2001-07-18"
+            }
+        },
         "idPet": 1,
         "name": "Luna",
-        "ownerId": 2,
         "vaccinationPlan": "a",
         "birthDate": "2020-09-28",
         "picture": "https:\/\/www.animalfiel.com\/wp-content\/uploads\/2019\/03\/temperamento-del-caniche.jpg",
@@ -12,9 +23,20 @@
         "comments": "a"
     },
     {
+        "owner": {
+            "ownerId": 2,
+            "user": {
+                "userId": 1,
+                "username": "gonzarochet",
+                "email": "rochetgonzalo@gmail.com",
+                "password": "bgfngfn",
+                "firstName": "Gonzalo",
+                "lastName": "Rochet",
+                "dateBirth": "2001-07-18"
+            }
+        },
         "idPet": 2,
         "name": "Lara",
-        "ownerId": 2,
         "vaccinationPlan": "https:\/\/images.ctfassets.net\/ub3bwfd53mwy\/21fFJFNxVlgbnVDB8XgRzG\/dc677b686a3b2e7db84bc279dcfac785\/puppy_vaccination_schedule.png?w=750",
         "birthDate": "2016-11-17",
         "picture": "https:\/\/encrypted-tbn0.gstatic.com\/images?q=tbn:ANd9GcRnWA4eOvA4MiHnB4uYU2QjIc9cl2NSbX0zsRIEL6rE&s",
@@ -24,9 +46,20 @@
         "comments": "Perro obediente, se porta muy bien. "
     },
     {
+        "owner": {
+            "ownerId": 1,
+            "user": {
+                "userId": 2,
+                "username": "nicolK",
+                "email": "knicoletti@gmail.com",
+                "password": "159753",
+                "firstName": "Karina",
+                "lastName": "Nicoletti",
+                "dateBirth": "2022-08-31"
+            }
+        },
         "idPet": 4,
         "name": "Pompa",
-        "ownerId": 1,
         "vaccinationPlan": "https:\/\/t2.ea.ltmcdn.com\/es\/posts\/1\/2\/2\/calendario_de_vacunas_para_perros_20221_orig.jpg",
         "birthDate": "2021-06-06",
         "picture": "https:\/\/encrypted-tbn0.gstatic.com\/images?q=tbn:ANd9GcS6ilGxlQIfbb78TFU3101tQTL45NzaaFAxWl-z5kbC&s",
@@ -36,21 +69,20 @@
         "comments": "No hay comentarios"
     },
     {
-        "idPet": 5,
-        "name": "Pupi",
-        "ownerId": 1,
-        "vaccinationPlan": "https:\/\/images.ctfassets.net\/ub3bwfd53mwy\/21fFJFNxVlgbnVDB8XgRzG\/dc677b686a3b2e7db84bc279dcfac785\/puppy_vaccination_schedule.png?w=750",
-        "birthDate": "2019-06-06",
-        "picture": "https:\/\/t1.ea.ltmcdn.com\/es\/posts\/0\/2\/5\/5_parson_russell_terrier_24520_4_600.jpg",
-        "breed": "Otra",
-        "video": "https:\/\/www.youtube.com\/embed\/-pMG9U8mkps",
-        "size": "Small",
-        "comments": "Perrito amigable"
-    },
-    {
+        "owner": {
+            "ownerId": 2,
+            "user": {
+                "userId": 1,
+                "username": "gonzarochet",
+                "email": "rochetgonzalo@gmail.com",
+                "password": "bgfngfn",
+                "firstName": "Gonzalo",
+                "lastName": "Rochet",
+                "dateBirth": "2001-07-18"
+            }
+        },
         "idPet": 6,
         "name": "Uma",
-        "ownerId": 2,
         "vaccinationPlan": "complete",
         "birthDate": "2022-10-06",
         "picture": "https:\/\/www.google.com\/search?q=dog+images&oq=DOG+IMA&aqs=chrome.1.69i57j0i67j0i512l2j0i22i30l6.2523j0j7&sourceid=chrome&ie=UTF-8#imgrc=p3o-LU3X18oCSM",
@@ -58,5 +90,28 @@
         "video": "https:\/\/www.youtube.com\/watch?v=7bhKI0Mw6Yk&ab_channel=ExpertoAnimal",
         "size": "Medium",
         "comments": "Es hermosa!"
+    },
+    {
+        "owner": {
+            "ownerId": 1,
+            "user": {
+                "userId": 2,
+                "username": "nicolK",
+                "email": "knicoletti@gmail.com",
+                "password": "159753",
+                "firstName": "Karina",
+                "lastName": "Nicoletti",
+                "dateBirth": "2022-08-31"
+            }
+        },
+        "idPet": 7,
+        "name": "Manchita",
+        "vaccinationPlan": "https:\/\/images.ctfassets.net\/ub3bwfd53mwy\/21fFJFNxVlgbnVDB8XgRzG\/dc677b686a3b2e7db84bc279dcfac785\/puppy_vaccination_schedule.png?w=750",
+        "birthDate": "2020-01-14",
+        "picture": "https:\/\/t1.ea.ltmcdn.com\/es\/posts\/0\/2\/5\/5_parson_russell_terrier_24520_4_600.jpg",
+        "breed": "Otra",
+        "video": "https:\/\/www.youtube.com\/embed\/-pMG9U8mkps",
+        "size": "Medium",
+        "comments": "Se porta muy bien"
     }
 ]

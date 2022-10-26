@@ -4,6 +4,7 @@
     use DAO\IPetDAO as IPetDAO;
     use Models\Owner as Owner;
     use DAO\OwnerDAO as OwnerDAO;
+    use Models\User as user;
 
     use Controllers\PetController as PetController;
 
@@ -34,10 +35,30 @@
             $arraytoEncode = array();
 
             foreach($this->petList as $pet){
+
+                //$valuesArray["ownerId"] = $owner->getOwnerId();
+                
+                //To pull owner values
+                $valuesArrayOwner["ownerId"]=$pet->getOwner()->getOwnerId();
+
+                //To pull user values
+                $valuesArrayUser["userId"]=$pet->getOwner()->getUser()->getId();
+                $valuesArrayUser["username"]=$pet->getOwner()->getUser()->getUsername();
+                $valuesArrayUser["email"]=$pet->getOwner()->getUser()->getEmail();
+                $valuesArrayUser["password"]=$pet->getOwner()->getUser()->getPassword();
+                $valuesArrayUser["firstName"]=$pet->getOwner()->getUser()->getFirstName();
+                $valuesArrayUser["lastName"]=$pet->getOwner()->getUser()->getLastName();
+                $valuesArrayUser["dateBirth"]=$pet->getOwner()->getUser()->getDateBirth();
+
+                //Inserts User Array in the owner Array
+                $valuesArrayOwner["user"]=$valuesArrayUser;
+
+                //Insert Owner Array in the pet array
+                $valuesArray["owner"]=$valuesArrayOwner;
                 
                 $valuesArray["idPet"] = $pet->getIdPet();
                 $valuesArray["name"] = $pet->getName();
-                $valuesArray["ownerId"]= $pet->getOwner()->getOwnerId();
+                //$valuesArray["owner"]= $pet->getOwner()->getOwnerId(); to Save owner Id only
                 $valuesArray["vaccinationPlan"]=$pet->getVaccinationPlan();
                 $valuesArray["birthDate"]= $pet->getBirthDate();
                 $valuesArray["picture"]= $pet->getPicture();
@@ -66,11 +87,34 @@
 
                 foreach($arraytoDecode as $valuesArray){
                     
-                    //Busco el objeto owner en el DAO por ownerId
-                    $owner = new Owner();                    
-                    $owner = $this->ownerList->GetOwnerByOwnerId($valuesArray["ownerId"]);
+                    //Create a new array for owner data
+                    $ownerArray= array();
+                    $ownerArray= $valuesArray["owner"];
+
+                    //Create a new array for user data
+                    $userArray = array();
+                    $userArray=$ownerArray["user"];
+
+                    //New user object
+                    $user= new User();
+                    $user->setId($userArray["userId"]);
+                    $user->setUsername($userArray["username"]);
+                    $user->setEmail($userArray["email"]);
+                    $user->setPassword($userArray["password"]);
+                    $user->setFirstName($userArray["firstName"]);
+                    $user->setLastName($userArray["lastName"]);
+                    $user->setDateBirth($userArray["dateBirth"]);
+
+                    // New Owner Object
+                    $owner = new Owner();
+                    $owner->setUser($user);
+                    $owner->setOwnerId($ownerArray["ownerId"]);
+
+                    //LOGICA CON ID! Busco el objeto owner en el DAO por ownerId -- PARA 
+                    //$owner = new Owner();                    
+                    //$owner = $this->ownerList->GetOwnerByOwnerId($valuesArray["ownerId"]);
                     
-                    //Creo objeto Pet
+                    //New Pet object
                     $pet = new Pet();
                     $pet->setIdPet($valuesArray["idPet"]);
                     $pet->setName($valuesArray["name"]);
