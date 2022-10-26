@@ -400,7 +400,41 @@ nav ul li a{
     padding: 5%;
 }
 
+/* Owner - Add PET */
 
+#add-pet-principal{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color:#fed99bff;
+}
+
+.form-add-pet{
+    margin: 5%;
+    padding: 2%;
+}
+
+.form-content-add-pet{
+    margin-top:5%;
+    display: grid;
+}
+
+.form-content-add-pet input{
+    background-color: #d6efffff;
+    border-radius: 5%;
+    border: 0;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+}
 
 
 
