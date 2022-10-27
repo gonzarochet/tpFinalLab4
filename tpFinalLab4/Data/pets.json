@@ -113,5 +113,28 @@
         "video": "<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/V9ggbiQdz_g\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
         "size": "Small",
         "comments": "Mimosa, jueguetona y cari\u00f1osa. "
+    },
+    {
+        "owner": {
+            "ownerId": 2,
+            "user": {
+                "userId": 1,
+                "username": "gonzarochet",
+                "email": "rochetgonzalo@gmail.com",
+                "password": "bgfngfn",
+                "firstName": "Gonzalo",
+                "lastName": "Rochet",
+                "dateBirth": "2001-07-18"
+            }
+        },
+        "idPet": 10,
+        "name": "Canela",
+        "vaccinationPlan": "https:\/\/i.pinimg.com\/originals\/b0\/92\/2b\/b0922b69bac5f67df40c7e3fad643040.jpg",
+        "birthDate": "2022-10-01",
+        "picture": "https:\/\/olondriz.com\/wp-content\/uploads\/2020\/04\/ambar-perrito-1-1024x899.jpg",
+        "breed": "Golden",
+        "video": "https:\/\/www.youtube.com\/embed\/-pMG9U8mkps",
+        "size": "Small",
+        "comments": "bla bla"
     }
 ]

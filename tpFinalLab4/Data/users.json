@@ -34,5 +34,14 @@
         "firstName": "bicho",
         "lastName": "Bolita",
         "dateBirth": "2022-03-25"
+    },
+    {
+        "id": 5,
+        "username": "pepito",
+        "email": "pepito@gmail.com",
+        "password": "1234",
+        "firstName": "pepito",
+        "lastName": "jorge",
+        "dateBirth": "2022-10-01"
     }
 ]

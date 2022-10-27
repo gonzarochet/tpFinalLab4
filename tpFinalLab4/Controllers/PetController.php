@@ -28,7 +28,7 @@ class PetController
     public function Add($name,$birthDate,$vaccinationPlan, $picture,$breed, $size, $video, $comments)
     {
         $user = $_SESSION["loggedUser"];        
-        $owner = new Owner();
+        //$owner = new Owner();
         $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); //lo busco por el user ID en el owner DAO 
         
         $pet = new Pet();
