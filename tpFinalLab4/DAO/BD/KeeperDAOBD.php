@@ -1,12 +1,12 @@
 <?php
 
-namespace DAO;
+namespace DAO\BD;
 
 use Models\Keeper as Keeper;
-use DAO\IKeeperDAOBD as IKeeperDAOBD;
+use DAO\BD\IKeeperDAOBD as IKeeperDAOBD;
 use \Exception as Exception;
-use DAO\Connection as Connection;
-use DAO\UserDAOBD as UserDAOBD;
+use DAO\BD\Connection as Connection;
+use DAO\BD\UserDAOBD as UserDAOBD;
 use Models\User as User;
 
 class KeeperDAOBD implements IKeeperDAOBD

@@ -1,5 +1,6 @@
 <?php
-namespace DAO;
+namespace DAO\BD;
+
 use Models\Keeper as Keeper;
 
 interface IKeeperDAOBD

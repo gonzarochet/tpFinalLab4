@@ -1,12 +1,12 @@
-<?php namespace DAO;
+<?php namespace DAO\BD;
 
 Use Models\User as User;
 use \Exception as Exception;
-use DAO\Connection as Connection;
-use DAO\IUserDAODB as IUserDAODB;
+use DAO\BD\Connection as Connection;
+use DAO\BD\IUserDAOBD as IUserDAOBD;
 
 
-class UserDAOBD implements IUserDAODB{
+class UserDAOBD implements IUserDAOBD{
     
     private $connection;
     private $tableName="user";

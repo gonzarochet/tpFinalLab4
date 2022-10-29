@@ -1,7 +1,7 @@
-<?php namespace DAO;
+<?php namespace DAO\JSON;
 
 use Models\Keeper as Keeper;
-use MODELS\User as User;
+use Models\User as User;
 
 class KeeperDAO implements IKeeperDAO{
 

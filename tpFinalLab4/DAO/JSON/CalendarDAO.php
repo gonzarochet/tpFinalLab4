@@ -1,11 +1,11 @@
 <?php
 
-namespace DAO;
+namespace DAO\JSON;
 
 use Models\Calendar as Calendar;
-use DAO\ICalendarDAO as ICalendarDAO;
+use DAO\JSON\ICalendarDAO as ICalendarDAO;
 use Models\Keeper as Keeper;
-use DAO\KeeperDAO as KeeperDAO;
+use DAO\JSON\KeeperDAO as KeeperDAO;
 
 
 class CalendarDAO implements ICalendarDAO

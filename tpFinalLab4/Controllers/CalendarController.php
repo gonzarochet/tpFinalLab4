@@ -1,7 +1,7 @@
 <?php namespace Controllers;
 
 use Models\Calendar as Calendar;
-use DAO\CalendarDAO AS CalendarDAO;
+use DAO\BD\CalendarDAO AS CalendarDAO;
 use DateTime as DateTime;
 use DateInterval as DateInterval;
 use DatePeriod as DatePeriod;
@@ -29,8 +29,6 @@ class CalendarController{
         $calendarList = $this->calendarDAO->GetAllByKeeper($keeper);
         require_once(VIEWS_PATH."listCalendarPeriod.php");
     }
-    
-    
 
     public function Add( $dateFrom, $dateTo){
 

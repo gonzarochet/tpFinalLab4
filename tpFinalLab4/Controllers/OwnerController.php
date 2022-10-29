@@ -3,7 +3,7 @@
 use Models\User as user;
 use Models\Owner as Owner;
 //use DAO\OwnerDAO AS OwnerDAO;
-use DAO\OwnerDAOBd AS OwnerDAOBD;
+use DAO\BD\OwnerDAOBD AS OwnerDAOBD;
 
 
 class OwnerController{

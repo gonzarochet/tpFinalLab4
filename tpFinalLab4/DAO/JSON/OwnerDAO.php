@@ -1,8 +1,8 @@
-<?php namespace DAO;
+<?php namespace DAO\JSON;
 
     use Models\User as User;
     use Models\Owner as Owner;
-    use DAO\IOwnerDAO as IOwnerDAO;
+    use DAO\JSON\IOwnerDAO as IOwnerDAO;
     //use Controllers\OwnerController as OwnerController;
 
     class OwnerDAO implements IOwnerDAO{

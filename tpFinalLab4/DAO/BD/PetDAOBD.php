@@ -1,12 +1,12 @@
 <?php
 
-namespace DAO;
+namespace DAO\BD;
 
 use \Exception as Exception;
-use DAO\Connection as Connection;
+use DAO\BD\Connection as Connection;
 use Models\Owner as Owner;
 Use Models\Pet as Pet;
-use DAO\IPetDAOBD as IPetDAOBD;
+use DAO\BD\IPetDAOBD as IPetDAOBD;
 
 class PetDAOBD implements IPetDAOBD
 {

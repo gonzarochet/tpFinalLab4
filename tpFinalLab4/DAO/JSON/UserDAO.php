@@ -1,4 +1,4 @@
-<?php namespace DAO;
+<?php namespace DAO\JSON;
 
 Use Models\User as User;
 

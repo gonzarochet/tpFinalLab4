@@ -1,7 +1,7 @@
-<?php namespace DAO;
+<?php namespace DAO\JSON;
 
     use Models\Pet as Pet;
-    use DAO\IPetDAO as IPetDAO;
+    use DAO\JSON\IPetDAO as IPetDAO;
     use Models\Owner as Owner;
     //use DAO\OwnerDAO as OwnerDAO;
     use Models\User as user;

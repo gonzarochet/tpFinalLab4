@@ -3,7 +3,7 @@
 use Models\User as User;
 use Models\Keeper as Keeper;
 //use DAO\KeeperDAO as KeeperDAO;
-use DAO\KeeperDAOBD as KeeperDAOBD;
+use DAO\BD\KeeperDAOBD as KeeperDAOBD;
 
 
 class KeeperController{
@@ -34,7 +34,7 @@ class KeeperController{
 
         //$keeper->setKeeperId($this->keeperDAO->GetNextKeeperId()); --> el id se setea en el DAO para json
         $keeper->setUser($user);
-        $keeper->setReputation("");
+        $keeper->setReputation(0);
 
         $this->keeperDAO->Add($keeper);
     }

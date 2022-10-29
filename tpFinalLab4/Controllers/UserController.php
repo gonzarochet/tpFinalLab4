@@ -2,8 +2,8 @@
 
 namespace Controllers;
 
-use DAO\UserDAO as UserDAO;
-use DAO\UserDAOBD as UserDAOBD;
+//use DAO\UserDAO as UserDAO;
+use DAO\BD\UserDAOBD as UserDAOBD;
 use Models\User as User;
 
 class UserController

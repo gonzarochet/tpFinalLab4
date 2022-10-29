@@ -1,11 +1,11 @@
-<?php namespace DAO;
+<?php namespace DAO\BD;
 
     use \Exception as Exception;
     use Models\User as User;
     use Models\Owner as Owner;
-    use DAO\UserDAOBD as UserDAOBD;
-    use DAO\IOwnerDAOBD as IOwnerDAOBD;
-    use DAO\Connection as Connection;
+    use DAO\BD\UserDAOBD as UserDAOBD;
+    use DAO\BD\IOwnerDAOBD as IOwnerDAOBD;
+    use DAO\BD\Connection as Connection;
     //use Controllers\OwnerController as OwnerController;
 
     class OwnerDAOBD implements IOwnerDAOBD{

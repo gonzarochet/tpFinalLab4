@@ -1,8 +1,8 @@
-<?php namespace DAO;
+<?php namespace DAO\BD;
 
     use Models\User as User;    
 
-    interface IUserDAODB{
+    interface IUserDAOBD{
         function Add(User $user);
         function GetAll();
         function GetUserByEmail($email);

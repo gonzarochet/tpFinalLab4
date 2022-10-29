@@ -2,10 +2,10 @@
 
 use Models\Pet as Pet;
 //use DAO\PetDAO as PetDAO;
-use DAO\PetDAOBD as PetDAOBD;
+use DAO\BD\PetDAOBD as PetDAOBD;
 use Models\Owner as Owner;
 //use DAO\OwnerDAO as OwnerDAO;
-use DAO\OwnerDAOBD as OwnerDAOBD;
+use DAO\BD\OwnerDAOBD as OwnerDAOBD;
 
 class PetController
 {

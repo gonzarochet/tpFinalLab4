@@ -1,5 +1,5 @@
 <?php
-namespace DAO;
+namespace DAO\JSON;
 use Models\User as User;
 
 interface IOwnerDAO{
