@@ -79,8 +79,9 @@ class UserController
 
 
         $this->userDAO->Add($user);
+        $userWithId=$this->userDAO->GetUserByEmail($email);
 
-        return $user;
+        return $userWithId;
     }
 
 

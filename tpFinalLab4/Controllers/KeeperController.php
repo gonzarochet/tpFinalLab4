@@ -4,6 +4,7 @@ use Models\User as User;
 use Models\Keeper as Keeper;
 //use DAO\KeeperDAO as KeeperDAO;
 use DAO\BD\KeeperDAOBD as KeeperDAOBD;
+use Models\Calendar as Calendar;
 
 
 class KeeperController{
@@ -23,17 +24,17 @@ class KeeperController{
         $keeperList = $this->keeperDAO->GetAll();
         require_once(VIEWS_PATH."listKeeper.php");
     }
-    public function showListViewbyOwner(){
+
+    /*public function showListViewbyOwner(){   //para que estaba esta función??
         $keeperList = $this->keeperDAO->GetAll();
         require_once(VIEWS_PATH."listKeeperOwnerView.php");
-    }
+    }*/
 
     public function Add(User $user){
 
         $keeper = new Keeper();
 
-        //$keeper->setKeeperId($this->keeperDAO->GetNextKeeperId()); --> el id se setea en el DAO para json
-        $keeper->setUser($user);
+        $keeper->setUser($user);   //el id se setea en el DAO para json - $keeper->setKeeperId($this->keeperDAO->GetNextKeeperId())
         $keeper->setReputation(0);
 
         $this->keeperDAO->Add($keeper);
@@ -55,6 +56,10 @@ class KeeperController{
             require_once(VIEWS_PATH."keeper-dashboard.php");
         }
     }
+
+   
+
+    
 
     
 

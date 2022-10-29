@@ -99,5 +99,33 @@ class CalendarDAOBD
             throw $ex;
         }
     }
+
+    public function CalendarByKeeper($keeper)
+    {
+        try 
+        {
+            $query="SELECT * FROM ".$this->tableName." WHERE keeperid= :keeperid ;";
+            $parameters["keeperid"]=$keeper->getKeeperId();
+
+            $this->connection= Connection::GetInstance();
+            $resultSet=$this->connection->Execute($query, $parameters);  
+            
+            $calendarByKeeperList=array();
+            foreach($resultSet as $row)
+            {
+                $calendarDay=new Calendar();
+                $calendarDay->setCalendarId("calendarid");
+                $calendarDay->setDate("calendarDate");
+                $calendarDay->setKeeper($keeper);
+                $calendarDay->setStatus("status");
+
+                array_push($calendarByKeeperList,$calendarDay);
+            }
+            return $calendarByKeeperList;
+
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
 }
 ?>

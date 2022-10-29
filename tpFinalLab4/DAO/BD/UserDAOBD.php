@@ -26,6 +26,7 @@ class UserDAOBD implements IUserDAOBD{
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
+
         }catch(Exception $ex)
         {
             throw $ex;
