@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Date Period</title>
+    <title>Search Available Keepers</title>
     <link href="<?php echo CSS_PATH?>styles.css" rel="stylesheet" media="all">
 </head>
 
@@ -18,12 +18,12 @@
                 <h1>Define Period</h1>
                 <div class="form-content-calendar">
                     <label for="">Start Date</label>
-                    <input type="date" name="dateFrom">
+                    <input type="date" name="startDate">
                     
                 </div>
                 <div class="form-content-calendar">
                     <label for="">End Date</label>
-                    <input type="date" name="dateTo">
+                    <input type="date" name="endDate">
                 </div>
                 
                 <button type="submit" class="btn-calendar">Search</button>

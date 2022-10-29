@@ -32,15 +32,15 @@ class CalendarController{
         require_once(VIEWS_PATH."listCalendarPeriod.php");
     }
 
-    public function Add( $dateFrom, $dateTo){
+    public function Add( $startDate, $endDate){
 
         $keeper=$_SESSION['loggedKeeper']; 
 
         $interval = new DateInterval('P1D');  // Variable that store the date interval of period 1 day
-        $end = new DateTime($dateTo);
+        $end = new DateTime($endDate);
         $end->add($interval);
   
-        $period = new DatePeriod(new DateTime($dateFrom), $interval, $end); //Creation of the period
+        $period = new DatePeriod(new DateTime($startDate), $interval, $end); //Creation of the period
   
         // 
         foreach($period as $date) {                                         //Add EACH day as CalendarItem to CalendarDAO
@@ -69,20 +69,20 @@ class CalendarController{
         require_once(VIEWS_PATH."searchAvailableKeepers.php");
     }
 
-    public function ShowAvailableKeepers($dateFrom, $dateTo)
+    public function ShowAvailableKeepers($startDate, $endDate)
     {
-        $keeperList = $this->SearchAvailableKeepers($dateFrom, $dateTo);
+        $keeperList = $this->SearchAvailableKeepers($startDate, $endDate);
         require_once(VIEWS_PATH."listAvailableKeepers.php");
         //si hago book, necesito mandar keeper id, los dates, el owner. 
     }
 
-    public function SearchAvailableKeepers($dateFrom, $dateTo)
+    public function SearchAvailableKeepers($startDate, $endDate)
     {
         $requiredInterval = new DateInterval('P1D'); 
-        $end = new DateTime($dateTo);
+        $end = new DateTime($endDate);
         $end->add($requiredInterval);
 
-        $requiredPeriod = new DatePeriod(new DateTime($dateFrom), $requiredInterval, $end); //List of required days
+        $requiredPeriod = new DatePeriod(new DateTime($startDate), $requiredInterval, $end); //List of required days
 
         $keepersList = new KeeperDAOBD();
         $keepersList = $keepersList->getAll(); //Brings all keepers

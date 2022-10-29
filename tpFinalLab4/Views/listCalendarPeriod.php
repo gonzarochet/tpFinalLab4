@@ -27,7 +27,7 @@
                         <tr>
                             <td><?php echo $calendar->getDate() ?></td>
                             <td><?php echo $calendar->getStatus() ?></td>
-                            <td><button type="submit" name="id" class="btn-set-unavaliable-calendar" value="<?php echo $calendar->getCalendarId() //// Faltaria definir un Id para cada item del calendario
+                            <td><button type="submit" name="id" class="btn-set-unavaliable-calendar" value="<?php echo $calendar->getCalendarId() 
                                                                                     ?>">Remove day</button> </td>
 
                         </tr>

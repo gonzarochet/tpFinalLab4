@@ -117,6 +117,12 @@ class User{
 
         return $this;
     }
+
+    public function getAge(){
+        $today = date("Y-m-d");
+        $diff = date_diff(date_create($this->getDateBirth()), date_create($today));
+        return $diff->format('%y');
+    }
 } 
 
 ?>

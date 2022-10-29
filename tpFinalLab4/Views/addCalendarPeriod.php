@@ -18,12 +18,12 @@
                 <h1>Add Date Period</h1>
                 <div class="form-content-calendar">
                     <label for="">Start Date</label>
-                    <input type="date" name="dateFrom">
+                    <input type="date" name="startDate">
                     
                 </div>
                 <div class="form-content-calendar">
                     <label for="">End Date</label>
-                    <input type="date" name="dateTo">
+                    <input type="date" name="endDate">
                 </div>
                 
                 <button type="submit" class="btn-calendar">Add Period</button>

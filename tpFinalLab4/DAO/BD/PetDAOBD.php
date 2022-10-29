@@ -83,10 +83,7 @@ class PetDAOBD implements IPetDAOBD
             catch(Exception $ex)
             {
                 throw $ex;
-            }
-            
-        }
- 
-    
+            }   
+        }    
 }
 ?>

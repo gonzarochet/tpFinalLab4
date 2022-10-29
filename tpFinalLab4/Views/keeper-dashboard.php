@@ -35,7 +35,7 @@ use Models\user as User;
                          <a href="<?php echo FRONT_ROOT ?>Calendar/ShowAddView?>"class="btn">Set Available Dates</a>
                     </div>
                     <div id="keeper-button-option">
-                         <a href="<?php echo FRONT_ROOT ?>Calendar/ShowListViewByKeeper" class="btn">List Available Dates</a>
+                         <a href="<?php echo FRONT_ROOT ?>Calendar/ShowListViewByKeeper" class="btn">List or Remove Available Dates</a>
                     </div>
                     <!--
                     <div id="keeper-button-option">

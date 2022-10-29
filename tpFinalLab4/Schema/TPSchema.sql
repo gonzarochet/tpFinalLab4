@@ -56,3 +56,15 @@ create table calendar
 	constraint pk_calendar primary key (calendarid),
 	constraint fk_keeper foreign key(keeperid) references keeper(keeperid)
 );
+
+create table booking
+(
+	bookingNr int auto_increment,
+	startDate date,
+	endDate date,
+	keeperid int,
+	ownerid int,
+	constraint pk_booking primary key (bookingNr),
+	constraint fk_keeper foreign key (keeperid) references keeper (keeperid),
+	constraint fk_owner foreign key (ownerid) references owner (ownerid)
+);

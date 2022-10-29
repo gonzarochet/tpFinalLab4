@@ -40,7 +40,10 @@ use Models\user as User;
                               <a href="<?php echo FRONT_ROOT ?>Keeper/ShowListView?>"class="btn">Show Keepers List</a>
                          </div>
                          <div id="owner-button-option">
-                              <a href="<?php echo FRONT_ROOT ?>Calendar/ShowAvailableKeepersSearchView?>"class="btn">Search Keepers by Date</a>
+                              <a href="<?php echo FRONT_ROOT ?>Calendar/ShowAvailableKeepersSearchView?>"class="btn">Search Available Keepers by Date</a>
+                         </div>
+                         <div id="owner-button-option">
+                              <a href="<?php echo FRONT_ROOT ?>Booking/ShowOwnerBooking?>"class="btn">Show Bookings</a>
                          </div>
                     </div>
                </div>
