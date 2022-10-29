@@ -5,6 +5,7 @@ use Models\Calendar as Calendar;
 use DAO\BD\ICalendarDAOBD AS ICalendarDAOBD;
 use \Exception as Exception;
 use DAO\BD\Connection as Connection;
+use DateTime as DateTime;
 
 class CalendarDAOBD
 {
@@ -100,7 +101,7 @@ class CalendarDAOBD
         }
     }
 
-    public function CalendarByKeeper($keeper)
+    public function DatesByKeeper($keeper)
     {
         try 
         {
@@ -110,18 +111,13 @@ class CalendarDAOBD
             $this->connection= Connection::GetInstance();
             $resultSet=$this->connection->Execute($query, $parameters);  
             
-            $calendarByKeeperList=array();
+            $datesByKeeperList=array();
             foreach($resultSet as $row)
             {
-                $calendarDay=new Calendar();
-                $calendarDay->setCalendarId("calendarid");
-                $calendarDay->setDate("calendarDate");
-                $calendarDay->setKeeper($keeper);
-                $calendarDay->setStatus("status");
-
-                array_push($calendarByKeeperList,$calendarDay);
+                $dateDay = new DateTime($row["calendarDate"]);
+                array_push($datesByKeeperList,$dateDay);
             }
-            return $calendarByKeeperList;
+            return $datesByKeeperList;
 
         } catch (Exception $ex) {
             throw $ex;

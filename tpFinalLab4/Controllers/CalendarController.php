@@ -72,7 +72,8 @@ class CalendarController{
     public function ShowAvailableKeepers($dateFrom, $dateTo)
     {
         $keeperList = $this->SearchAvailableKeepers($dateFrom, $dateTo);
-        require_once(VIEWS_PATH."listKeeper.php");
+        require_once(VIEWS_PATH."listAvailableKeepers.php");
+        //si hago book, necesito mandar keeper id, los dates, el owner. 
     }
 
     public function SearchAvailableKeepers($dateFrom, $dateTo)
@@ -81,23 +82,24 @@ class CalendarController{
         $end = new DateTime($dateTo);
         $end->add($requiredInterval);
 
-        $requiredPeriod = new DatePeriod(new DateTime($dateFrom), $requiredInterval, $end);
+        $requiredPeriod = new DatePeriod(new DateTime($dateFrom), $requiredInterval, $end); //List of required days
 
         $keepersList = new KeeperDAOBD();
-        $keepersList = $keepersList->getAll(); //hace falta hacer el getall?
+        $keepersList = $keepersList->getAll(); //Brings all keepers
         $availableKeepersList = array();
 
         foreach ($keepersList as $keeper) {
-            $calendarByKeeperList = $this->calendarDAO->CalendarByKeeper($keeper); //Brings all available days per keeper
+            $calendarByKeeperList = $this->calendarDAO->DatesByKeeper($keeper); //Brings all available days per keeper
 
             $available = true;
             foreach ($requiredPeriod as $day) {
+                
                 if (!in_array($day, $calendarByKeeperList)) //if at least 1 day it's not available, then turn unavailable.
                 {
                     $available = false;
                 }
             }
-            if ($available = true) //if it's still available after checking all dates, push it into the array
+            if ($available == true) //if it's still available after checking all dates, push it into the array
             {
                 array_push($availableKeepersList, $keeper);
             }
