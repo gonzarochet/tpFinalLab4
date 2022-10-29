@@ -1,6 +1,6 @@
 <?php
 
-namespace DAO;
+namespace DAO\BD;
 use Models\Pet as Pet;
 
 interface IPetDAOBD

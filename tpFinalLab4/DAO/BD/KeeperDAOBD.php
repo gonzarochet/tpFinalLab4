@@ -51,7 +51,7 @@ class KeeperDAOBD implements IKeeperDAOBD
                 $user=$userList->GetUserByUserId($row["userid"]);
 
                 $keeper=new Keeper();
-                $keeper->setKeeperId($resultSet["keeperid"]);
+                $keeper->setKeeperId($row["keeperid"]);
                 $keeper->setUser($user);
                 $keeper->setReputation($row["reputation"]);
 

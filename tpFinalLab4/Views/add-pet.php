@@ -20,11 +20,11 @@
                 <h1>Add Pet</h1>
                 <div class="form-content-add-pet">
                     <label for="">Name of Pet</label>
-                    <input type="text" name="name">
+                    <input type="text" name="name" required>
                 </div>
                 <div class="form-content-add-pet">
                     <label for="">Birth of Pet</label>
-                    <input type="date" name="birthDate">
+                    <input type="date" name="birthDate" required>
                 </div>
 
                 <div class="form-content-add-pet">

@@ -17,7 +17,7 @@ class PetDAOBD implements IPetDAOBD
     {
         try
         {
-            $query="INSERT INTO ".$this->tableName." (name, birthDate, ownerid, vaccinationPlan,picture,size,video,comments) VALUES (:name, :birthDate, :ownerid, :vaccinationPlan, :picture, :size, :video, :comments);";
+            $query="INSERT INTO ".$this->tableName." (name, breed, birthDate, ownerid, vaccinationPlan,picture,size,video,comments) VALUES (:name,:breed, :birthDate, :ownerid, :vaccinationPlan, :picture, :size, :video, :comments);";
             $parameters["name"]=$pet->getName();
             $parameters["breed"]=$pet->getBreed();
             $parameters["birthDate"]=$pet->getBirthDate();

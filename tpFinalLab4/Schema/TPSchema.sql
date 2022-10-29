@@ -37,13 +37,22 @@ create table pet
 	name varchar(100),
 	birthDate date,
 	ownerid int,
-	vaccinationPlan varchar(100),
-	picture varchar(100),
+	vaccinationPlan varchar(200),
+	picture varchar(200),
 	breed varchar (50),
 	size varchar(50),
-	video varchar(100),
+	video varchar(200),
 	comments varchar(100),
 	constraint pk_pet primary key (petid),
 	constraint fk_owner foreign key (ownerid) references owner(ownerid)
 );
 
+create table calendar
+(
+	calendarid int auto_increment,
+	keeperid int,
+	calendarDate date,
+	status varchar (50),
+	constraint pk_calendar primary key (calendarid),
+	constraint fk_keeper foreign key(keeperid) references keeper(keeperid)
+);

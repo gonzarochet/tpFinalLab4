@@ -47,6 +47,7 @@ class UserDAOBD implements IUserDAOBD{
                     $user = new User();
                     $user->setId($row["userid"]);
                     $user->setUsername($row["username"]);
+                    $user->setEmail($row["email"]);
                     $user->setPassword($row["pass"]);
                     $user->setFirstName($row["firstName"]);
                     $user->setLastName($row["lastName"]);
@@ -83,6 +84,7 @@ class UserDAOBD implements IUserDAOBD{
                     $user = new User();
                     $user->setId($resultOneRow["userid"]);
                     $user->setUsername($resultOneRow["username"]);
+                    $user->setEmail($resultOneRow["email"]);
                     $user->setPassword($resultOneRow["pass"]);
                     $user->setFirstName($resultOneRow["firstName"]);
                     $user->setLastName($resultOneRow["lastName"]);
@@ -163,6 +165,7 @@ class UserDAOBD implements IUserDAOBD{
                 $user = new User();
                 $user->setId($resultFirstRow["userid"]);
                 $user->setUsername($resultFirstRow["username"]);
+                $user->setEmail($resultFirstRow["email"]);
                 $user->setPassword($resultFirstRow["pass"]);
                 $user->setFirstName($resultFirstRow["firstName"]);
                 $user->setLastName($resultFirstRow["lastName"]);

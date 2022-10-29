@@ -20,11 +20,11 @@ class KeeperController{
     public function showAddView(){}
 
     public function showListView(){
-        $keeperList = $this->keeperDAO->getAll();
+        $keeperList = $this->keeperDAO->GetAll();
         require_once(VIEWS_PATH."listKeeper.php");
     }
     public function showListViewbyOwner(){
-        $keeperList = $this->keeperDAO->getAll();
+        $keeperList = $this->keeperDAO->GetAll();
         require_once(VIEWS_PATH."listKeeperOwnerView.php");
     }
 
