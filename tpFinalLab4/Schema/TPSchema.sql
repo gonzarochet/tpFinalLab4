@@ -31,4 +31,19 @@ create table keeper
 	constraint fk_user foreign key (userid) references user(userid)
 );
 
+create table pet
+(
+	petid int auto_increment,
+	name varchar(100),
+	birthDate date,
+	ownerid int,
+	vaccinationPlan varchar(100),
+	picture varchar(100),
+	breed varchar (50),
+	size varchar(50),
+	video varchar(100),
+	comments varchar(100),
+	constraint pk_pet primary key (petid),
+	constraint fk_owner foreign key (ownerid) references owner(ownerid)
+);
 

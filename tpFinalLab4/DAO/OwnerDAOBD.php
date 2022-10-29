@@ -39,12 +39,14 @@
                     $this->connection = Connection::GetInstance();
     
                     $resultSet = $this->connection->Execute($query);
+                    
                     foreach ($resultSet as $row)
                     {                
                         $userList = new UserDAOBD();
                         $user = new User();
-                        $user=$userList->GetUserByUserId($row["userid"]);
                         
+                        $user=$userList->GetUserByUserId($row["userid"]);
+
                         $owner = new Owner();
                         $owner->setOwnerId($row["ownerid"]);
                         $owner->setUser($user);

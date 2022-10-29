@@ -1,9 +1,11 @@
 <?php namespace Controllers;
 
 use Models\Pet as Pet;
-use DAO\PetDAO as PetDAO;
+//use DAO\PetDAO as PetDAO;
+use DAO\PetDAOBD as PetDAOBD;
 use Models\Owner as Owner;
-use DAO\OwnerDAO as OwnerDAO;
+//use DAO\OwnerDAO as OwnerDAO;
+use DAO\OwnerDAOBD as OwnerDAOBD;
 
 class PetController
 {
@@ -11,8 +13,8 @@ class PetController
     private $ownerDAO;
 
     public function __construct(){
-        $this->petDAO = new PetDAO();
-        $this->ownerDAO = new OwnerDAO();
+        $this->petDAO = new PetDAOBD();
+        $this->ownerDAO = new OwnerDAOBD();
     }
 
     public function ShowAddView(){
@@ -30,9 +32,9 @@ class PetController
         $user = $_SESSION["loggedUser"];        
         //$owner = new Owner();
         $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); //lo busco por el user ID en el owner DAO 
-        
+
         $pet = new Pet();
-        $pet->setIdPet($this->petDAO->GetNextPetId());
+        //$pet->setIdPet($this->petDAO->GetNextPetId());
         $pet->setName($name);
         $pet->setBirthDate($birthDate);
         $pet->setOwner($owner);
@@ -63,9 +65,9 @@ class PetController
                 array_push($ownerPetList,$pet);
             }
         }
-
         require_once(VIEWS_PATH."list-pets.php");
     }
+
     public function Remove($id)
         {
             $this->petDAO->Remove($id);

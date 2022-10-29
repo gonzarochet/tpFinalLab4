@@ -76,8 +76,10 @@ class UserDAOBD implements IUserDAODB{
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query,$parameters);
 
-                $resultOneRow=$resultSet[0];
-
+                if(count($resultSet)>0)
+                {
+                    $resultOneRow=$resultSet[0];
+                    
                     $user = new User();
                     $user->setId($resultOneRow["userid"]);
                     $user->setUsername($resultOneRow["username"]);
@@ -85,9 +87,11 @@ class UserDAOBD implements IUserDAODB{
                     $user->setFirstName($resultOneRow["firstName"]);
                     $user->setLastName($resultOneRow["lastName"]);
                     $user->setDateBirth($resultOneRow["dateBirth"]);
+
+                    return $user;                
+                }              
                 
                 
-                return $user;
             }
             catch (Exception $ex)
             {
