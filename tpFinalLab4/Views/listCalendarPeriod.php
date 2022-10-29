@@ -18,7 +18,7 @@
                 <thead>
                     <th>Date</th>
                     <th>Status</th>
-                    <th>Set Unavailable</th>
+                    <th>Remove Day</th>
                 </thead>
                 <tbody>
                     <?php
@@ -27,8 +27,8 @@
                         <tr>
                             <td><?php echo $calendar->getDate() ?></td>
                             <td><?php echo $calendar->getStatus() ?></td>
-                            <td><button type="submit" name="id" class="btn-set-unavaliable-calendar" value="<?php echo $calendar->getDate() //// Faltaria definir un Id para cada item del calendario
-                                                                                    ?>">Set Unavailable </button> </td>
+                            <td><button type="submit" name="id" class="btn-set-unavaliable-calendar" value="<?php echo $calendar->getCalendarId() //// Faltaria definir un Id para cada item del calendario
+                                                                                    ?>">Remove day</button> </td>
 
                         </tr>
                     <?php
