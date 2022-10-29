@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use DAO\UserDAO as UserDAO;
+use DAO\UserDAOBD as UserDAOBD;
 use Models\User as User;
 
 class UserController
@@ -12,7 +13,7 @@ class UserController
 
     public function __construct()
     {
-        $this->userDAO = new UserDAO();            
+        $this->userDAO = new UserDAOBD();            
     }
 
     public function IndexRegister($message = "")
@@ -68,7 +69,7 @@ class UserController
     {
 
         $user = new User();
-        $user->setId($this->AutoIncrementalID());
+        //$user->setId($this->AutoIncrementalID());
         $user->setUsername($username);
         $user->setEmail($email);
         $user->setPassword($password);
@@ -82,12 +83,6 @@ class UserController
         return $user;
     }
 
-    // this logic is from DAO. 
-    private function AutoIncrementalID()
-    {
-        $id = $this->userDAO->getLastid() + 1;
-        return $id;
-    }
 
     public function ShowLoginView()
     {

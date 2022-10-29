@@ -2,14 +2,15 @@
 
 use Models\User as User;
 use Models\Keeper as Keeper;
-use DAO\KeeperDAO as KeeperDAO;
+//use DAO\KeeperDAO as KeeperDAO;
+use DAO\KeeperDAOBD as KeeperDAOBD;
 
 
 class KeeperController{
     private $keeperDAO;
 
     public function __construct(){
-        $this->keeperDAO = new KeeperDAO();
+        $this->keeperDAO = new KeeperDAOBD();
     }
 
     public function Index($message = ""){
@@ -31,7 +32,7 @@ class KeeperController{
 
         $keeper = new Keeper();
 
-        $keeper->setKeeperId($this->keeperDAO->GetNextKeeperId());
+        //$keeper->setKeeperId($this->keeperDAO->GetNextKeeperId()); --> el id se setea en el DAO para json
         $keeper->setUser($user);
         $keeper->setReputation("");
 

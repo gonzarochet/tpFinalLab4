@@ -11,7 +11,8 @@
 
         public function Add(Owner $owner){
             $this->RetrieveData();
-            
+
+            $owner->setOwnerId($this->GetNextOwnerId()); //Next ID para Json va en el DAO
             array_push($this->ownerList,$owner);
             
             $this->SaveData();

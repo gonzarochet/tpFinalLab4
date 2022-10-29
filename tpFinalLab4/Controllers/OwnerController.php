@@ -2,7 +2,8 @@
 
 use Models\User as user;
 use Models\Owner as Owner;
-use DAO\OwnerDAO AS OwnerDAO;
+//use DAO\OwnerDAO AS OwnerDAO;
+use DAO\OwnerDAOBd AS OwnerDAOBD;
 
 
 class OwnerController{
@@ -10,7 +11,7 @@ class OwnerController{
     private $ownerDAO;
 
     public function __construct(){
-        $this->ownerDAO = new OwnerDAO();
+        $this->ownerDAO = new OwnerDAOBD();
     }
 
     public function showAddView(){
@@ -26,7 +27,7 @@ class OwnerController{
         
         $owner = new Owner();
 
-        $owner->setOwnerId($this->ownerDAO->GetNextOwnerId()); 
+        //$owner->setOwnerId($this->ownerDAO->GetNextOwnerId()); --> quedó definido en el dao
         $owner->setUser($user);
 
         $this->ownerDAO->Add($owner);

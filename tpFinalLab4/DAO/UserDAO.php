@@ -11,6 +11,8 @@ class UserDAO{
 
     public function Add(User $user){
         $this->RetrieveData();
+
+        $user->setId($this->getLastId()+1);
         array_push($this->userList,$user);
         $this->SaveData();
 
@@ -112,9 +114,7 @@ class UserDAO{
             foreach($this->userList as $user){
                 if($user->getEmail()==$email){
                     $flag = true;
-                    
                 }
-
             }
             return $flag;
 
@@ -128,12 +128,9 @@ class UserDAO{
                 if($user->getUsername()==$username){
                     $flag = true;
                 }
-
             }
             return $flag;
 
         }
 }
-
-
 ?> 
