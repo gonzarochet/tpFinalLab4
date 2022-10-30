@@ -35,6 +35,7 @@ class BookingController
         $booking->setEndDate($endDate);
         $booking->setKeeper($keeper);
         $booking->setOwner($owner);
+        $booking->setIsConfirmed(0);
 
         $this->bookingDAO->Add($booking);
 
@@ -44,16 +45,16 @@ class BookingController
 
     public function ShowOwnerBooking()
     {
-        $bookingList=array();
+        $ownerBookingList=array();
         $owner=$_SESSION["loggedOwner"];
-
+    
         $bookingList=$this->bookingDAO->GetAll();
 
         foreach($bookingList as $booking)
         {
             if($booking->getOwner()->getOwnerId() == $owner)
             {
-                array_push($bookingList,$booking);
+                array_push($ownerBookingList,$booking);
             }
         }
         require_once(VIEWS_PATH."list-bookings.php");

@@ -16,11 +16,12 @@ class BookingDAOBD implements IBookingDAOBD
     {
         try 
         {
-            $query="INSERT INTO ".$this->tableName." (startDate,endDate,ownerid,keeperid) VALUES (:startDate,:endDate,:ownerid,:keeperid);";
+            $query="INSERT INTO ".$this->tableName." (startDate,endDate,ownerid,keeperid,isConfirmed) VALUES (:startDate,:endDate,:ownerid,:keeperid, :isConfirmed);";
             $parameters["startDate"]=$booking->getStartDate();
             $parameters["endDate"]=$booking->getEndDate();
             $parameters["ownerid"]=$booking->getOwner()->getOwnerId();
             $parameters["keeperid"]=$booking->getKeeper()->getKeeperId();
+            $parameters["isConfirmed"]=$booking->getIsConfirmed();
 
             $this->connection=Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query,$parameters);
@@ -51,6 +52,7 @@ class BookingDAOBD implements IBookingDAOBD
                 $booking->setOwner($ownerList->GetOwnerByOwnerId($row["ownerid"]));
                 $booking->setStartDate($row["startDate"]);
                 $booking->setEndDate($row["endDate"]);
+                $booking->setIsConfirmed($row["isConfirmed"]);
                 
 
                 array_push($bookingList, $booking);

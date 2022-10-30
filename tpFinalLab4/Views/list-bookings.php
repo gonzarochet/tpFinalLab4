@@ -20,7 +20,7 @@
                 <th>End Date</th>
                 <th>Keeper</th>
                 <th>Owner</th>
-                
+                <th>Is Confimed</th>
             </thead>
             <tbody>
                 <?php
@@ -32,6 +32,7 @@
                         <td><?php echo $booking->getEndDate() ?></td>
                         <td><?php echo $booking->getKeeper()->getKeeperId() ?></td>
                         <td><?php echo $booking->getOwner()->getOwnerId() ?></td>
+                        <td><?php echo $booking->getIsConfirmed() ?></td>
                         
                     </tr>
                 <?php

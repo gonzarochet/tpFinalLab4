@@ -64,6 +64,7 @@ create table booking
 	endDate date,
 	keeperid int,
 	ownerid int,
+	isConfirmed int,
 	constraint pk_booking primary key (bookingNr),
 	constraint fk_keeper foreign key (keeperid) references keeper (keeperid),
 	constraint fk_owner foreign key (ownerid) references owner (ownerid)

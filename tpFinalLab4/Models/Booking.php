@@ -11,6 +11,7 @@ class Booking
     private $endDate;
     private $owner;
     private $keeper;
+    private $isConfirmed;
 
     public function getBookingNumber(){
         return $this->bookingNr;
@@ -52,6 +53,14 @@ class Booking
     {
         $this->keeper=$keeper;
     }   
+    public function getIsConfirmed()
+    {
+        return $this->isConfirmed;
+    }
+    public function setIsConfirmed($isConfirmed)
+    {
+        $this->isConfirmed=$isConfirmed;
+    }
 
 }
 ?>
