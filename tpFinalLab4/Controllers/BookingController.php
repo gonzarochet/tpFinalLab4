@@ -4,6 +4,7 @@ namespace Controllers;
 use DAO\BD\KeeperDAOBD as KeeperDAOBD;
 use DAO\BD\PetDAOBD as PetDAOBD;
 use DAO\BD\BookingDAOBD as BookingDAOBD;
+use DAO\BD\CalendarDAOBD;
 use Models\Booking as Booking;
 
 class BookingController
@@ -15,15 +16,17 @@ class BookingController
     }
 
 
-    public function ShowConfirmationView($startDate, $endDate, $keeperid)
+    public function ShowOwnerConfirmationView($startDate, $endDate, $keeperid)
     {
         $owner=$_SESSION["loggedOwner"];
 
         $petList=new PetDAOBD();
         $petList=$petList->GetPetsByOwnerId($owner->getOwnerId());        
 
-        require_once(VIEWS_PATH."booking-confirmation.php");
+        require_once(VIEWS_PATH."booking-confirmation-owner.php");
     }
+
+    
 
     public function Add($petid,$startDate, $endDate, $keeperid) //petid
     {
@@ -39,7 +42,7 @@ class BookingController
         $booking->setEndDate($endDate);
         $booking->setKeeper($keeper);
         $booking->setPet($pet);
-        $booking->setIsConfirmed(0);
+        $booking->setIsConfirmed('No');
 
         
         $this->bookingDAO->Add($booking);
@@ -79,7 +82,20 @@ class BookingController
                 array_push($bookingList,$booking);
             }
         }
-        require_once(VIEWS_PATH."list-bookings.php");
+        require_once(VIEWS_PATH."list-keeper-bookings.php");
+    }
+
+    public function Confirmation($bookingNr)
+    {
+        $this->bookingDAO->ConfirmBooking($bookingNr); //Sets IsConfirmed = 'Yes' in booking table. 
+
+        $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
+        $keeperid=$booking->getKeeper()->getKeeperId();
+        $calendarList=new CalendarDAOBD();
+        $calendarList->SetDatesUnavailable($keeperid,$booking->getStartDate(),$booking->getEndDate());       //Sets dates unavailable in calendar table. 
+        
+        $this->ShowListKeeperView();
+        
     }
 
     /*

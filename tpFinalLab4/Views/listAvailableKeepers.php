@@ -12,7 +12,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-keeper">
-    <form action="<?php echo FRONT_ROOT ?>Booking/ShowConfirmationView" method="post">
+    <form action="<?php echo FRONT_ROOT ?>Booking/ShowOwnerConfirmationView" method="post">
         <table class = keeper-list>
             <h1>Available Keepers</h1>
             <thead>

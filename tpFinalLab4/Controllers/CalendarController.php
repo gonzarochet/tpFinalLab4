@@ -89,22 +89,24 @@ class CalendarController{
         $availableKeepersList = array();
 
         foreach ($keepersList as $keeper) {
-            $calendarByKeeperList = $this->calendarDAO->DatesByKeeper($keeper); //Brings all available days per keeper
+            $availableCalendarByKeeperList = $this->calendarDAO->AvailableDatesByKeeper($keeper); //Brings all available days per keeper (the date has to exist and has to have status='Available' to appear here)
 
             $available = true;
             foreach ($requiredPeriod as $day) {
                 
-                if (!in_array($day, $calendarByKeeperList)) //if at least 1 day it's not available, then turn unavailable.
+                if ((!in_array($day, $availableCalendarByKeeperList))) //if at least 1 day it's not available, then turn unavailable.
                 {
                     $available = false;
                 }
             }
-            if ($available == true) //if it's still available after checking all dates, push it into the array
+            if ($available == true) //if it's still available after checking all dates, it's pushed into the array
             {
                 array_push($availableKeepersList, $keeper);
             }
         }
         return $availableKeepersList;                 
-    }        
+    }      
+    
+    
 }
 ?>

@@ -66,5 +66,34 @@ class BookingDAOBD implements IBookingDAOBD
         }
     }
 
+    public function GetBookingBybookingNr($bookingNr)
+    {
+        $bookingList=$this->GetAll();
+        $bookingFound = new Booking();
+        foreach ($bookingList as $booking)
+        {
+            if($bookingNr == $booking->getBookingNumber())
+            {
+                $bookingFound=$booking;
+            }
+        }
+        return $bookingFound;
+    }
+
+    public function ConfirmBooking($bookingNr)
+    {
+        try {
+            $query="UPDATE ".$this->tableName." SET isConfirmed='Yes' WHERE bookingNr= :bookingNr;";
+            $parameters["bookingNr"]=$bookingNr;
+
+            $this->connection=Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query,$parameters);
+
+            
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
 }
 ?>

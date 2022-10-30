@@ -64,7 +64,7 @@ create table booking
 	endDate date,
 	keeperid int,
 	petid int,
-	isConfirmed int,
+	isConfirmed char(3),
 	constraint pk_booking primary key (bookingNr),
 	constraint fk_keeper foreign key (keeperid) references keeper (keeperid),
 	constraint fk_pet foreign key (petid) references pet (petid)

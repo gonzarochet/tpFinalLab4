@@ -6,6 +6,8 @@ use DAO\BD\ICalendarDAOBD AS ICalendarDAOBD;
 use \Exception as Exception;
 use DAO\BD\Connection as Connection;
 use DateTime as DateTime;
+use DateInterval as DateInterval;
+use DatePeriod as DatePeriod;
 
 class CalendarDAOBD
 {
@@ -101,11 +103,11 @@ class CalendarDAOBD
         }
     }
 
-    public function DatesByKeeper($keeper)
+    public function AvailableDatesByKeeper($keeper)
     {
         try 
         {
-            $query="SELECT * FROM ".$this->tableName." WHERE keeperid= :keeperid ;";
+            $query="SELECT * FROM ".$this->tableName." WHERE status='Available' and keeperid= :keeperid ;";
             $parameters["keeperid"]=$keeper->getKeeperId();
 
             $this->connection= Connection::GetInstance();
@@ -121,6 +123,33 @@ class CalendarDAOBD
 
         } catch (Exception $ex) {
             throw $ex;
+        }
+    }
+
+    public function SetDatesUnavailable($keeperid, $startDate, $endDate){
+        //Interval definition
+        $interval = new DateInterval('P1D'); 
+        $end = new DateTime($endDate);
+        $end->add($interval);
+
+        $period = new DatePeriod(new DateTime($startDate), $interval, $end); //List of days
+
+        foreach ($period as $day)
+        {
+            try
+            {
+                $query="UPDATE ".$this->tableName." SET status = 'Unavailable' WHERE keeperid=:keeperid and calendarDate= :calendarDate ;";
+                $parameters["keeperid"]=$keeperid;
+                $parameters["calendarDate"]=$day->format('Y-m-d'); //Converting to String to be able to compare the date in the DB
+
+                $this->connection=Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query,$parameters);
+
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
         }
     }
 }
