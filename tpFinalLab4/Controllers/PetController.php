@@ -34,7 +34,6 @@ class PetController
         $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); //lo busco por el user ID en el owner DAO 
 
         $pet = new Pet();
-        //$pet->setIdPet($this->petDAO->GetNextPetId());
         $pet->setName($name);
         $pet->setBirthDate($birthDate);
         $pet->setOwner($owner);
@@ -50,21 +49,13 @@ class PetController
         $this->ShowAddView();
     }
 
-    public function ShowPetsByOwner (){
+    public function ShowListPetsByOwner (){
         
         $user = $_SESSION["loggedUser"];        
         $ownerId=$this->ownerDAO->GetOwnerByUserId($user->getId())->getOwnerId();
 
-        $petList=$this->petDAO->GetAll();
-        $ownerPetList= array();
-
-        foreach($petList as $pet)
-        {
-            if($pet->getOwner()->getOwnerId() == $ownerId)
-            {
-                array_push($ownerPetList,$pet);
-            }
-        }
+        $ownerPetList=$this->petDAO->GetPetsByOwnerId($ownerId);
+        
         require_once(VIEWS_PATH."list-pets.php");
     }
 
@@ -72,7 +63,7 @@ class PetController
         {
             $this->petDAO->Remove($id);
 
-            $this->ShowPetsByOwner();
+            $this->ShowListPetsByOwner();
         }
 
 }

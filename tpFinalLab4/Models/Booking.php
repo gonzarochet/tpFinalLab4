@@ -2,14 +2,14 @@
 namespace Models;
 
 use Models\Keeper as Keeper;
-use Models\Owner as Owner;
+use Models\Pet as Pet;
 
 class Booking
 {
     private $bookingNr;
     private $startDate;
     private $endDate;
-    private $owner;
+    private $pet;
     private $keeper;
     private $isConfirmed;
 
@@ -37,13 +37,13 @@ class Booking
     {
         $this->endDate=$endDate;
     }
-    public function getOwner()
+    public function getPet()
     {
-        return $this->owner;
+        return $this->pet;
     }
-    public function setOwner(Owner $owner)
+    public function setPet(Pet $pet)
     {
-        $this->owner=$owner;
+        $this->pet=$pet;
     }
     public function getKeeper()
     {

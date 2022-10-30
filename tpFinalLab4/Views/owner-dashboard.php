@@ -34,7 +34,7 @@ use Models\user as User;
                               <a href="<?php echo FRONT_ROOT ?>Pet/ShowAddView?>"class="btn">Add Pet</a>
                          </div>
                          <div id="owner-button-option">
-                              <a href="<?php echo FRONT_ROOT ?>Pet/ShowPetsByOwner?>"class="btn">Show my pets</a>
+                              <a href="<?php echo FRONT_ROOT ?>Pet/ShowListPetsByOwner?>"class="btn">Show my pets</a>
                          </div>
                          <div id="owner-button-option">
                               <a href="<?php echo FRONT_ROOT ?>Keeper/ShowListView?>"class="btn">Show Keepers List</a>
@@ -43,7 +43,7 @@ use Models\user as User;
                               <a href="<?php echo FRONT_ROOT ?>Calendar/ShowAvailableKeepersSearchView?>"class="btn">Search Available Keepers by Date</a>
                          </div>
                          <div id="owner-button-option">
-                              <a href="<?php echo FRONT_ROOT ?>Booking/ShowOwnerBooking?>"class="btn">Show Bookings</a>
+                              <a href="<?php echo FRONT_ROOT ?>Booking/ShowListOwnerView?>"class="btn">Show Bookings</a>
                          </div>
                     </div>
                </div>

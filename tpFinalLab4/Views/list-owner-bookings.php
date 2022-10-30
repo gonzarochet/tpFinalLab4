@@ -19,7 +19,7 @@
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Keeper</th>
-                <th>Owner</th>
+                <th>Pet</th>
                 <th>Is Confimed</th>
             </thead>
             <tbody>
@@ -30,8 +30,8 @@
                         <td><?php echo $booking->getBookingNumber() ?></td>
                         <td><?php echo $booking->getStartDate() ?></td>
                         <td><?php echo $booking->getEndDate() ?></td>
-                        <td><?php echo $booking->getKeeper()->getKeeperId() ?></td>
-                        <td><?php echo $booking->getOwner()->getOwnerId() ?></td>
+                        <td><?php echo $booking->getKeeper()->getUser()->getFirstName()." ".$booking->getKeeper()->getUser()->getLastName() ?></td>
+                        <td><?php echo $booking->getPet()->getName() ?></td>
                         <td><?php echo $booking->getIsConfirmed() ?></td>
                         
                     </tr>
@@ -41,7 +41,16 @@
                 </tr>
             </tbody>
         </table>
-        <a class="" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashsboard</a>
+
+        <a class="" href="<?php 
+                        if (isset($_SESSION["loggedOwner"]))
+                        {
+                            echo FRONT_ROOT ?>Owner/OwnerLogin<?php
+                        }else if (isset($_SESSION["loggedKeeper"]))
+                        {
+                            echo FRONT_ROOT ?>Keeper/KeeperLogin<?php
+                        }
+                        ?>">Go back to Dashsboard</a> 
     </div>
 </body>
 

@@ -40,18 +40,18 @@
                             <td><?php $image = $pet->getPicture();
                                 if (!filter_var($image, FILTER_VALIDATE_URL) === false) {
                                     $imageData = base64_encode(file_get_contents($image));
-                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="150">';
+                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="100">';
                                 }
                                 ?></td>
                             <td><?php $image = $pet->getVaccinationPlan();
                                 if (!filter_var($image, FILTER_VALIDATE_URL) === false) //valdiates if url is valid
                                 {
                                     $imageData = base64_encode(file_get_contents($image));
-                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="150">';
+                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="100">';
                                 }
                                 ?></td>
                             <td>
-                                <iframe width="auto" height="150" src="<?php if (!filter_var($pet->getVideo(), FILTER_VALIDATE_URL) === false) {
+                                <iframe width="150" height="130" src="<?php if (!filter_var($pet->getVideo(), FILTER_VALIDATE_URL) === false) {
                                                                             echo $pet->getVideo();
                                                                         } ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                                 </iframe>

@@ -29,7 +29,7 @@
                 <button type="submit" class="btn-calendar">Search</button>
 
             </form>
-            <a class="cancel-register" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Cancel add period</a>
+            <a class="cancel-register" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Cancel search</a>
         </div>
 
     </section>

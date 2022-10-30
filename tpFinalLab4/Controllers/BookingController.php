@@ -1,8 +1,8 @@
 <?php
 namespace Controllers;
 
-use DAO\BD\KeeperDAOBD;
-use DAO\BD\OwnerDAOBD;
+use DAO\BD\KeeperDAOBD as KeeperDAOBD;
+use DAO\BD\PetDAOBD as PetDAOBD;
 use DAO\BD\BookingDAOBD as BookingDAOBD;
 use Models\Booking as Booking;
 
@@ -18,14 +18,18 @@ class BookingController
     public function ShowConfirmationView($startDate, $endDate, $keeperid)
     {
         $owner=$_SESSION["loggedOwner"];
-        $ownerid=$owner->getOwnerId();
+
+        $petList=new PetDAOBD();
+        $petList=$petList->GetPetsByOwnerId($owner->getOwnerId());        
+
         require_once(VIEWS_PATH."booking-confirmation.php");
     }
 
-    public function Add($startDate, $endDate, $keeperid, $ownerid)
+    public function Add($petid,$startDate, $endDate, $keeperid) //petid
     {
-        $ownerList=new OwnerDAOBD();
-        $owner=$ownerList->GetOwnerByOwnerId($ownerid);
+        
+        $petList=new PetDAOBD();
+        $pet=$petList->GetPetByPetId($petid);
 
         $keeperList=new KeeperDAOBD();
         $keeper=$keeperList->GetKeeperByKeeperId($keeperid);
@@ -34,39 +38,58 @@ class BookingController
         $booking->setStartDate($startDate);
         $booking->setEndDate($endDate);
         $booking->setKeeper($keeper);
-        $booking->setOwner($owner);
+        $booking->setPet($pet);
         $booking->setIsConfirmed(0);
 
+        
         $this->bookingDAO->Add($booking);
 
-        $this->GetAllByOwner($owner);
+        $this->ShowListOwnerView();
 
     }
 
-    public function ShowOwnerBooking()
+    public function ShowListOwnerView()
     {
-        $ownerBookingList=array();
+        $bookingList=array();
         $owner=$_SESSION["loggedOwner"];
     
-        $bookingList=$this->bookingDAO->GetAll();
+        $bookingListAll=$this->bookingDAO->GetAll();
 
-        foreach($bookingList as $booking)
+        foreach($bookingListAll as $booking)
         {
-            if($booking->getOwner()->getOwnerId() == $owner)
+            if($booking->getPet()->getOwner() == $owner)
             {
-                array_push($ownerBookingList,$booking);
+                array_push($bookingList,$booking);
+            }
+        }
+        require_once(VIEWS_PATH."list-owner-bookings.php");
+    }
+
+    public function ShowListKeeperView()
+    {
+        $bookingList=array();
+        $keeper=$_SESSION["loggedKeeper"];
+    
+        $bookingListAll=$this->bookingDAO->GetAll();
+
+        foreach($bookingListAll as $booking)
+        {
+            if($booking->getKeeper() == $keeper)
+            {
+                array_push($bookingList,$booking);
             }
         }
         require_once(VIEWS_PATH."list-bookings.php");
     }
 
+    /*
     public function GetAllByOwner($owner)
     {
         $bookingList=array();
 
-        $bookingList=$this->bookingDAO->GetAll();
+        $bookingListAll=$this->bookingDAO->GetAll();
 
-        foreach($bookingList as $booking)
+        foreach($bookingListAll as $booking)
         {
             if($booking->getOwner() == $owner)
             {
@@ -75,7 +98,7 @@ class BookingController
         }
         require_once(VIEWS_PATH."list-bookings.php");
 
-    }
+    }*/
 
 
 

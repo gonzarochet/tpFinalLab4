@@ -16,10 +16,13 @@ class BookingDAOBD implements IBookingDAOBD
     {
         try 
         {
-            $query="INSERT INTO ".$this->tableName." (startDate,endDate,ownerid,keeperid,isConfirmed) VALUES (:startDate,:endDate,:ownerid,:keeperid, :isConfirmed);";
+            $pet=$booking->getPet();
+            $pet_id=$booking->getPet()->getIdPet();
+
+            $query="INSERT INTO ".$this->tableName." (startDate,endDate,petid,keeperid,isConfirmed) VALUES (:startDate,:endDate,:petid,:keeperid, :isConfirmed);";
             $parameters["startDate"]=$booking->getStartDate();
             $parameters["endDate"]=$booking->getEndDate();
-            $parameters["ownerid"]=$booking->getOwner()->getOwnerId();
+            $parameters["petid"]=$booking->getPet()->getIdPet();
             $parameters["keeperid"]=$booking->getKeeper()->getKeeperId();
             $parameters["isConfirmed"]=$booking->getIsConfirmed();
 
@@ -45,11 +48,11 @@ class BookingDAOBD implements IBookingDAOBD
             foreach ($resultSet as $row)
             {
                 $keeperList = new KeeperDAOBD();
-                $ownerList = new OwnerDAOBD();
+                $petList = new PetDAOBD();
                 $booking=new Booking();
                 $booking->setBookingNumber($row["bookingNr"]);
                 $booking->setKeeper($keeperList->GetKeeperByKeeperId($row["keeperid"]));
-                $booking->setOwner($ownerList->GetOwnerByOwnerId($row["ownerid"]));
+                $booking->setPet($petList->GetPetByPetId($row["petid"]));
                 $booking->setStartDate($row["startDate"]);
                 $booking->setEndDate($row["endDate"]);
                 $booking->setIsConfirmed($row["isConfirmed"]);
