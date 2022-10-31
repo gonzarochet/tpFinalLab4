@@ -11,10 +11,10 @@
 
 <body>
     <?php include("nav.php"); ?>
-    <div class="form-list-view-pet">
+    <div class="form-list-view-keeper">
         <form action="<?php echo FRONT_ROOT ?>Booking/Confirmation" method="post">
             <h1>Booking Confirmation Keeper</h1>
-            <table class="">
+            <table class="keeper-list">
                 <thead>
                     <th>Booking Number</th>
                     <th>Booking Date</th>

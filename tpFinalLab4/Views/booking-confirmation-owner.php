@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Confirmation</title>
+    <title>Booking Preview</title>
     <link href="<?php echo CSS_PATH ?>styles.css" rel="stylesheet" media="all">
 </head>
 
@@ -13,7 +13,7 @@
     <?php include("nav.php"); ?>
     <div class="form-list-view-pet">
         <form action="<?php echo FRONT_ROOT ?>Booking/Add" method="post">
-            <h1>Booking</h1>
+            <h1>Booking Preview</h1>
             <table class="">
                 <thead>
                     <th>Start Date</th>

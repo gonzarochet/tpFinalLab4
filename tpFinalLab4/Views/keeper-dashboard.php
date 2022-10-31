@@ -32,10 +32,10 @@ use Models\user as User;
                </div>
                <div class="keeper-choise-options">
                     <div id="keeper-button-option">
-                         <a href="<?php echo FRONT_ROOT ?>Calendar/ShowAddView?>"class="btn">Set Available Dates</a>
+                         <a href="<?php echo FRONT_ROOT ?>Calendar/ShowAddView?>"class="btn">Add Available Dates</a>
                     </div>
                     <div id="keeper-button-option">
-                         <a href="<?php echo FRONT_ROOT ?>Calendar/ShowListViewByKeeper" class="btn">List or Remove Available Dates</a>
+                         <a href="<?php echo FRONT_ROOT ?>Calendar/ShowListViewByKeeper" class="btn">List or Edit Available Dates</a>
                     </div>
                     <div id="keeper-button-option">
                          <a href="<?php echo FRONT_ROOT ?>Booking/ShowListKeeperView" class="btn">Show Bookings</a>

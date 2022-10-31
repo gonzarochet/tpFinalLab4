@@ -81,9 +81,10 @@ class CalendarController{
         $requiredInterval = new DateInterval('P1D'); 
         $end = new DateTime($endDate);
         $end->add($requiredInterval);
+        
 
         $requiredPeriod = new DatePeriod(new DateTime($startDate), $requiredInterval, $end); //List of required days
-
+        
         $keepersList = new KeeperDAOBD();
         $keepersList = $keepersList->getAll(); //Brings all keepers
         $availableKeepersList = array();
@@ -99,8 +100,10 @@ class CalendarController{
                     $available = false;
                 }
             }
-            if ($available == true && ($_SESSION["loggedOwner"]->getUser() != $keeper->getUser())) //if it's still available after checking all dates, 
-            {                                                                                      // and it's not the same user as the logged Owner (Owner and Keeper can't be the same in 1 booking)
+
+
+            if ($available == true  && ($_SESSION["loggedOwner"]->getUser() != $keeper->getUser())) //if it's still available after checking all dates, 
+            {                                                                                     // and it's not the same user as the logged Owner (Owner and Keeper can't be the same in 1 booking)
                 array_push($availableKeepersList, $keeper);                                         // then it's pushed into the array
             }
         }
