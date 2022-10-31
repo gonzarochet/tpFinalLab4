@@ -20,7 +20,7 @@
                 <th>End Date</th>
                 <th>Keeper</th>
                 <th>Pet</th>
-                <th>Is Confimed</th>
+                <th>Is Confirmed</th>
             </thead>
             <tbody>
                 <?php

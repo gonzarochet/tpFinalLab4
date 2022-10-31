@@ -50,6 +50,8 @@ class UserController
         }
     public function Register($username, $email, $password, $firstName, $lastName, $dateBirth)
     {
+        $exists=$this->userDAO->isEmailExists($email);
+        var_dump($exists);
         if (!$this->userDAO->isEmailExists($email)) {
             if (!$this->userDAO->isUsernameExists($username)) {
 

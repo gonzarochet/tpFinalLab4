@@ -92,7 +92,7 @@ class CalendarDAOBD
     {
         try 
         {
-            $query="DELETE FROM ".$this->tableName." WHERE calendarid= :calendarid ;";
+            $query="UPDATE ".$this->tableName."SET status='Unavailable' WHERE calendarid= :calendarid ;";
             $parameters["calendarid"]=$id;
 
             $this->connection= Connection::GetInstance();
@@ -102,6 +102,7 @@ class CalendarDAOBD
             throw $ex;
         }
     }
+
 
     public function AvailableDatesByKeeper($keeper)
     {

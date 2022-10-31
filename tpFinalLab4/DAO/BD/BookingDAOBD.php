@@ -19,11 +19,14 @@ class BookingDAOBD implements IBookingDAOBD
             $pet=$booking->getPet();
             $pet_id=$booking->getPet()->getIdPet();
 
-            $query="INSERT INTO ".$this->tableName." (startDate,endDate,petid,keeperid,isConfirmed) VALUES (:startDate,:endDate,:petid,:keeperid, :isConfirmed);";
+            $query="INSERT INTO ".$this->tableName." (bookingDate,startDate,endDate,petid,keeperid,fee, paidAmount,isConfirmed) VALUES (:bookingDate,:startDate,:endDate,:petid,:keeperid,:fee,:paidAmount, :isConfirmed);";
+            $parameters["bookingDate"]=$booking->getBookingDate();
             $parameters["startDate"]=$booking->getStartDate();
             $parameters["endDate"]=$booking->getEndDate();
             $parameters["petid"]=$booking->getPet()->getIdPet();
             $parameters["keeperid"]=$booking->getKeeper()->getKeeperId();
+            $parameters["fee"]=$booking->getFee();
+            $parameters["paidAmount"]=$booking->getPaidAmount();
             $parameters["isConfirmed"]=$booking->getIsConfirmed();
 
             $this->connection=Connection::GetInstance();
@@ -51,10 +54,13 @@ class BookingDAOBD implements IBookingDAOBD
                 $petList = new PetDAOBD();
                 $booking=new Booking();
                 $booking->setBookingNumber($row["bookingNr"]);
+                $booking->setBookingDate($row["bookingDate"]);
                 $booking->setKeeper($keeperList->GetKeeperByKeeperId($row["keeperid"]));
                 $booking->setPet($petList->GetPetByPetId($row["petid"]));
                 $booking->setStartDate($row["startDate"]);
                 $booking->setEndDate($row["endDate"]);
+                $booking->setFee($row["fee"]);
+                $booking->setPaidAmount($row["paidAmount"]);
                 $booking->setIsConfirmed($row["isConfirmed"]);
                 
 

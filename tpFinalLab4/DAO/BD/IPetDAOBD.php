@@ -7,5 +7,8 @@ interface IPetDAOBD
 {
     function GetAll();
     function Add(Pet $pet);
+    function GetPetsByOwnerId ($ownerid);
+    function GetPetByPetId($petid);
+    function Remove($id);
 }
 ?>

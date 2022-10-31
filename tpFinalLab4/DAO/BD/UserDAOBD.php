@@ -101,67 +101,70 @@ class UserDAOBD implements IUserDAOBD{
                 throw $ex;
             }
         }
-    
-        public function isEmailExists($email){
-            try
-            {
-                $query = "SELECT count(*) FROM ".$this->tableName." WHERE email = :email";
 
-                $parameters["email"] =  $email;
-    
-                $this->connection = Connection::GetInstance();
-    
-                $result = $this->connection->Execute($query,$parameters); //1 if exists, 0 if it doesn't exist.
-                $flag=false;
-                if ($result==1)
-                {
-                    $flag=true;
+    public function isEmailExists($email)
+    {
+        try {
+            $query = "SELECT count(*) FROM " . $this->tableName . " WHERE email = :email";
+
+            $parameters["email"] =  $email;
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query, $parameters); //1 if exists, 0 if it doesn't exist.
+
+            $flag = false;
+            if (count($resultSet) > 0) {
+                $resultValue = array_shift($resultSet[0]); //I need to extract the value from the array to compare it to 1 or 0. 
+
+                if ($resultValue == 1) {
+                    $flag = true;
                 }
-                return $flag;
             }
-            catch (Exception $ex)
-            {
-                throw $ex;
-            }
+            return $flag;
+        } catch (Exception $ex) {
+            throw $ex;
         }
+    }
 
-        public function isUsernameExists($username){
-            try
-            {
-                $query = "SELECT count(*) FROM ".$this->tableName." WHERE username = :username";
+    public function isUsernameExists($username)
+    {
+        try {
+            $query = "SELECT count(*) FROM " . $this->tableName . " WHERE username = :username";
 
-                $parameters["username"] =  $username;
-    
-                $this->connection = Connection::GetInstance();
-    
-                $result = $this->connection->Execute($query,$parameters); //1 if exists, 0 if it doesn't exist.
-                
-                $flag=false;
-                if ($result==1)
-                {
-                    $flag=true;
+            $parameters["username"] =  $username;
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query, $parameters); //1 if exists, 0 if it doesn't exist.
+
+            $flag = false;
+            if (count($resultSet) > 0) {
+                $resultValue = array_shift($resultSet[0]); //I need to extract the value from the array to compare it to 1 or 0. 
+
+                if ($resultValue == 1) {
+                    $flag = true;
                 }
-                
-                return $flag;
             }
-            catch (Exception $ex)
-            {
-                throw $ex;
-            }
+            return $flag;
+        } catch (Exception $ex) {
+            throw $ex;
         }
+    }
 
-        public function GetUserByUserId($userid)
-        {
-            try
-            {
-                $query = "SELECT * FROM ".$this->tableName." WHERE (userid = :userid)";
+    public function GetUserByUserId($userid)
+    {
+        try {
+            $query = "SELECT * FROM " . $this->tableName . " WHERE (userid = :userid)";
 
-                $parameters["userid"] =  $userid;
-    
-                $this->connection = Connection::GetInstance();
-    
-                $resultSet = $this->connection->Execute($query,$parameters);
-                $resultFirstRow=$resultSet[0];
+            $parameters["userid"] =  $userid;
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            if (count($resultSet) > 0) {
+                $resultFirstRow = $resultSet[0];
 
                 $user = new User();
                 $user->setId($resultFirstRow["userid"]);
@@ -171,14 +174,13 @@ class UserDAOBD implements IUserDAOBD{
                 $user->setFirstName($resultFirstRow["firstName"]);
                 $user->setLastName($resultFirstRow["lastName"]);
                 $user->setDateBirth($resultFirstRow["dateBirth"]);
-                
+
                 return $user;
             }
-            catch (Exception $ex)
-            {
-                throw $ex;
-            }
+        } catch (Exception $ex) {
+            throw $ex;
         }
+    }
 }
 
 

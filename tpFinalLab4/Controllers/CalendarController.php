@@ -57,7 +57,7 @@ class CalendarController{
         $this->ShowListViewByKeeper();                                              //To show the recently added items
     }
 
-    public function Remove($id)
+    public function SetUnavailable($id)
     {
         $this->calendarDAO->Remove($id);
  
@@ -99,9 +99,9 @@ class CalendarController{
                     $available = false;
                 }
             }
-            if ($available == true) //if it's still available after checking all dates, it's pushed into the array
-            {
-                array_push($availableKeepersList, $keeper);
+            if ($available == true && ($_SESSION["loggedOwner"]->getUser() != $keeper->getUser())) //if it's still available after checking all dates, 
+            {                                                                                      // and it's not the same user as the logged Owner (Owner and Keeper can't be the same in 1 booking)
+                array_push($availableKeepersList, $keeper);                                         // then it's pushed into the array
             }
         }
         return $availableKeepersList;                 

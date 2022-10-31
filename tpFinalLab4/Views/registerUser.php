@@ -20,17 +20,17 @@
                 <h1>Register</h1>
                 <div class="form-content-register">
                     <label for="">Choise an Username</label>
-                    <input type="text" name="username">
+                    <input type="text" name="username" required>
                     <span class="error"><?php echo @$message ?></span>
                 </div>
                 <div class="form-content-register">
                     <label for="">Enter your Email</label>
-                    <input type="text" name="email">
+                    <input type="text" name="email" required>
                     <span class="error"><?php echo @$message ?></span>
                 </div>
                 <div class = "form-content-register">
                     <label for="">Choise your Password</label>
-                    <input type="password" name="password">
+                    <input type="password" name="password" required>
                 </div>
                 <div class = "form-content-register">
                     <label for="">Enter your First Name</label>
@@ -42,7 +42,7 @@
                 </div>
                 <div class= "form-content-register">
                     <label for="">Enter your date of birthday </label>
-                    <input type="date" name="dateBirth">
+                    <input type="date" name="dateBirth" required>
                 </div>
                 <button type="submit" class="btn">Register</button>
 

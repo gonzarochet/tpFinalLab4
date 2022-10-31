@@ -26,6 +26,14 @@ class BookingController
         require_once(VIEWS_PATH."booking-confirmation-owner.php");
     }
 
+    public function ShowKeeperConfirmationView($bookingNr)
+    {
+
+        $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
+
+        require_once(VIEWS_PATH."booking-confirmation-keeper.php");
+    }
+
     
 
     public function Add($petid,$startDate, $endDate, $keeperid) //petid
@@ -36,12 +44,17 @@ class BookingController
 
         $keeperList=new KeeperDAOBD();
         $keeper=$keeperList->GetKeeperByKeeperId($keeperid);
+        
+        $fee=0; //$fee=$keeper->getPrice()->getValue();   ver como traer de un objeto tarifa con vigencia?
 
         $booking= new Booking();
+        $booking->setBookingDate(date('Y-m-d'));
         $booking->setStartDate($startDate);
         $booking->setEndDate($endDate);
         $booking->setKeeper($keeper);
         $booking->setPet($pet);
+        $booking->setFee($fee);
+        $booking->setPaidAmount(0);
         $booking->setIsConfirmed('No');
 
         

@@ -12,13 +12,13 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-calendar">
-        <form action="<?php echo FRONT_ROOT ?>Calendar/Remove" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Calendar/SetUnavailable" method="post">
             <h1>Calendar Dates List</h1>
             <table class="calendar-list">
                 <thead>
                     <th>Date</th>
                     <th>Status</th>
-                    <th>Remove Day</th>
+                    <th>Set Unavailable</th>
                 </thead>
                 <tbody>
                     <?php
@@ -27,8 +27,13 @@
                         <tr>
                             <td><?php echo $calendar->getDate() ?></td>
                             <td><?php echo $calendar->getStatus() ?></td>
-                            <td><button type="submit" name="id" class="btn-set-unavaliable-calendar" value="<?php echo $calendar->getCalendarId() 
-                                                                                    ?>">Remove day</button> </td>
+                            <td><?php if ($calendar->getStatus()=='Available')
+                                {
+                                    ?>
+                                <button type="submit" name="id" class="btn-set-unavaliable-calendar" value="<?php echo $calendar->getCalendarId() 
+                                                                                    ?>">Set Unavailable</button> 
+                                <?php } ?>                                                   
+                            </td>
 
                         </tr>
                     <?php

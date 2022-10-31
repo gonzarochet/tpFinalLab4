@@ -7,10 +7,13 @@ use Models\Pet as Pet;
 class Booking
 {
     private $bookingNr;
+    private $bookingDate;
     private $startDate;
     private $endDate;
     private $pet;
     private $keeper;
+    private $fee;
+    private $paidAmount;
     private $isConfirmed;
 
     public function getBookingNumber(){
@@ -19,6 +22,14 @@ class Booking
     public function setBookingNumber($bookingNr)
     {
         $this->bookingNr=$bookingNr;
+    }
+    public function getBookingDate()
+    {
+        return $this->bookingDate;
+    }
+    public function setBookingDate($bookingDate)
+    {
+        $this->bookingDate=$bookingDate;
     }
 
     public function getStartDate()
@@ -60,6 +71,22 @@ class Booking
     public function setIsConfirmed($isConfirmed)
     {
         $this->isConfirmed=$isConfirmed;
+    }
+    public function getFee()
+    {
+        return $this->fee;
+    }
+    public function setFee($fee)
+    {
+        $this->fee=$fee;
+    }
+    public function getPaidAmount()
+    {
+        return $this->paidAmount;
+    }
+    public function setPaidAmount($paidAmount)
+    {
+        $this->paidAmount=$paidAmount;
     }
 
 }

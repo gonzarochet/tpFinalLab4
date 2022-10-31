@@ -60,10 +60,13 @@ create table calendar
 create table booking
 (
 	bookingNr int auto_increment,
+	bookingDate date,
 	startDate date,
 	endDate date,
 	keeperid int,
 	petid int,
+	fee float,
+	paidAmount float,
 	isConfirmed char(3),
 	constraint pk_booking primary key (bookingNr),
 	constraint fk_keeper foreign key (keeperid) references keeper (keeperid),

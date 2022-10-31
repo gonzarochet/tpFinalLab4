@@ -10,5 +10,8 @@ interface ICalendarDAOBD
     public function GetAll();
     public function Add(Calendar $calendar);
     public function GetAllByKeeper(Keeper $keeper);
+    public function Remove($id);
+    public function AvailableDatesByKeeper(Keeper $keeper);
+    public function SetDatesUnavailable($keeperid, $startDate, $endDate);
 }
 ?>

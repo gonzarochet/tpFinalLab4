@@ -12,7 +12,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-keeper">
-        <form action="<?php echo FRONT_ROOT ?>Booking/Confirmation" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Booking/ShowKeeperConfirmationView" method="post">
             <table class=keeper-list>
                 <h1>Bookings List</h1>
                 <thead>
@@ -22,10 +22,8 @@
                     <th>Owner</th>
                     <th>Pet Name</th>
                     <th>Pet Size</th>
-                    <th>Pet Picture</th>
-                    <th>Pet Vaccination Plan</th>
-                    <th>Pet Video</th>
-                    <th>Comments</th>
+                    
+                    
                     <th>Is Confirmed</th>
                     <th>Confirm</th>
                 </thead>
@@ -40,32 +38,10 @@
                             <td><?php echo $booking->getPet()->getOwner()->getUser()->getFirstName() . " " . $booking->getPet()->getOwner()->getUser()->getLastName() ?></td>
                             <td><?php echo $booking->getPet()->getName() ?></td>
                             <td><?php echo $booking->getPet()->getSize() ?></td>
-
-
-                            <td><?php $image = $booking->getPet()->getPicture();
-                                if (!filter_var($image, FILTER_VALIDATE_URL) === false) {
-                                    $imageData = base64_encode(file_get_contents($image));
-                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="100">';
-                                }
-                                ?></td>
-                            <td><?php $image = $booking->getPet()->getVaccinationPlan();
-                                if (!filter_var($image, FILTER_VALIDATE_URL) === false) //valdiates if url is valid
-                                {
-                                    $imageData = base64_encode(file_get_contents($image));
-                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="100">';
-                                }
-                                ?></td>
-                            <td>
-                                <iframe width="150" height="100" src="<?php if (!filter_var($booking->getPet()->getVideo(), FILTER_VALIDATE_URL) === false) {
-                                                                            echo $booking->getPet()->getVideo();
-                                                                        } ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                                </iframe>
-                            </td>
-                            <td><?php echo $booking->getPet()->getComments() ?></td>
                             <td><?php echo $booking->getIsConfirmed() ?></td>
                             <td><?php if ($booking->getIsConfirmed() == 'No') {
                                 ?>
-                                    <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>"> Confirm </button>
+                                    <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>"> Preview </button>
                             </td>
 
                         <?php
