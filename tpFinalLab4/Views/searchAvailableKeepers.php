@@ -25,6 +25,18 @@
                     <label for="">End Date</label>
                     <input type="date" name="endDate">
                 </div>
+                <div class="">
+                                <label for="">Select pet</label>
+                                <select name="petid">
+                                    <?php foreach($petList as $pet)
+                                    {
+                                        ?>
+                                        <option value="<?php echo $pet->getIdPet()?>"><?php echo $pet->getName()?></option>
+                                    <?php 
+                                    }
+                                    ?>
+                                </select>
+                </div>
                 
                 <button type="submit" class="btn-calendar">Search</button>
 

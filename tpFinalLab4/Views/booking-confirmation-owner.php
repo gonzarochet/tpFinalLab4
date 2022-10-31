@@ -11,14 +11,15 @@
 
 <body>
     <?php include("nav.php"); ?>
-    <div class="form-list-view-pet">
+    <div class="form-list-view-keeper">
         <form action="<?php echo FRONT_ROOT ?>Booking/Add" method="post">
             <h1>Booking Preview</h1>
-            <table class="">
+            <table class="keeper-list">
                 <thead>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Keeper</th>
+                    <th>Pet</th>
                     
                 </thead>
                 <tbody>
@@ -26,22 +27,13 @@
                             <td><?php echo $startDate ?></td>
                             <td><?php echo $endDate ?></td>
                             <td><?php echo $keeperid ?></td>
+                            <td><?php echo $pet->getName()?><td>
                             <td>
-                            <div class="">
-                                <label for="">Select pet</label>
-                                <select name="petid">
-                                    <?php foreach($petList as $pet)
-                                    {
-                                        ?>
-                                        <option value="<?php echo $pet->getIdPet()?>"><?php echo $pet->getName()?></option>
-                                    <?php 
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+                            
                             <input type="hidden" name="startDate" value="<?php echo $startDate?>"/>
                             <input type="hidden" name="endDate" value="<?php echo $endDate?>"/>
                             <input type="hidden" name="keeperid" value="<?php echo $keeperid?>"/>
+                            <input type="hidden" name="petid" value="<?php echo $pet->getIdPet()?>"/>
                            
                             <td><button type="submit" name="" class="btn-table" value=""> Confirm </button> </td>
                         </tr>

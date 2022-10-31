@@ -19,7 +19,7 @@ class BookingDAOBD implements IBookingDAOBD
             $pet=$booking->getPet();
             $pet_id=$booking->getPet()->getIdPet();
 
-            $query="INSERT INTO ".$this->tableName." (bookingDate,startDate,endDate,petid,keeperid,fee, paidAmount,isConfirmed) VALUES (:bookingDate,:startDate,:endDate,:petid,:keeperid,:fee,:paidAmount, :isConfirmed);";
+            $query="INSERT INTO ".$this->tableName." (bookingDate,startDate,endDate,petid,keeperid,fee, paidAmount,isAccepted) VALUES (:bookingDate,:startDate,:endDate,:petid,:keeperid,:fee,:paidAmount, :isAccepted);";
             $parameters["bookingDate"]=$booking->getBookingDate();
             $parameters["startDate"]=$booking->getStartDate();
             $parameters["endDate"]=$booking->getEndDate();
@@ -27,7 +27,7 @@ class BookingDAOBD implements IBookingDAOBD
             $parameters["keeperid"]=$booking->getKeeper()->getKeeperId();
             $parameters["fee"]=$booking->getFee();
             $parameters["paidAmount"]=$booking->getPaidAmount();
-            $parameters["isConfirmed"]=$booking->getIsConfirmed();
+            $parameters["isAccepted"]=$booking->getIsAccepted();
 
             $this->connection=Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query,$parameters);
@@ -61,7 +61,7 @@ class BookingDAOBD implements IBookingDAOBD
                 $booking->setEndDate($row["endDate"]);
                 $booking->setFee($row["fee"]);
                 $booking->setPaidAmount($row["paidAmount"]);
-                $booking->setIsConfirmed($row["isConfirmed"]);
+                $booking->setIsAccepted($row["isAccepted"]);
                 
 
                 array_push($bookingList, $booking);
@@ -89,7 +89,7 @@ class BookingDAOBD implements IBookingDAOBD
     public function ConfirmBooking($bookingNr)
     {
         try {
-            $query="UPDATE ".$this->tableName." SET isConfirmed='Yes' WHERE bookingNr= :bookingNr;";
+            $query="UPDATE ".$this->tableName." SET isAccepted='Yes' WHERE bookingNr= :bookingNr;";
             $parameters["bookingNr"]=$bookingNr;
 
             $this->connection=Connection::GetInstance();

@@ -30,12 +30,14 @@ class KeeperController{
         require_once(VIEWS_PATH."listKeeperOwnerView.php");
     }*/
 
-    public function Add(User $user){
+    public function Add(User $user, $fee, $size){
 
         $keeper = new Keeper();
 
         $keeper->setUser($user);   //el id se setea en el DAO para json - $keeper->setKeeperId($this->keeperDAO->GetNextKeeperId())
         $keeper->setReputation(0);
+        $keeper->setFee($fee);
+        $keeper->setSize($size);
 
         $this->keeperDAO->Add($keeper);
     }
@@ -51,12 +53,22 @@ class KeeperController{
             $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
             require_once(VIEWS_PATH."keeper-dashboard.php");
         }else{
-            $this->Add($user);
-            $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
-            require_once(VIEWS_PATH."keeper-dashboard.php");
+           //$this->Add($user);
+            //$_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
+            require_once(VIEWS_PATH."keeper-registration.php");
         }
     }
 
+    public function RegisterKeeper($fee, $size)
+    {
+        $user = $_SESSION["loggedUser"];
+        
+        $this->Add($user,$fee,$size);
+
+        $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
+        require_once(VIEWS_PATH."keeper-dashboard.php");
+
+    }
    
 
     

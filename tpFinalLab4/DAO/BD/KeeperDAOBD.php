@@ -18,11 +18,13 @@ class KeeperDAOBD implements IKeeperDAOBD
     {
         try
         {
-            $query="INSERT INTO ".$this->tableName." (keeperid, userid, reputation) VALUES (:keeperid,:userid,:reputation);";
+            $query="INSERT INTO ".$this->tableName." (keeperid, userid, reputation, fee, size) VALUES (:keeperid,:userid,:reputation, :fee, :size);";
             
             $parameters["keeperid"]=$keeper->getKeeperId();
             $parameters["userid"]=$keeper->getUser()->getId();            
             $parameters["reputation"]=$keeper->getReputation();
+            $parameters["fee"]=$keeper->getFee();
+            $parameters["size"]=$keeper->getSize();
 
             $this->connection=Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query, $parameters);
@@ -54,6 +56,8 @@ class KeeperDAOBD implements IKeeperDAOBD
                 $keeper->setKeeperId($row["keeperid"]);
                 $keeper->setUser($user);
                 $keeper->setReputation($row["reputation"]);
+                $keeper->setFee($row["fee"]);
+                $keeper->setSize($row["size"]);
 
                 array_push($keeperList,$keeper);
 
@@ -119,6 +123,8 @@ class KeeperDAOBD implements IKeeperDAOBD
                     $keeper->setKeeperId($resultFirstRow["keeperid"]);
                     $keeper->setUser($user);
                     $keeper->setReputation($resultFirstRow["reputation"]);
+                    $keeper->setFee($resultFirstRow["fee"]);
+                    $keeper->setSize($resultFirstRow["size"]);
                 }
                 return $keeper;
             }
@@ -152,6 +158,8 @@ class KeeperDAOBD implements IKeeperDAOBD
                     $keeper->setKeeperId($resultFirstRow["keeperid"]);
                     $keeper->setUser($user);
                     $keeper->setReputation($resultFirstRow["reputation"]);
+                    $keeper->setSize($resultFirstRow["size"]);
+                    $keeper->setFee($resultFirstRow["fee"]);
                 }
                 return $keeper;
             }

@@ -3,6 +3,7 @@
 use Models\Calendar as Calendar;
 //use DAO\CalendarDAO AS CalendarDAO;
 use DAO\BD\CalendarDAOBD as CalendarDAOBD;
+use DAO\BD\PetDAOBD as PetDAOBD;
 use DAO\BD\KeeperDAOBD;
 use DateTime as DateTime;
 use DateInterval as DateInterval;
@@ -64,19 +65,29 @@ class CalendarController{
         $this->ShowListView();
     }
 
+    /*
+    This function allows to enter the start date, end date and selected pet, that will be used to found
+    available keepers that can keep the required size in those dates.
+    */
     public function ShowAvailableKeepersSearchView()
     {
+        $owner=$_SESSION["loggedOwner"];
+
+        $petList=new PetDAOBD();
+        $petList=$petList->GetPetsByOwnerId($owner->getOwnerId()); 
         require_once(VIEWS_PATH."searchAvailableKeepers.php");
     }
 
-    public function ShowAvailableKeepers($startDate, $endDate)
+    public function ShowAvailableKeepers($startDate, $endDate, $petid)
     {
-        $keeperList = $this->SearchAvailableKeepers($startDate, $endDate);
+        $petList=new PetDAOBD();
+        $pet=$petList->GetPetByPetId($petid);
+        $keeperList = $this->SearchAvailableKeepers($startDate, $endDate, $pet->getSize());
         require_once(VIEWS_PATH."listAvailableKeepers.php");
-        //si hago book, necesito mandar keeper id, los dates, el owner. 
+ 
     }
 
-    public function SearchAvailableKeepers($startDate, $endDate)
+    public function SearchAvailableKeepers($startDate, $endDate, $size)
     {
         $requiredInterval = new DateInterval('P1D'); 
         $end = new DateTime($endDate);
@@ -102,7 +113,7 @@ class CalendarController{
             }
 
 
-            if ($available == true  && ($_SESSION["loggedOwner"]->getUser() != $keeper->getUser())) //if it's still available after checking all dates, 
+            if ($available == true  && ($_SESSION["loggedOwner"]->getUser() != $keeper->getUser()) && $keeper->getSize()==$size) //if it's still available after checking all dates, 
             {                                                                                     // and it's not the same user as the logged Owner (Owner and Keeper can't be the same in 1 booking)
                 array_push($availableKeepersList, $keeper);                                         // then it's pushed into the array
             }

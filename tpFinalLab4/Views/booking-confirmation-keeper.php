@@ -61,7 +61,7 @@
                                 </iframe>
                             </td>
                             <td><?php echo $booking->getPet()->getComments() ?></td>
-                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber()?>"> Confirm </button> </td>
+                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber()?>">Accept </button> </td>
                         </tr>
                 </tbody>
         </form>

@@ -24,8 +24,8 @@
                     <th>Pet Size</th>
                     
                     
-                    <th>Is Confirmed</th>
-                    <th>Confirm</th>
+                    <th>Accepted</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <?php
@@ -38,8 +38,8 @@
                             <td><?php echo $booking->getPet()->getOwner()->getUser()->getFirstName() . " " . $booking->getPet()->getOwner()->getUser()->getLastName() ?></td>
                             <td><?php echo $booking->getPet()->getName() ?></td>
                             <td><?php echo $booking->getPet()->getSize() ?></td>
-                            <td><?php echo $booking->getIsConfirmed() ?></td>
-                            <td><?php if ($booking->getIsConfirmed() == 'No') {
+                            <td><?php echo $booking->getIsAccepted() ?></td>
+                            <td><?php if ($booking->getIsAccepted() == 'No') {
                                 ?>
                                     <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>"> Preview </button>
                             </td>

@@ -20,7 +20,7 @@
                 <th>End Date</th>
                 <th>Keeper</th>
                 <th>Pet</th>
-                <th>Is Confirmed</th>
+                <th>Accepted</th>
             </thead>
             <tbody>
                 <?php
@@ -32,7 +32,7 @@
                         <td><?php echo $booking->getEndDate() ?></td>
                         <td><?php echo $booking->getKeeper()->getUser()->getFirstName()." ".$booking->getKeeper()->getUser()->getLastName() ?></td>
                         <td><?php echo $booking->getPet()->getName() ?></td>
-                        <td><?php echo $booking->getIsConfirmed() ?></td>
+                        <td><?php echo $booking->getIsAccepted() ?></td>
                         
                     </tr>
                 <?php

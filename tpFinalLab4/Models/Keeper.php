@@ -7,6 +7,8 @@ class Keeper{
     private $idKeeper;
     private $user; // the same as the user id. 
     private $reputation;
+    private $fee;
+    private $size;
 
 
     /*
@@ -59,6 +61,20 @@ class Keeper{
 
     public function getUser(){
         return $this->user;
+    }
+    public function setFee($fee){
+        $this->fee = $fee;
+    }
+
+    public function getFee(){
+        return $this->fee;
+    }
+    public function setSize($size){
+        $this->size = $size;
+    }
+
+    public function getSize(){
+        return $this->size;
     }
 }
 

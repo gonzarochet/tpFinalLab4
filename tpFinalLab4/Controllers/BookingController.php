@@ -16,12 +16,12 @@ class BookingController
     }
 
 
-    public function ShowOwnerConfirmationView($startDate, $endDate, $keeperid)
+    public function ShowOwnerConfirmationView($startDate, $endDate, $keeperid, $petid)
     {
         $owner=$_SESSION["loggedOwner"];
 
         $petList=new PetDAOBD();
-        $petList=$petList->GetPetsByOwnerId($owner->getOwnerId());        
+        $pet=$petList->GetPetByPetId($petid);    
 
         require_once(VIEWS_PATH."booking-confirmation-owner.php");
     }
@@ -32,9 +32,7 @@ class BookingController
         $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
 
         require_once(VIEWS_PATH."booking-confirmation-keeper.php");
-    }
-
-    
+    }    
 
     public function Add($petid,$startDate, $endDate, $keeperid) //petid
     {
@@ -44,8 +42,7 @@ class BookingController
 
         $keeperList=new KeeperDAOBD();
         $keeper=$keeperList->GetKeeperByKeeperId($keeperid);
-        
-        $fee=0; //$fee=$keeper->getPrice()->getValue();   ver como traer de un objeto tarifa con vigencia?
+        $fee=$keeper->getFee();
 
         $booking= new Booking();
         $booking->setBookingDate(date('Y-m-d'));
@@ -55,7 +52,7 @@ class BookingController
         $booking->setPet($pet);
         $booking->setFee($fee);
         $booking->setPaidAmount(0);
-        $booking->setIsConfirmed('No');
+        $booking->setIsAccepted('No');
 
         
         $this->bookingDAO->Add($booking);

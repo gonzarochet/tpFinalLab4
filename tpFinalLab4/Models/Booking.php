@@ -14,7 +14,7 @@ class Booking
     private $keeper;
     private $fee;
     private $paidAmount;
-    private $isConfirmed;
+    private $isAccepted;
 
     public function getBookingNumber(){
         return $this->bookingNr;
@@ -64,13 +64,13 @@ class Booking
     {
         $this->keeper=$keeper;
     }   
-    public function getIsConfirmed()
+    public function getIsAccepted()
     {
-        return $this->isConfirmed;
+        return $this->isAccepted;
     }
-    public function setIsConfirmed($isConfirmed)
+    public function setIsAccepted($isAccepted)
     {
-        $this->isConfirmed=$isConfirmed;
+        $this->isAccepted=$isAccepted;
     }
     public function getFee()
     {

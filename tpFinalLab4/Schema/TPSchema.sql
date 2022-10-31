@@ -27,6 +27,8 @@ create table keeper
 	keeperid int auto_increment,
 	userid int,
 	reputation float,
+	fee float,
+	size char(6),
 	constraint pk_keeper primary key (keeperid),
 	constraint fk_user foreign key (userid) references user(userid)
 );
@@ -67,7 +69,7 @@ create table booking
 	petid int,
 	fee float,
 	paidAmount float,
-	isConfirmed char(3),
+	isAccepted char(3),
 	constraint pk_booking primary key (bookingNr),
 	constraint fk_keeper foreign key (keeperid) references keeper (keeperid),
 	constraint fk_pet foreign key (petid) references pet (petid)
