@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-content-calendar">
                     <label for="">End Date</label>
-                    <input type="date" name="endDate" required min<?php echo $dayDate;?> >
+                    <input type="date" name="endDate" required min=<?php echo $dayDate;?> >
                     <span><?php echo @$error;?></span>
 
                 </div>

@@ -99,11 +99,13 @@ class CalendarController{
 
         $petList=new PetDAOBD();
         $pet=$petList->GetPetByPetId($petid);
+        
 
         if($endDate<$startDate){
             $error = "The end date is incorrect, please insert a correct date";
             require_once(VIEWS_PATH."searchAvailableKeepers.php");
         }else{
+            var_dump($pet);
             $keeperList = $this->SearchAvailableKeepers($startDate, $endDate, $pet->getSize());
             require_once(VIEWS_PATH."listAvailableKeepers.php");
         }

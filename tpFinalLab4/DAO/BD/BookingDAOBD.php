@@ -16,8 +16,8 @@ class BookingDAOBD implements IBookingDAOBD
     {
         try 
         {
-            $pet=$booking->getPet();
-            $pet_id=$booking->getPet()->getIdPet();
+            //$pet=$booking->getPet();
+           // $pet_id=$booking->getPet()->getIdPet();
 
             $query="INSERT INTO ".$this->tableName." (bookingDate,startDate,endDate,petid,keeperid,totalPrice, paidAmount,isAccepted) VALUES (:bookingDate,:startDate,:endDate,:petid,:keeperid,:totalPrice,:paidAmount, :isAccepted);";
             $parameters["bookingDate"]=$booking->getBookingDate();

@@ -17,12 +17,13 @@ class BookingController
     }
 
     //Función que levanta al View con la previsualización de la resera, y envía datos a Controladora Booking en caso de confirmar.
-    public function ShowOwnerConfirmationView($startDate, $endDate, $keeperid, $petid)
+    public function ShowOwnerConfirmationView($startDate, $endDate,$petid,$keeperid )
     {
         $owner=$_SESSION["loggedOwner"];
 
         $petList=new PetDAOBD();
-        $pet=$petList->GetPetByPetId($petid);    
+        $pet=$petList->GetPetByPetId($petid);
+        var_dump($pet);    
 
         require_once(VIEWS_PATH."booking-confirmation-owner.php"); //View con previsualizacion de la reserva y envia startDate, endDate, keeperid, petid a Booking/Add
     }
@@ -41,7 +42,7 @@ class BookingController
         $datetime2 = new DateTime($endDate);
         $difference = $datetime1->diff($datetime2);
     
-        var_dump($difference->d);       
+        
 
         $totalPrice=$keeper->getFee()*($difference->d+1);   //to calculate the total price: fee x nr of booked day
                                                         
@@ -93,6 +94,7 @@ class BookingController
                 array_push($bookingList,$booking);
             }
         }
+        var_dump($bookingList);
         require_once(VIEWS_PATH."list-keeper-bookings.php");    //View que Muestra los datos generales de reserva, y permite hacer PREVIEW para ver datos completos de la mascota. 
     }                                                           //Cuando hago PREVIEW, mando bookingId a Booking/ShowKeeperConfirmationView
 

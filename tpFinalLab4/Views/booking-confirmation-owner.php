@@ -29,11 +29,12 @@
                             <td><?php echo $keeperid ?></td>
                             <td><?php echo $pet->getName()?><td>
                             <td>
-                            
+                            <input type="hidden" name="petid" value="<?php echo $pet->getIdPet()?>"/>
                             <input type="hidden" name="startDate" value="<?php echo $startDate?>"/>
                             <input type="hidden" name="endDate" value="<?php echo $endDate?>"/>
                             <input type="hidden" name="keeperid" value="<?php echo $keeperid?>"/>
-                            <input type="hidden" name="petid" value="<?php echo $pet->getIdPet()?>"/>
+                            
+                            
                            
                             <td><button type="submit" name="" class="btn-table" value=""> Confirm </button> </td>
                         </tr>

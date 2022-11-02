@@ -39,8 +39,10 @@
                         <input type="hidden" name="startDate" value="<?php echo $startDate?>"/>
                         <input type="hidden" name="endDate" value="<?php echo $endDate?>"/>
                         <input type="hidden" name="petid" value="<?php echo $petid?>"/>
+                        
                         <td><button type="submit" name="keeperid" class="" value="<?php echo $keeper->getKeeperId()
                                                                                     ?>">Book</button> </td>
+                        
                     </tr>
                 <?php
                 }
