@@ -2,12 +2,13 @@
 
 namespace Controllers;
 
+use DAO\BD\BookingDAOBD;
 use PHPMailer\PHPMailer as PHPMailer;
 use PHPMailer\SMTP as SMTP;
 use PHPMailer\Exception;
 use DAO\BD\MailDAOBD as MailDAOBD;
 
-class Mailer
+class MailerController
 {
     public $mail;
     private $mailDAO;
@@ -16,7 +17,7 @@ class Mailer
         $mail = new PHPMailer(true);
         $this->mailDAO = new MailDAOBD();
         
-         // Server settings
+        // Server settings
         //$mail->SMTPDebug = SMTP::DEBUG_SERVER; // for detailed debug output
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
@@ -31,8 +32,13 @@ class Mailer
         $this->mail=$mail;
     }
 
-    public function sendEmail($booking)
+    //Function that sends the email with the invoice to the owner.
+    public function Add($bookingNr)
     {
+        
+        $bookingDAO = new BookingDAOBD();
+        $booking=$bookingDAO->GetBookingBybookingNr($bookingNr);
+
         try{
             $this->mail->setFrom('pethero@gmail.com', 'Pet Hero');
             $emailRecipient=$booking->getPet()->getOwner()->getUser()->getEmail();
@@ -51,7 +57,9 @@ class Mailer
                 $message=$this->mail->ErrorInfo;
             } 
 
-            $this->mailDAO->Add('2022-11-01',$emailRecipient,$this->mail->Body,$booking->getBookingNumber(),$message );
+            $this->mailDAO->Add(date('Y-m-d'),$emailRecipient,$this->mail->Body,$booking->getBookingNumber(),$message );
+
+            require_once(VIEWS_PATH."keeper-dashboard.php");
 
         }
         catch(Exception $ex)
