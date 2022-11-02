@@ -58,5 +58,17 @@
             "lastName": "jorge",
             "dateBirth": "2022-10-01"
         }
+    },
+    {
+        "ownerId": 6,
+        "user": {
+            "userId": 6,
+            "username": "rochi",
+            "email": "rochi@gmail.com",
+            "password": "1234",
+            "firstName": "Panchito",
+            "lastName": "Jorgelin",
+            "dateBirth": "2022-01-31"
+        }
     }
 ]

@@ -18,12 +18,12 @@
                 <h1>Add Date Period</h1>
                 <div class="form-content-calendar">
                     <label for="">Start Date</label>
-                    <input type="date" name="startDate">
-                    
+                    <input type="date" name="startDate" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>> 
                 </div>
                 <div class="form-content-calendar">
                     <label for="">End Date</label>
-                    <input type="date" name="endDate">
+                    <input type="date" name="endDate" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
+                    <span><?php echo @$error?></span>
                 </div>
                 
                 <button type="submit" class="btn-calendar">Add Period</button>

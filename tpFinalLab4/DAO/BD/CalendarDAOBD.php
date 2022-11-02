@@ -8,6 +8,7 @@ use DAO\BD\Connection as Connection;
 use DateTime as DateTime;
 use DateInterval as DateInterval;
 use DatePeriod as DatePeriod;
+use Models\Keeper;
 
 class CalendarDAOBD
 {
@@ -125,6 +126,32 @@ class CalendarDAOBD
         } catch (Exception $ex) {
             throw $ex;
         }
+    }
+
+    public function IsPeriodExist(DatePeriod $period,Keeper $keeper){
+        $flag = false;
+        try{
+            $query = "SELECT * FROM ".$this->tableName." WHERE calendarDate = :calendarDate and keeperid = :keeperid ;";
+            
+            foreach($period as $date){
+                echo $date->format("Y-m-d");
+                
+                $parameters["calendarDate"] = $date->format("Y-m-d");
+                $parameters["keeperid"] = $keeper->getkeeperId();
+
+                $this->connection=Connection::GetInstance();
+                $result=$this->connection->Execute($query, $parameters);  
+
+                if($result){
+                    $flag = true;
+                }
+
+            }
+            
+        }catch (Exception $ex){
+            throw $ex;
+        }
+        return $flag;
     }
 
     public function SetDatesUnavailable($keeperid, $startDate, $endDate){

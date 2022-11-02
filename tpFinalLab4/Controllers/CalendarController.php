@@ -36,27 +36,42 @@ class CalendarController{
 
     public function Add( $startDate, $endDate){
 
-        $keeper=$_SESSION['loggedKeeper']; 
+        if($endDate<$startDate){
+            $error = "The end date is incorrect, please insert a correct date";
+            require_once(VIEWS_PATH."addCalendarPeriod.php");
+        }else{
 
-        $interval = new DateInterval('P1D');  // Variable that store the date interval of period 1 day
-        $end = new DateTime($endDate);
-        $end->add($interval);
-  
-        $period = new DatePeriod(new DateTime($startDate), $interval, $end); //Creation of the period
-  
-        // 
-        foreach($period as $date) {                                         //Add EACH day as CalendarItem to CalendarDAO
+            $keeper=$_SESSION['loggedKeeper']; 
 
-            $calendarItem= new Calendar();
+            $interval = new DateInterval('P1D');  // Variable that store the date interval of period 1 day
+            $end = new DateTime($endDate);
+            $end->add($interval);
+      
+            $period = new DatePeriod(new DateTime($startDate), $interval, $end); //Creation of the period
 
-            $calendarItem->setKeeper($keeper); 
-            $calendarItem->setDate($date->format('Y-m-d'));
-            $calendarItem->setStatus("Available");
+            $flag = $this->calendarDAO->IsPeriodExist($period,$keeper);// check that the period exist
 
-            $this->calendarDAO->Add($calendarItem);
+            if($flag){
+                $error = "You have already have a dates in your seleccion. Please change the dates and try again";
+                require_once(VIEWS_PATH."addCalendarPeriod.php");
+            }else{
+                
+                foreach($period as $date) {                                         //Add EACH day as CalendarItem to CalendarDAO
+    
+                    $calendarItem= new Calendar(); 
+    
+                    $calendarItem->setKeeper($keeper); 
+                    $calendarItem->setDate($date->format('Y-m-d'));
+                    $calendarItem->setStatus("Available");
+    
+                    $this->calendarDAO->Add($calendarItem);
+                }
+    
+            $this->ShowListViewByKeeper();//To show the recently added items
+            }
+             
         }
-
-        $this->ShowListViewByKeeper();                                              //To show the recently added items
+                                                
     }
 
     public function SetUnavailable($id)
@@ -81,10 +96,18 @@ class CalendarController{
 
     public function ShowAvailableKeepers($startDate, $endDate, $petid)
     {
+
         $petList=new PetDAOBD();
         $pet=$petList->GetPetByPetId($petid);
-        $keeperList = $this->SearchAvailableKeepers($startDate, $endDate, $pet->getSize());
-        require_once(VIEWS_PATH."listAvailableKeepers.php");
+
+        if($endDate<$startDate){
+            $error = "The end date is incorrect, please insert a correct date";
+            require_once(VIEWS_PATH."searchAvailableKeepers.php");
+        }else{
+            $keeperList = $this->SearchAvailableKeepers($startDate, $endDate, $pet->getSize());
+            require_once(VIEWS_PATH."listAvailableKeepers.php");
+        }
+       
  
     }
 

@@ -42,7 +42,7 @@
                 </div>
                 <div class= "form-content-register">
                     <label for="">Enter your date of birthday </label>
-                    <input type="date" name="dateBirth" required>
+                    <input type="date" name="dateBirth" max = "<?php $hoy=date("Y-m-d"); echo $hoy;?>" required >
                 </div>
                 <button type="submit" class="btn">Register</button>
 

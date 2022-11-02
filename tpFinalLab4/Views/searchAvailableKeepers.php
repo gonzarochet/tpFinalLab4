@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php $dayDate = date("Y-m-d");?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,12 +20,14 @@
                 <h1>Define Period</h1>
                 <div class="form-content-calendar">
                     <label for="">Start Date</label>
-                    <input type="date" name="startDate">
+                    <input type="date" name="startDate" required min=<?php echo $dayDate;?>>
                     
                 </div>
                 <div class="form-content-calendar">
                     <label for="">End Date</label>
-                    <input type="date" name="endDate">
+                    <input type="date" name="endDate" required min<?php echo $dayDate;?> >
+                    <span><?php echo @$error;?></span>
+
                 </div>
                 <div class="">
                                 <label for="">Select pet</label>
