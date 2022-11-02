@@ -16,6 +16,7 @@ class BookingController
         $this->bookingDAO = new BookingDAOBD();
     }
 
+    //Función que levanta al View con la previsualización de la resera, y envía datos a Controladora Booking en caso de confirmar.
     public function ShowOwnerConfirmationView($startDate, $endDate, $keeperid, $petid)
     {
         $owner=$_SESSION["loggedOwner"];
@@ -23,34 +24,24 @@ class BookingController
         $petList=new PetDAOBD();
         $pet=$petList->GetPetByPetId($petid);    
 
-        require_once(VIEWS_PATH."booking-confirmation-owner.php");
+        require_once(VIEWS_PATH."booking-confirmation-owner.php"); //View con previsualizacion de la reserva y envia startDate, endDate, keeperid, petid a Booking/Add
     }
 
-    public function ShowKeeperConfirmationView($bookingNr)
-    {
-
-        $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
-
-        require_once(VIEWS_PATH."booking-confirmation-keeper.php");
-    }    
-
+    //Función que crea el objeto booking y lo envía al BookingDAO para que se persita. 
     public function Add($petid,$startDate, $endDate, $keeperid) 
     {
         
         $petList=new PetDAOBD();
-        $pet=$petList->GetPetByPetId($petid);
+        $pet=$petList->GetPetByPetId($petid);   //Busco el objeto pet para agregarlo en $booking.
 
         $keeperList=new KeeperDAOBD();
-        $keeper=$keeperList->GetKeeperByKeeperId($keeperid);
+        $keeper=$keeperList->GetKeeperByKeeperId($keeperid);  //Busco objeto Keeper para agregarlo en $booking.
 
         $datetime1 = new DateTime($startDate);
         $datetime2 = new DateTime($endDate);
         $difference = $datetime1->diff($datetime2);
-        
-
     
-        var_dump($difference->d);
-       
+        var_dump($difference->d);       
 
         $totalPrice=$keeper->getFee()*($difference->d+1);   //to calculate the total price: fee x nr of booked day
                                                         
@@ -63,15 +54,14 @@ class BookingController
         $booking->setTotalPrice($totalPrice);
         $booking->setPaidAmount(0);
         $booking->setIsAccepted('No');
-
         
         $this->bookingDAO->Add($booking);
 
-        $this->ShowListOwnerView();
-
+        $this->ShowListOwnerView();      //Una vez que confirmó y se agrega, redirecciono a la vista de reservas del owner para que la vea. 
     }
 
-    public function ShowListOwnerView()
+    //Función que muestra el listado de reservas solicitadas por el owner loggeado. 
+    public function ShowListOwnerView()    
     {
         $bookingList=array();
         $owner=$_SESSION["loggedOwner"];
@@ -88,6 +78,7 @@ class BookingController
         require_once(VIEWS_PATH."list-owner-bookings.php");
     }
 
+    //Función que muestra el listado de solicitudes de reservas que recibió el Keeper loggeado. 
     public function ShowListKeeperView()
     {
         $bookingList=array();
@@ -102,24 +93,31 @@ class BookingController
                 array_push($bookingList,$booking);
             }
         }
-        require_once(VIEWS_PATH."list-keeper-bookings.php");
-    }
+        require_once(VIEWS_PATH."list-keeper-bookings.php");    //View que Muestra los datos generales de reserva, y permite hacer PREVIEW para ver datos completos de la mascota. 
+    }                                                           //Cuando hago PREVIEW, mando bookingId a Booking/ShowKeeperConfirmationView
 
+    /*Función que muestra previsualización completa de la  reserva (con los datos de la mascota). Permite aceptar la reserva por parte del keeper. 
+    Si Keeper Acepta, manda datos a Booking/Confirmation*/
+    public function ShowKeeperConfirmationView($bookingNr)
+    {
+        $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
+
+        require_once(VIEWS_PATH."booking-confirmation-keeper.php");
+    }    
+
+    //Función que se ejeucta cuando el Keeper acepta el request de reserva. 
     public function Confirmation($bookingNr)
     {
-        $this->bookingDAO->ConfirmBooking($bookingNr); //Sets IsConfirmed = 'Yes' in booking table. 
+        $this->bookingDAO->ConfirmBooking($bookingNr); //Updates IsConfirmed = 'Yes' in booking table. 
 
         $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
         $keeperid=$booking->getKeeper()->getKeeperId();
         $calendarList=new CalendarDAOBD();
         $calendarList->SetDatesUnavailable($keeperid,$booking->getStartDate(),$booking->getEndDate());       //Sets dates unavailable in calendar table. 
         
-        $mailer= new Mailer();
-        $mailer->sendEmail($booking);
+        require_once(VIEWS_PATH."send-email-view.php");
 
 
-        $this->ShowListKeeperView();
-        
     }
 
     /*
