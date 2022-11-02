@@ -6,6 +6,7 @@ use DAO\BD\PetDAOBD as PetDAOBD;
 use DAO\BD\BookingDAOBD as BookingDAOBD;
 use DAO\BD\CalendarDAOBD;
 use Models\Booking as Booking;
+use \DateTime;
 
 class BookingController
 {
@@ -14,7 +15,6 @@ class BookingController
     public function __construct(){
         $this->bookingDAO = new BookingDAOBD();
     }
-
 
     public function ShowOwnerConfirmationView($startDate, $endDate, $keeperid, $petid)
     {
@@ -34,7 +34,7 @@ class BookingController
         require_once(VIEWS_PATH."booking-confirmation-keeper.php");
     }    
 
-    public function Add($petid,$startDate, $endDate, $keeperid) //petid
+    public function Add($petid,$startDate, $endDate, $keeperid) 
     {
         
         $petList=new PetDAOBD();
@@ -42,15 +42,25 @@ class BookingController
 
         $keeperList=new KeeperDAOBD();
         $keeper=$keeperList->GetKeeperByKeeperId($keeperid);
-        $fee=$keeper->getFee();
 
+        $datetime1 = new DateTime($startDate);
+        $datetime2 = new DateTime($endDate);
+        $difference = $datetime1->diff($datetime2);
+        
+
+    
+        var_dump($difference->d);
+       
+
+        $totalPrice=$keeper->getFee()*($difference->d+1);   //to calculate the total price: fee x nr of booked day
+                                                        
         $booking= new Booking();
         $booking->setBookingDate(date('Y-m-d'));
         $booking->setStartDate($startDate);
         $booking->setEndDate($endDate);
         $booking->setKeeper($keeper);
         $booking->setPet($pet);
-        $booking->setFee($fee);
+        $booking->setTotalPrice($totalPrice);
         $booking->setPaidAmount(0);
         $booking->setIsAccepted('No');
 
@@ -104,6 +114,10 @@ class BookingController
         $calendarList=new CalendarDAOBD();
         $calendarList->SetDatesUnavailable($keeperid,$booking->getStartDate(),$booking->getEndDate());       //Sets dates unavailable in calendar table. 
         
+        $mailer= new Mailer();
+        $mailer->sendEmail($booking);
+
+
         $this->ShowListKeeperView();
         
     }

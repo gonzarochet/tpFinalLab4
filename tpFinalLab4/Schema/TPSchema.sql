@@ -67,10 +67,22 @@ create table booking
 	endDate date,
 	keeperid int,
 	petid int,
-	fee float,
+	totalPrice float,
 	paidAmount float,
 	isAccepted char(3),
 	constraint pk_booking primary key (bookingNr),
 	constraint fk_keeper foreign key (keeperid) references keeper (keeperid),
 	constraint fk_pet foreign key (petid) references pet (petid)
+);
+
+create table email
+(
+	emailid int auto_increment,
+	sentDate date,
+	emailRecipient varchar(50),
+	body varchar (1000),
+	bookingNr int,
+	message varchar (1000),
+	constraint pk_email primary key (emailid),
+	constraint fk_booking foreign key (bookingNr) references booking (bookingNr)	
 );

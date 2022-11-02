@@ -12,7 +12,7 @@ class Booking
     private $endDate;
     private $pet;
     private $keeper;
-    private $fee;
+    private $totalPrice;
     private $paidAmount;
     private $isAccepted;
 
@@ -72,13 +72,13 @@ class Booking
     {
         $this->isAccepted=$isAccepted;
     }
-    public function getFee()
+    public function getTotalPrice()
     {
-        return $this->fee;
+        return $this->totalPrice;
     }
-    public function setFee($fee)
+    public function setTotalPrice($totalPrice)
     {
-        $this->fee=$fee;
+        $this->totalPrice=$totalPrice;
     }
     public function getPaidAmount()
     {

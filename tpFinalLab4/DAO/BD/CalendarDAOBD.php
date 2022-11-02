@@ -88,11 +88,11 @@ class CalendarDAOBD
         }
     }
 
-    public function Remove($id)
+    public function SetUnavailable($id)
     {
         try 
         {
-            $query="UPDATE ".$this->tableName."SET status='Unavailable' WHERE calendarid= :calendarid ;";
+            $query="UPDATE ".$this->tableName." SET status='Unavailable' WHERE calendarid= :calendarid ;";
             $parameters["calendarid"]=$id;
 
             $this->connection= Connection::GetInstance();

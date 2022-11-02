@@ -19,13 +19,13 @@ class BookingDAOBD implements IBookingDAOBD
             $pet=$booking->getPet();
             $pet_id=$booking->getPet()->getIdPet();
 
-            $query="INSERT INTO ".$this->tableName." (bookingDate,startDate,endDate,petid,keeperid,fee, paidAmount,isAccepted) VALUES (:bookingDate,:startDate,:endDate,:petid,:keeperid,:fee,:paidAmount, :isAccepted);";
+            $query="INSERT INTO ".$this->tableName." (bookingDate,startDate,endDate,petid,keeperid,totalPrice, paidAmount,isAccepted) VALUES (:bookingDate,:startDate,:endDate,:petid,:keeperid,:totalPrice,:paidAmount, :isAccepted);";
             $parameters["bookingDate"]=$booking->getBookingDate();
             $parameters["startDate"]=$booking->getStartDate();
             $parameters["endDate"]=$booking->getEndDate();
             $parameters["petid"]=$booking->getPet()->getIdPet();
             $parameters["keeperid"]=$booking->getKeeper()->getKeeperId();
-            $parameters["fee"]=$booking->getFee();
+            $parameters["totalPrice"]=$booking->getTotalPrice();
             $parameters["paidAmount"]=$booking->getPaidAmount();
             $parameters["isAccepted"]=$booking->getIsAccepted();
 
@@ -59,7 +59,7 @@ class BookingDAOBD implements IBookingDAOBD
                 $booking->setPet($petList->GetPetByPetId($row["petid"]));
                 $booking->setStartDate($row["startDate"]);
                 $booking->setEndDate($row["endDate"]);
-                $booking->setFee($row["fee"]);
+                $booking->setTotalPrice($row["totalPrice"]);
                 $booking->setPaidAmount($row["paidAmount"]);
                 $booking->setIsAccepted($row["isAccepted"]);
                 

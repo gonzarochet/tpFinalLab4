@@ -14,10 +14,6 @@ class OwnerController{
         $this->ownerDAO = new OwnerDAOBD();
     }
 
-    public function showAddView(){
-        require_once(VIEWS_PATH."addOwner.php");
-    }
-
     public function showListView(){
         $ownerList = $this->ownerDAO->GetAll();
         require_once(VIEWS_PATH."listOwner.php");

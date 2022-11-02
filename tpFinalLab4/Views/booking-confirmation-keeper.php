@@ -20,7 +20,7 @@
                     <th>Booking Date</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Fee</th>
+                    <th>Total Price</th>
                     <th>Name</th>
                     <th>Age</th>
                     <th>Breed</th>
@@ -36,7 +36,7 @@
                             <td><?php echo $booking->getBookingDate() ?></td>
                             <td><?php echo $booking->getStartDate() ?></td>
                             <td><?php echo $booking->getEndDate() ?></td>
-                            <td><?php echo $booking->getFee() ?></td>
+                            <td><?php echo $booking->getTotalPrice() ?></td>
                             <td><?php echo $booking->getPet()->getName() ?></td>
                             <td><?php echo $booking->getPet()->getAge() ?></td>
                             <td><?php echo $booking->getPet()->getBreed() ?></td>
