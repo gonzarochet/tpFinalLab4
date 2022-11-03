@@ -23,7 +23,7 @@
                     <th>Pet</th>
                     <th>Required Deposit</th>
                     <th>Total Price</th>
-                    
+                    <th></th>
                 </thead>
                 <tbody>
                         <tr>
@@ -31,10 +31,11 @@
                             <td><?php echo $booking->getStartDate() ?></td>
                             <td><?php echo $booking->getEndDate() ?></td>
                             <td><?php echo $booking->getKeeper()->getUser()->getFirstName() ?></td>
-                            <td><?php echo $booking->getPet()->getName()?><td>
-                            <td><?php echo $booking->getTotalPrice() /2?><td>
-                            <td><?php echo $booking->getTotalPrice()?><td>
-                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $bookingNr?>">Send Invoice </button> </td>
+                            <td><?php echo $booking->getPet()->getName()?></td>
+                            <td><?php echo $booking->getTotalPrice() /2?></td>
+                            <td><?php echo $booking->getTotalPrice()?></td>
+                            <td><?php echo "Invoice Created" ?></td>
+                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $bookingNr?>">Send Email </button> </td>
                         </tr>
                 </tbody>
         </form>

@@ -12,6 +12,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-keeper"> 
+    <form action="<?php echo FRONT_ROOT ?>Receipt/ShowAddView" method="post">
         <table class = keeper-list>
             <h1>Bookings List</h1>
             <thead>
@@ -21,6 +22,7 @@
                 <th>Keeper</th>
                 <th>Pet</th>
                 <th>Accepted</th>
+                <th>Add Payment</th>
             </thead>
             <tbody>
                 <?php
@@ -33,7 +35,7 @@
                         <td><?php echo $booking->getKeeper()->getUser()->getFirstName()." ".$booking->getKeeper()->getUser()->getLastName() ?></td>
                         <td><?php echo $booking->getPet()->getName() ?></td>
                         <td><?php echo $booking->getIsAccepted() ?></td>
-                        
+                        <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Add Receipt </button> </td>
                     </tr>
                 <?php
                 }
@@ -42,15 +44,7 @@
             </tbody>
         </table>
 
-        <a class="" href="<?php 
-                        if (isset($_SESSION["loggedOwner"]))
-                        {
-                            echo FRONT_ROOT ?>Owner/OwnerLogin<?php
-                        }else if (isset($_SESSION["loggedKeeper"]))
-                        {
-                            echo FRONT_ROOT ?>Keeper/KeeperLogin<?php
-                        }
-                        ?>">Go back to Dashsboard</a> 
+        <a class="" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashsboard</a> 
     </div>
 </body>
 

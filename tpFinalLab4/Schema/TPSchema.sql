@@ -86,3 +86,15 @@ create table email
 	constraint pk_email primary key (emailid),
 	constraint fk_booking foreign key (bookingNr) references booking (bookingNr)	
 );
+
+
+create table invoice
+(
+	invoiceid int auto_increment,
+	invoiceNr int,
+	invoiceDate date,
+	bookingNr int,
+	value float,
+	constraint pk_invoice primary key (invoiceid),
+	constraint fk_booking foreign key (bookingNr) references booking (bookingNr)
+);
