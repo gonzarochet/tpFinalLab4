@@ -26,7 +26,7 @@ class InvoiceController
         $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
 
         $invoice = new Invoice();
-        $invoice->setInvoiceNr (2);
+        $invoice->setInvoiceNr ($this->invoiceDAO->getNextId());
         $invoice->setDate(date('Y-m-d'));
         $invoice->setBooking($booking);
         $invoice->setValue($booking->getTotalPrice()/2);
@@ -41,9 +41,15 @@ class InvoiceController
 
         $this->emailDAO->Add(date('Y-m-d'),$email,$body,$bookingNr,$message);
 
-        require_once(VIEWS_PATH."keeper-dashboard.php"); //Email /send
+        require_once(VIEWS_PATH."keeper-dashboard.php"); 
     }
 
+    public function ShowListView()
+    {
+        $invoiceList=$this->invoiceDAO->GetAll();
+
+        require_once(VIEWS_PATH."list-invoices.php");
+    }
     
 }
 ?>
