@@ -34,7 +34,7 @@
                 {
                     $ownerList = array();
     
-                    $query = "SELECT * FROM ".$this->tableName;
+                    $query = "SELECT * FROM ".$this->tableName." O INNER JOIN USER U ON O.USERID=U.USERID;" ;
     
                     $this->connection = Connection::GetInstance();
     
@@ -42,10 +42,17 @@
                     
                     foreach ($resultSet as $row)
                     {                
-                        $userList = new UserDAOBD();
+                        //$userList = new UserDAOBD();
                         $user = new User();
+                        $user->setId($row["userid"]);
+                        $user->setEmail($row["email"]);
+                        $user->setPassword($row["password"]);
+                        $user->setUsername($row["username"]);
+                        $user->setFirstName($row["firstName"]);
+                        $user->setLastName($row["lastName"]);
+                        $user->setDateBirth($row["dateBirth"]);
                         
-                        $user=$userList->GetUserByUserId($row["userid"]);
+                        //$user=$userList->GetUserByUserId($row["userid"]);
 
                         $owner = new Owner();
                         $owner->setOwnerId($row["ownerid"]);
@@ -54,7 +61,7 @@
                         array_push($ownerList, $owner);
                     }
     
-                    return $userList;
+                    return $ownerList;
                 }
                 catch(Exception $ex)
                 {

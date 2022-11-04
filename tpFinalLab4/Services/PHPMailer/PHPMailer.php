@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * PHPMailer - PHP email creation and transport class.
  * PHP Version 5.5.
@@ -19,7 +21,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-namespace PHPMailer;
+namespace Services\PHPMailer;
 
 /**
  * PHPMailer - PHP email creation and transport class.

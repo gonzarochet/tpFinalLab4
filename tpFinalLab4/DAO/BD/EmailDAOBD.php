@@ -1,14 +1,11 @@
 <?php
 namespace DAO\BD;
 
-use PHPMailer\PHPMailer as PHPMailer;
-use PHPMailer\SMTP as SMTP;
 
-//use DAO\BD\IBookingDAOBD as IBookingDAOBD;
 use \Exception as Exception;
 use DAO\BD\Connection as Connection;
 
-class MailDAOBD //implements IBookingDAOBD
+class EmailDAOBD //implements IEmailDAOBD
 {
     private $connection;
     private $tableName = "email";

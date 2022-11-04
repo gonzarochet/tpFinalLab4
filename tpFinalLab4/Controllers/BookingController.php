@@ -5,6 +5,7 @@ use DAO\BD\KeeperDAOBD as KeeperDAOBD;
 use DAO\BD\PetDAOBD as PetDAOBD;
 use DAO\BD\BookingDAOBD as BookingDAOBD;
 use DAO\BD\CalendarDAOBD;
+use DAO\BD\EmailDAOBD;
 use Models\Booking as Booking;
 use \DateTime;
 
@@ -13,11 +14,13 @@ class BookingController
     private $bookingDAO;
     private $petList;
     private $keeperList;
+    private $emailList;
 
     public function __construct(){
         $this->bookingDAO = new BookingDAOBD();
         $this->petList=new PetDAOBD();        
         $this->keeperList=new KeeperDAOBD();
+        $this->emailDAO=new EmailDAOBD;
     }
 
     //Función que levanta al View con la previsualización de la resera, y envía datos a Controladora Booking en caso de confirmar.
@@ -68,7 +71,7 @@ class BookingController
         $bookingList=array();
         $owner=$_SESSION["loggedOwner"];
     
-        $bookingListAll=$this->bookingDAO->GetAll();
+        $bookingListAll=$this->bookingDAO->GetAllWithInvoice();
 
         foreach($bookingListAll as $booking)
         {
@@ -117,7 +120,7 @@ class BookingController
         $calendarList=new CalendarDAOBD();
         $calendarList->SetDatesUnavailable($keeperid,$booking->getStartDate(),$booking->getEndDate());       //Sets dates unavailable in calendar table. 
         
-        require_once(VIEWS_PATH."invoice-details-view.php");
+        require_once(VIEWS_PATH."invoice-view.php");
 
 
     }

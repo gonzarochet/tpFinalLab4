@@ -15,7 +15,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-keeper">
-        <form action="<?php echo FRONT_ROOT ?>Mailer/Add" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Invoice/Add" method="post">
             <h1>Invoice details</h1>
             <table class="keeper-list">
                 <thead>
@@ -37,8 +37,7 @@
                             <td><?php echo $booking->getPet()->getName()?></td>
                             <td><?php echo $booking->getTotalPrice() /2?></td>
                             <td><?php echo $booking->getTotalPrice()?></td>
-                            <td><?php echo "Invoice Created" ?></td>
-                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $bookingNr?>">Send Email </button> </td>
+                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $bookingNr?>">Send Invoice</button> </td>
                         </tr>
                 </tbody>
         </form>

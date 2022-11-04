@@ -72,6 +72,9 @@ class BookingDAOBD implements IBookingDAOBD
         }
     }
 
+    
+    
+
     public function GetBookingBybookingNr($bookingNr)
     {
         $bookingList=$this->GetAll();

@@ -27,5 +27,6 @@ class InvoiceDAOBD implements IInvoiceDAOBD
             throw $ex;
         }
     }
+   
 }
 ?>
