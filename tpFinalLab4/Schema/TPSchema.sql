@@ -98,3 +98,6 @@ create table invoice
 	constraint pk_invoice primary key (invoiceid),
 	constraint fk_booking foreign key (bookingNr) references booking (bookingNr)
 );
+
+
+

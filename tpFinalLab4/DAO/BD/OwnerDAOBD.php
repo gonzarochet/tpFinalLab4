@@ -33,8 +33,10 @@
             try
                 {
                     $ownerList = array();
+
+                    $query = "CALL GetAllOwners()";
     
-                    $query = "SELECT * FROM ".$this->tableName." O INNER JOIN USER U ON O.USERID=U.USERID;" ;
+                    //$query = "SELECT * FROM ".$this->tableName." O INNER JOIN USER U ON O.USERID=U.USERID;" ;
     
                     $this->connection = Connection::GetInstance();
     
@@ -57,6 +59,8 @@
                         $owner = new Owner();
                         $owner->setOwnerId($row["ownerid"]);
                         $owner->setUser($user);
+
+
     
                         array_push($ownerList, $owner);
                     }
