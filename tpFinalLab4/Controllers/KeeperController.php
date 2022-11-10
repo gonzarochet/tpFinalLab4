@@ -51,6 +51,7 @@ class KeeperController{
 
         if($userExistsInKeepers){
             $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
+            $_SESSION["type"] = "keeper";
             require_once(VIEWS_PATH."keeper-dashboard.php");
         }else{
            //$this->Add($user);
@@ -64,8 +65,8 @@ class KeeperController{
         $user = $_SESSION["loggedUser"];
         
         $this->Add($user,$fee,$size);
-
         $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
+        $_SESSION["type"] = "keeper";
         require_once(VIEWS_PATH."keeper-dashboard.php");
 
     }

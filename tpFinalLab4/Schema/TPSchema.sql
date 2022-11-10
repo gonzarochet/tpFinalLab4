@@ -99,5 +99,15 @@ create table invoice
 	constraint fk_booking foreign key (bookingNr) references booking (bookingNr)
 );
 
+create table review(
+	reviewid int auto_increment,
+    score int, 
+    comment varchar(1000),
+    bookingNr int, 
+
+    constraint pk_review primary key(reviewid),
+    constraint fk_booking foreign key (bookingNr) references booking (bookingNr)
+)
+
 
 

@@ -71,7 +71,7 @@ class BookingController
         $bookingList=array();
         $owner=$_SESSION["loggedOwner"];
     
-        $bookingListAll=$this->bookingDAO->GetAllWithInvoice();
+        $bookingListAll=$this->bookingDAO->GetBookingByOwner($owner->getOwnerId());
 
         foreach($bookingListAll as $booking)
         {

@@ -59,7 +59,7 @@ class BookingDAOBD implements IBookingDAOBD
                 $booking->setPet($petList->GetPetByPetId($row["petid"]));
                 $booking->setStartDate($row["startDate"]);
                 $booking->setEndDate($row["endDate"]);
-                $booking->setTotalPrice($row["totalPrice"]);
+                $booking->setTotalPrice($row["totalprice"]);
                 $booking->setPaidAmount($row["paidAmount"]);
                 $booking->setIsAccepted($row["isAccepted"]);
                 
@@ -78,7 +78,7 @@ class BookingDAOBD implements IBookingDAOBD
     public function GetBookingBybookingNr($bookingNr)
     {
         $bookingList=$this->GetAll();
-        $bookingFound = new Booking();
+            
         foreach ($bookingList as $booking)
         {
             if($bookingNr == $booking->getBookingNumber())
@@ -102,6 +102,45 @@ class BookingDAOBD implements IBookingDAOBD
         } catch (Exception $ex) {
             throw $ex;
         }
+    }
+
+    public function GetBookingByOwner($ownerid){
+
+        try{
+            $query = "CALL GetBookingsByOwner('".$ownerid."');";
+
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query);
+
+            $bookingList=array();
+            foreach ($resultSet as $row)
+            {
+                $keeperList = new KeeperDAOBD();
+                $petList = new PetDAOBD();
+                $booking=new Booking();
+                $booking->setBookingNumber($row["bookingNr"]);
+                $booking->setBookingDate($row["bookingDate"]);
+                $booking->setKeeper($keeperList->GetKeeperByKeeperId($row["keeperid"]));
+                $booking->setPet($petList->GetPetByPetId($row["petid"]));
+                $booking->setStartDate($row["startDate"]);
+                $booking->setEndDate($row["endDate"]);
+                $booking->setTotalPrice($row["totalprice"]);
+                $booking->setPaidAmount($row["paidAmount"]);
+                $booking->setIsAccepted($row["isAccepted"]);
+                
+
+                array_push($bookingList, $booking);
+            }
+            return $bookingList;
+
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
+
+
+
+        
     }
 
 }

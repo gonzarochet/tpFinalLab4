@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register User</title>
+    <title>Change data user</title>
     <link href="<?php echo CSS_PATH?>styles.css" rel="stylesheet" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,46 +13,47 @@
 </head>
 
 <body>
-    <?php include("nav.php"); ?>
-    <!-- En esta redirección debemos dirigir al HomeController, metodo register para verificar los datos :) -->
+    <?php 
+    use Models\User;
+    include("nav.php"); 
+    $user = new User();
+    $user = $_SESSION["loggedUser"];          
+    ?>
     <section class="principal-register">
         <div class="form-register">
-
-            <form action="<?php echo FRONT_ROOT ?>User/Register" method="POST">
-                <h1>Register</h1>
+            <form action="<?php echo FRONT_ROOT ?>User/ChangeDataUser" method="POST">
+                <h1>Change any data of your profile</h1>
                 <div class="form-content-register">
-                    <label for="">Choise an Username</label>
-                    <input type="text" name="username" required>
+                    <label for="">Your Actual Username</label>
+                    <input type="text" name="username" value= "<?php echo $user->getUsername()?>" placeholder= "<?php echo $user->getUsername()?> "required>
                     <span class="error"><?php echo @$message ?></span>
                 </div>
                 <div class="form-content-register">
                     <label for="">Enter your Email</label>
-                    <input type="text" name="email" required>
+                    <input type="text" name="email" value = "<?php echo $user->getEmail()?>" placeholder= "<?php echo $user->getEmail()?> " required>
                     <span class="error"><?php echo @$message ?></span>
                 </div>
                 <div class = "form-content-register">
                     <label for="">Choise your Password</label>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" value = "<?php echo $user->getPassword()?>" placeholder= "<?php echo$user->getPassword()?> "required>
                 </div>
                 <div class = "form-content-register">
                     <label for="">Enter your First Name</label>
-                    <input type="text" name="firstName">
+                    <input type="text" name="firstName" value = "<?php echo $user->getFirstName()?>" placeholder= "<?php echo $user->getFirstName()?> ">
                 </div>
                 <div class = "form-content-register">
                     <label for="">Enter your Last Name</label>
-                    <input type="text" name="lastName">
+                    <input type="text" name="lastName" value = "<?php echo $user->getLastName()?>" placeholder= "<?php echo $user->getLastName()?> ">
                 </div>
                 <div class= "form-content-register">
                     <label for="">Enter your date of birth</label>
-                    <input type="date" name="dateBirth" max = "<?php $hoy=date("Y-m-d"); echo $hoy;?>" required >
+                    <input type="date" name="dateBirth" value = "<?php echo $user->getDateBirth()?>" placeholder= "<?php echo $user->getDateBirth()?> "max = "<?php $hoy=date("Y-m-d"); echo $hoy;?>" required >
                 </div>
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn">Accept</button>
 
             </form>
-            <a class="cancel-register-register" href="<?php echo FRONT_ROOT ?>Home/Index">I already have an account</a>
+            <a class="cancel-register-register" href="<?php echo FRONT_ROOT ?>">Cancel</a>
         </div>
-
-    </section>
 
 
 </body>

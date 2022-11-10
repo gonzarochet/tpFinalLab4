@@ -152,6 +152,63 @@ class UserDAOBD implements IUserDAOBD{
         }
     }
 
+    public function isUserExistsAndValidateId($email,$username,$userid)
+    {
+        try {
+
+            $query = "CALL isUserExistAndValidateID('".$email."','".$username.
+            "','".$userid."');";
+        
+            /*
+            $parameters["emailFind"] =  $email;
+            $parameters["usernameFind"] = $username;
+            $parameters["useridFind"] =  $userid;
+            */
+
+            $this->connection = Connection::GetInstance();
+            
+            $resultSet = $this->connection->Execute($query); //1 if exists, 0 if it doesn't exist.
+            
+
+            $flag = false;
+            if (count($resultSet) > 0) {
+                $resultValue = array_shift($resultSet[0]); //I need to extract the value from the array to compare it to 1 or 0. 
+
+                if ($resultValue == 1) {
+                    $flag = true;
+                }
+            }
+            return $flag;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+
+    public function updateUser($userid,$username,$email,$password,$firstName,$lastName,$dateBirth){
+        try{
+            $query = "call updateUser('".$userid."','".$email.
+            "','".$username."','".$password."','".$firstName."','".$lastName."','".$dateBirth."');";
+            /*
+            $parameters["useridFind"] = $userid;
+            $parameters["newEmail"] = $email;
+            $parameters["newUsername"] = $username;
+            $parameters["newPass"] = $password;
+            $parameters["newfirstName"] = $firstName;
+            $parameters["newLastName"] = $lastName;
+            $parameters["newDateBirth"] = $dateBirth;
+
+            */
+
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->ExecuteNonQuery($query);
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
+
     public function GetUserByUserId($userid)
     {
         try {
@@ -185,3 +242,4 @@ class UserDAOBD implements IUserDAOBD{
 
 
 ?> 
+

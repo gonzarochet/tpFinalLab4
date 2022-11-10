@@ -4,6 +4,7 @@ namespace Controllers;
 
 //use DAO\UserDAO as UserDAO;
 use DAO\BD\UserDAOBD as UserDAOBD;
+use Exception;
 use Models\User as User;
 
 class UserController
@@ -22,7 +23,7 @@ class UserController
     }
 
     public function Login($email, $password)
-        {
+    {
             $user = $this->userDAO->GetUserByEmail($email);
 
             if(($user != null) && ($user->getPassword() === $password))
@@ -37,21 +38,19 @@ class UserController
                 </script>"; 
             }                                                          
 
-        } 
+    } 
 
-        public function Logout()
-        {
-            if(isset($_SESSION["loggedUser"])){
-                session_destroy();
-                require_once(VIEWS_PATH."home.php");
-            }else{
-                require_once(VIEWS_PATH."home.php");
-            }
-        }
+    public function Logout()
+    {
+        session_destroy();
+        $this->ShowLoginView();
+
+    }
+
     public function Register($username, $email, $password, $firstName, $lastName, $dateBirth)
     {
-        $exists=$this->userDAO->isEmailExists($email);
-        var_dump($exists);
+        //$exists=$this->userDAO->isEmailExists($email);
+        //var_dump($exists);
         if (!$this->userDAO->isEmailExists($email)) {
             if (!$this->userDAO->isUsernameExists($username)) {
 
@@ -84,6 +83,32 @@ class UserController
         $userWithId=$this->userDAO->GetUserByEmail($email);
 
         return $userWithId;
+    }
+
+    public function changeDataProfile(){
+        require_once(VIEWS_PATH."change-data-user.php");
+    }
+
+    public function changeDataUser($username=" ", $email="", $password = "",$firstName= "", $lastName="",$dateBirth = "") 
+    {
+        $user = $_SESSION["loggedUser"];
+
+        try{
+            if(!$this->userDAO->isUserExistsAndValidateId($email,$username,$user->getId())){
+            $this->userDAO->updateUser($user->getId(),$username,$email,$password,$firstName,$lastName,$dateBirth);
+                require_once(VIEWS_PATH."confirm-changes-profile.php");
+            }else{
+           // $this->IndexRegister("El email o el username ya existe");
+            }
+        }catch(Exception $ex){
+            require_once(VIEWS_PATH."error-window.php");
+        }
+
+    }
+
+
+    public function changeType(){
+        require_once(VIEWS_PATH."loginV.php");
     }
 
 

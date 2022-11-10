@@ -36,7 +36,7 @@ class InvoiceController
         $email=$booking->getPet()->getOwner()->getUser()->getEmail();
         $sena=$booking->getTotalPrice()/2;
 
-        $body='Reserva aceptada. Para confirmar debe abonar el siguiente importe en concepto de seña:'.$sena;
+        $body='Reserva aceptada. Para confirmar debe abonar el siguiente importe en concepto de seña: $'.$sena;
         $message=Mailer::SendEmail($email,$body);
 
         $this->emailDAO->Add(date('Y-m-d'),$email,$body,$bookingNr,$message);

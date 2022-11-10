@@ -42,14 +42,17 @@ class OwnerController{
         {
             // necesito levantar el owner id?
             $_SESSION["loggedOwner"]=$this->ownerDAO->GetOwnerByUserId($user->getId());
+            $_SESSION["type"] = "owner";
             require_once(VIEWS_PATH."owner-dashboard.php");
 
         }else  //If not it creates the owner with the add function. 
         {
             $this->Add($user);
             $_SESSION["loggedOwner"]=$this->ownerDAO->GetOwnerByUserId($user->getId());
+            $_SESSION["type"] = "owner";
             require_once(VIEWS_PATH."owner-dashboard.php");
         } 
     }
+
 }
 ?>
