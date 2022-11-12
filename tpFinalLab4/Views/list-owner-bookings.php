@@ -18,7 +18,7 @@
     ?>
 
     <div class="form-list-view-keeper">
-        <form action="<?php echo FRONT_ROOT ?>" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Invoice/Add" method="post">
             <table class=keeper-list>
                 <h1>Bookings List</h1>
                 <thead>

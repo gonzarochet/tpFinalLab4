@@ -25,9 +25,11 @@ use MODELS\Keeper as Keeper;
                     <li class="nav-item">
                          <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/changeDataProfile">Edit Profile</a>
                     </li>
+                    <!--
                     <li class="nav-item">
                          <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/Logout">Notifications</a>
                     </li>
+                    -->
                     <li class="nav-item">
                          <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ChangeType">Change View</a>
                     </li>

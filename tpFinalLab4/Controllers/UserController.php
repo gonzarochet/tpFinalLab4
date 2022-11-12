@@ -4,6 +4,7 @@ namespace Controllers;
 
 //use DAO\UserDAO as UserDAO;
 use DAO\BD\UserDAOBD as UserDAOBD;
+//use Dao\JSON\PetDAO AS PET
 use Exception;
 use Models\User as User;
 
