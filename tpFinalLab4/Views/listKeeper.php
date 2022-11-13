@@ -18,11 +18,8 @@
         <table class = keeper-list>
             <h1>Keepers List</h1>
             <thead>
-                <th>idKeeper</th>
-                <th>IdUser</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Password</th>
                 <th>LastName</th>
                 <th>FirstName</th>
                 <th>Date of Birth</th>
@@ -33,11 +30,8 @@
                 foreach ($keeperList as $keeper) {
                 ?>
                     <tr>
-                        <td><?php echo $keeper->getKeeperId() ?></td>
-                        <td><?php echo $keeper->getUser()->getId() ?></td>
                         <td><?php echo $keeper->getUser()->getUsername() ?></td>
                         <td><?php echo $keeper->getUser()->getEmail() ?></td>
-                        <td><?php echo $keeper->getUser()->getPassword() ?></td>
                         <td><?php echo $keeper->getUser()->getLastName() ?></td>
                         <td><?php echo $keeper->getUser()->getFirstName() ?></td>
                         <td><?php echo $keeper->getUser()->getDateBirth() ?></td>

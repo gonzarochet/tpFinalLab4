@@ -20,8 +20,8 @@
             <table class="keeper-list">
                 <thead>
                     <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Keeper</th>
+                    <th>End Date</th>                    
+                    <th>Keeper Name</th>
                     <th>Pet</th>
                     
                 </thead>
@@ -29,7 +29,7 @@
                         <tr>
                             <td><?php echo $startDate ?></td>
                             <td><?php echo $endDate ?></td>
-                            <td><?php echo $keeperid ?></td>
+                            <td><?php echo $keeper->getUser()->getFirstName()." ".$keeper->getUser()->getLastName() ?></td>
                             <td><?php echo $pet->getName()?><td>
                             <td>
                             <input type="hidden" name="petid" value="<?php echo $pet->getIdPet()?>"/>

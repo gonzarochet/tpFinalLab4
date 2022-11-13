@@ -25,10 +25,8 @@
                     <th>Owner</th>
                     <th>Pet Name</th>
                     <th>Pet Size</th>
-                    
-                    
-                    <th>Accepted</th>
-                    <th></th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </thead>
                 <tbody>
                     <?php
@@ -41,15 +39,13 @@
                             <td><?php echo $booking->getPet()->getOwner()->getUser()->getFirstName() . " " . $booking->getPet()->getOwner()->getUser()->getLastName() ?></td>
                             <td><?php echo $booking->getPet()->getName() ?></td>
                             <td><?php echo $booking->getPet()->getSize() ?></td>
-                            <td><?php echo $booking->getIsAccepted() ?></td>
-                            <td><?php if ($booking->getIsAccepted() == 'No') {
+                            <td><?php echo $booking->getStatus() ?></td>
+                            <td><?php if ($booking->getStatus() == 'Pending') {
                                 ?>
                                     <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>"> Preview </button>
+                                <?php
+                                }?>
                             </td>
-
-                        <?php
-                                }
-                        ?>
                         </tr>
 
                     <?php

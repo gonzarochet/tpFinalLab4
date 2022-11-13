@@ -5,6 +5,10 @@ use Models\Booking as Booking;
 use DAO\BD\IBookingDAOBD as IBookingDAOBD;
 use \Exception as Exception;
 use DAO\BD\Connection as Connection;
+use Models\Keeper as Keeper;
+use Models\User as User;
+use Models\Pet as Pet;
+use Models\Owner as Owner;
 
 class BookingDAOBD implements IBookingDAOBD
 {
@@ -16,10 +20,7 @@ class BookingDAOBD implements IBookingDAOBD
     {
         try 
         {
-            //$pet=$booking->getPet();
-           // $pet_id=$booking->getPet()->getIdPet();
-
-            $query="INSERT INTO ".$this->tableName." (bookingDate,startDate,endDate,petid,keeperid,totalPrice, paidAmount,isAccepted) VALUES (:bookingDate,:startDate,:endDate,:petid,:keeperid,:totalPrice,:paidAmount, :isAccepted);";
+            $query="INSERT INTO ".$this->tableName." (bookingDate,startDate,endDate,petid,keeperid,totalPrice, paidAmount,status) VALUES (:bookingDate,:startDate,:endDate,:petid,:keeperid,:totalPrice,:paidAmount, :status);";
             $parameters["bookingDate"]=$booking->getBookingDate();
             $parameters["startDate"]=$booking->getStartDate();
             $parameters["endDate"]=$booking->getEndDate();
@@ -27,7 +28,7 @@ class BookingDAOBD implements IBookingDAOBD
             $parameters["keeperid"]=$booking->getKeeper()->getKeeperId();
             $parameters["totalPrice"]=$booking->getTotalPrice();
             $parameters["paidAmount"]=$booking->getPaidAmount();
-            $parameters["isAccepted"]=$booking->getIsAccepted();
+            $parameters["status"]=$booking->getStatus();
 
             $this->connection=Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query,$parameters);
@@ -35,7 +36,6 @@ class BookingDAOBD implements IBookingDAOBD
         } catch (Exception $ex) {
             throw $ex;
         }
-
     }
 
     public function GetAll()
@@ -59,9 +59,9 @@ class BookingDAOBD implements IBookingDAOBD
                 $booking->setPet($petList->GetPetByPetId($row["petid"]));
                 $booking->setStartDate($row["startDate"]);
                 $booking->setEndDate($row["endDate"]);
-                $booking->setTotalPrice($row["totalprice"]);
+                $booking->setTotalPrice($row["totalPrice"]);
                 $booking->setPaidAmount($row["paidAmount"]);
-                $booking->setIsAccepted($row["isAccepted"]);
+                $booking->setStatus($row["status"]);
                 
 
                 array_push($bookingList, $booking);
@@ -72,8 +72,6 @@ class BookingDAOBD implements IBookingDAOBD
         }
     }
 
-    
-    
 
     public function GetBookingBybookingNr($bookingNr)
     {
@@ -89,10 +87,10 @@ class BookingDAOBD implements IBookingDAOBD
         return $bookingFound;
     }
 
-    public function ConfirmBooking($bookingNr)
+    public function AcceptBooking($bookingNr)
     {
         try {
-            $query="UPDATE ".$this->tableName." SET isAccepted='Yes' WHERE bookingNr= :bookingNr;";
+            $query="UPDATE ".$this->tableName." SET status='Accepted' WHERE bookingNr= :bookingNr;";
             $parameters["bookingNr"]=$bookingNr;
 
             $this->connection=Connection::GetInstance();
@@ -104,10 +102,23 @@ class BookingDAOBD implements IBookingDAOBD
         }
     }
 
-    public function GetBookingByOwner($ownerid){
+    public function CancelBooking($bookingNr)
+    {
+        try{
+            $query="UPDATE ".$this->tableName." SET status='Canceled' WHERE bookingNr= :bookingNr;";
+            $parameters["bookingNr"]=$bookingNr;
+
+            $this->connection=Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query,$parameters);
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
+
+    public function GetBookingsByOwnerId($ownerid){
 
         try{
-            $query = "CALL GetBookingsByOwner('".$ownerid."');";
+            $query = "CALL GetBookingsByOwnerId('".$ownerid."');";
 
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
@@ -115,31 +126,67 @@ class BookingDAOBD implements IBookingDAOBD
             $bookingList=array();
             foreach ($resultSet as $row)
             {
-                $keeperList = new KeeperDAOBD();
-                $petList = new PetDAOBD();
+                $user= new User();
+                $user->setId($row["userid"]);
+                $user->setUsername($row["username"]);
+                $user->setEmail($row["email"]);
+                $user->setPassword($row["pass"]);
+                $user->setFirstName($row["firstName"]);
+                $user->setLastName($row["lastName"]);
+                $user->setDateBirth($row["dateBirth"]);
+
+                $keeper = new Keeper();
+                $keeper->setKeeperId($row["keeperid"]);
+                $keeper->setUser($user);
+                $keeper->setReputation($row["reputation"]);
+                $keeper->setFee($row["fee"]);
+                $keeper->setSize($row["size"]);
+
+                $userOwner = new User();
+                $userOwner->setId($row["ouserid"]);
+                $userOwner->setUsername($row["ousername"]);
+                $userOwner->setEmail($row["oemail"]);
+                $userOwner->setPassword($row["opass"]);
+                $userOwner->setFirstName($row["ofirstName"]);
+                $userOwner->setLastName($row["olastName"]);
+                $userOwner->setDateBirth($row["odateBirth"]);
+
+                $owner= new Owner();
+                $owner->setOwnerId($row["ownerid"]);
+                $owner->setUser($userOwner);
+
+                $pet = new Pet();
+                $pet->setIdPet($row["petid"]);
+                $pet->setName($row["name"]);
+                $pet->setBirthDate($row["birthDate"]);
+                $pet->setOwner($owner);
+                $pet->setVaccinationPlan($row["vaccinationPlan"]);
+                $pet->setPicture($row["picture"]);
+                $pet->setBreed($row["breed"]);
+                $pet->setSize($row["size"]);
+                $pet->setVideo($row["video"]);
+
                 $booking=new Booking();
                 $booking->setBookingNumber($row["bookingNr"]);
                 $booking->setBookingDate($row["bookingDate"]);
-                $booking->setKeeper($keeperList->GetKeeperByKeeperId($row["keeperid"]));
-                $booking->setPet($petList->GetPetByPetId($row["petid"]));
+                $booking->setKeeper($keeper);
+                $booking->setPet($pet);
                 $booking->setStartDate($row["startDate"]);
                 $booking->setEndDate($row["endDate"]);
-                $booking->setTotalPrice($row["totalprice"]);
+                $booking->setTotalPrice($row["totalPrice"]);
                 $booking->setPaidAmount($row["paidAmount"]);
-                $booking->setIsAccepted($row["isAccepted"]);
+                $booking->setStatus($row["status"]);
                 
 
                 array_push($bookingList, $booking);
             }
             return $bookingList;
+            
 
 
         }catch(Exception $ex){
             throw $ex;
         }
-
-
-
         
     }
 

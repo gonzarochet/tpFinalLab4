@@ -134,8 +134,7 @@ class CalendarDAOBD
             $query = "SELECT * FROM ".$this->tableName." WHERE calendarDate = :calendarDate and keeperid = :keeperid ;";
             
             foreach($period as $date){
-                echo $date->format("Y-m-d");
-                
+                                
                 $parameters["calendarDate"] = $date->format("Y-m-d");
                 $parameters["keeperid"] = $keeper->getkeeperId();
 

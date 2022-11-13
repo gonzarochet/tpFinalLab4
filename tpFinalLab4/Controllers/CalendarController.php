@@ -22,12 +22,7 @@ class CalendarController{
         require_once(VIEWS_PATH."addCalendarPeriod.php");
     }
 
-    //No se usa (usamos directamente el ShowListViewByKeeper, de lo contrario un keeper vería la lista de fechas de todos los demas)
-    public function ShowListView(){
-        $calendarList = $this->calendarDAO->GetAll();
-        require_once(VIEWS_PATH."listCalendarPeriod.php");
-    }
-
+    //En lugar de usar ShowListView, usamos directamente el ShowListViewByKeeper, de lo contrario un keeper vería la lista de fechas de todos los demas.
     public function ShowListViewByKeeper(){
         $keeper= $_SESSION["loggedKeeper"];
         $calendarList = $this->calendarDAO->GetAllByKeeper($keeper);

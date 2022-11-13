@@ -69,7 +69,7 @@ create table booking
 	petid int,
 	totalPrice float,
 	paidAmount float,
-	isAccepted char(3),
+	status varchar(10),
 	constraint pk_booking primary key (bookingNr),
 	constraint fk_keeper foreign key (keeperid) references keeper (keeperid),
 	constraint fk_pet foreign key (petid) references pet (petid)

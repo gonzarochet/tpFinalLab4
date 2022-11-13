@@ -41,7 +41,8 @@ class InvoiceController
 
         $this->emailDAO->Add(date('Y-m-d'),$email,$body,$bookingNr,$message);
 
-        require_once(VIEWS_PATH."keeper-dashboard.php"); 
+        $bookingList=$this->bookingDAO->GetAll();
+        require_once(VIEWS_PATH."list-keeper-bookings.php"); 
     }
 
     public function ShowListView()
