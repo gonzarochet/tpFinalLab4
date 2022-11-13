@@ -69,9 +69,9 @@ class CalendarController{
                                                 
     }
 
-    public function SetUnavailable($id)
+    public function RemoveDate($id)
     {
-        $this->calendarDAO->SetUnavailable($id);
+        $this->calendarDAO->RemoveDate($id);
  
         $this->ShowListViewByKeeper();
     }
