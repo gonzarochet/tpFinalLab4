@@ -1,11 +1,11 @@
 <?php namespace Controllers;
 
 /* 
-use DAO\JSON\PetDAO as PetDAOBD;
-use DAO\JSON\OwnerDAO as OwnerDAOBD;
+use DAO\JSON\PetDAO as PetDAOBD;        //JSON
+use DAO\JSON\OwnerDAO as OwnerDAOBD;    //JSON
 */
-use DAO\BD\PetDAOBD as PetDAOBD;
-use DAO\BD\OwnerDAOBD as OwnerDAOBD;
+use DAO\BD\PetDAOBD as PetDAOBD;        //BD
+use DAO\BD\OwnerDAOBD as OwnerDAOBD;    //BD
 
 use Models\Pet as Pet;
 use Models\Owner as Owner;

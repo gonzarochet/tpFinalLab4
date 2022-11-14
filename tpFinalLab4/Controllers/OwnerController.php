@@ -1,9 +1,11 @@
 <?php namespace Controllers;
 
+
+//use DAO\JSON\OwnerDAO AS OwnerDAOBD; //JSON
+use DAO\BD\OwnerDAOBD AS OwnerDAOBD;    //BD
+
 use Models\User as user;
 use Models\Owner as Owner;
-//use DAO\JSON\OwnerDAO AS OwnerDAOBD;
-use DAO\BD\OwnerDAOBD AS OwnerDAOBD;
 
 
 class OwnerController{

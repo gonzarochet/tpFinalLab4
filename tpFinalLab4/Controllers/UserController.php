@@ -2,9 +2,11 @@
 
 namespace Controllers;
 
-use DAO\JSON\UserDAO as UserDAOBD;
-//use DAO\BD\UserDAOBD as UserDAOBD;
-//use Dao\JSON\PetDAO AS PET
+//use DAO\JSON\UserDAO as UserDAOBD; //JSON
+
+use DAO\BD\UserDAOBD as UserDAOBD;  //BD
+
+
 use Exception;
 use Models\User as User;
 
@@ -55,7 +57,6 @@ class UserController
 
                 $user = $this->Add($username, $email, $password, $firstName, $lastName, $dateBirth);
                 $_SESSION["loggedUser"] = $user;
-
 
                 require_once(VIEWS_PATH . "loginV.php");
             } else {
