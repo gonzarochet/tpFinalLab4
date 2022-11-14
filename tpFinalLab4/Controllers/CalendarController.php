@@ -47,7 +47,7 @@ class CalendarController{
             $flag = $this->calendarDAO->IsPeriodExist($period,$keeper);// check that the period exist
 
             if($flag){
-                $error = "You have already have a dates in your seleccion. Please change the dates and try again";
+                $error = "You already have the selected dates in your selection. Please change the dates and try again";
                 require_once(VIEWS_PATH."addCalendarPeriod.php");
             }else{
                 
@@ -85,16 +85,14 @@ class CalendarController{
         $owner=$_SESSION["loggedOwner"];
 
         $petList=new PetDAOBD();
-        $petList=$petList->GetPetsByOwnerId($owner->getOwnerId()); 
+        $petList=$petList->GetActivePetsByOwnerId($owner->getOwnerId());  //only shows active pets
         require_once(VIEWS_PATH."searchAvailableKeepers.php");
     }
 
     public function ShowAvailableKeepers($startDate, $endDate, $petid)
     {
-
         $petList=new PetDAOBD();
         $pet=$petList->GetPetByPetId($petid);
-        
 
         if($endDate<$startDate){
             $error = "The end date is incorrect, please insert a correct date";
@@ -103,8 +101,6 @@ class CalendarController{
             $keeperList = $this->SearchAvailableKeepers($startDate, $endDate, $pet->getSize());
             require_once(VIEWS_PATH."listAvailableKeepers.php");
         }
-       
- 
     }
 
     public function SearchAvailableKeepers($startDate, $endDate, $size)

@@ -9,6 +9,6 @@ interface IPetDAOBD
     function Add(Pet $pet);
     function GetPetsByOwnerId ($ownerid);
     function GetPetByPetId($petid);
-    function Remove($id);
+    function DeactivatePet($id);
 }
 ?>

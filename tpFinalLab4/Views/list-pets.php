@@ -15,7 +15,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-pet">
-        <form action="<?php echo FRONT_ROOT ?>Pet/Remove" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Pet/DeactivatePet" method="post">
             <h1>Pets List</h1>
             <table class="list-pet">
                 <thead>
@@ -28,7 +28,8 @@
                     <th>Vaccination Plan</th>
                     <th>Video </th>
                     <th>Comments </th>
-                    <th>Delete Pet </th>
+                    <th>Is Active </th>
+                    <th> </th>
                 </thead>
                 <tbody>
                     <?php
@@ -60,7 +61,14 @@
                                 </iframe>
                             </td>
                             <td><?php echo $pet->getComments() ?></td>
-                            <td><button type="submit" name="id" class="btn-table" value="<?php echo $pet->getIdPet() ?>"> Remove </button> </td>
+                            <td><?php echo $pet->getIsActive() ?></td>
+                            <td><?php if ($pet->getIsActive() == 'Yes') {
+                                ?>
+                                    <td><button type="submit" name="petid" class="btn-table" value="<?php echo $pet->getIdPet() ?>">Deactivate Pet </button> </td>
+                                <?php
+                                }?>
+                            </td>
+                            
                         </tr>
                     <?php
                     }
@@ -70,6 +78,7 @@
         </form>
     </div>
     </table>
+    <?php echo $message ?><br>
     <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashsboard</a>
 </body>
 

@@ -17,7 +17,7 @@ class PetDAOBD implements IPetDAOBD
     {
         try
         {
-            $query="INSERT INTO ".$this->tableName." (name, breed, birthDate, ownerid, vaccinationPlan,picture,size,video,comments) VALUES (:name,:breed, :birthDate, :ownerid, :vaccinationPlan, :picture, :size, :video, :comments);";
+            $query="INSERT INTO ".$this->tableName." (name, breed, birthDate, ownerid, vaccinationPlan,picture,size,video,comments, isActive) VALUES (:name,:breed, :birthDate, :ownerid, :vaccinationPlan, :picture, :size, :video, :comments, :isActive);";
             $parameters["name"]=$pet->getName();
             $parameters["breed"]=$pet->getBreed();
             $parameters["birthDate"]=$pet->getBirthDate();
@@ -27,6 +27,7 @@ class PetDAOBD implements IPetDAOBD
             $parameters["size"]=$pet->getSize();
             $parameters["video"]=$pet->getVideo();
             $parameters["comments"]=$pet->getComments();
+            $parameters["isActive"]=$pet->getIsActive();
 
             $this->connection=Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query, $parameters);
@@ -62,6 +63,7 @@ class PetDAOBD implements IPetDAOBD
             $pet->setSize($row["size"]);
             $pet->setVideo($row["video"]);
             $pet->setComments($row["comments"]);
+            $pet->setIsActive($row["isActive"]);
             
             array_push($petList, $pet);
     
@@ -69,11 +71,11 @@ class PetDAOBD implements IPetDAOBD
         return $petList;
     }
 
-    public function Remove($id)
+    public function DeactivatePet($petid)
     {
         try {
-            $query = "DELETE FROM " . $this->tableName . " WHERE petid= :petid;";
-            $parameters["petid"] = $id;
+            $query = "UPDATE " . $this->tableName . " SET isActive='No' WHERE petid= :petid;";
+            $parameters["petid"] = $petid;
 
             $this->connection = Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query, $parameters);
@@ -113,6 +115,7 @@ class PetDAOBD implements IPetDAOBD
                     $pet->setSize($resultFirstRow["size"]);
                     $pet->setVideo($resultFirstRow["video"]);
                     $pet->setComments($resultFirstRow["comments"]);
+                    $pet->setIsActive($resultFirstRow["isActive"]);
                 }
                 return $pet;
             }
@@ -120,6 +123,21 @@ class PetDAOBD implements IPetDAOBD
             {
                 throw $ex;
             }
+        }
+
+        public function GetActivePetsByOwnerId ($ownerid){
+    
+            $petList=$this->GetAll();
+            $ownerPetList= array();
+    
+            foreach($petList as $pet)
+            {
+                if($pet->getOwner()->getOwnerId() == $ownerid and $pet->getIsActive()=='Yes')
+                {
+                    array_push($ownerPetList,$pet);
+                }
+            }
+            return $ownerPetList;
         }
 
         public function GetPetsByOwnerId ($ownerid){

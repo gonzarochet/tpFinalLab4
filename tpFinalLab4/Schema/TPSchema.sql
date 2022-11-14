@@ -45,6 +45,7 @@ create table pet
 	size varchar(50),
 	video varchar(200),
 	comments varchar(100),
+	isActive char(3),
 	constraint pk_pet primary key (petid),
 	constraint fk_owner foreign key (ownerid) references owner(ownerid)
 );

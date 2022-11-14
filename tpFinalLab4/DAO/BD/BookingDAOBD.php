@@ -187,6 +187,27 @@ class BookingDAOBD implements IBookingDAOBD
         }catch(Exception $ex){
             throw $ex;
         }
+    }
+
+    public function SearchPetInFutureBookings($petid)
+    {
+        try{
+            $query="SELECT * FROM ".$this->tableName." WHERE endDate >= curdate() and petid= :petid;";
+            $parameters["petid"]=$petid;
+
+            $this->connection=Connection::GetInstance();
+            $resultSet=$this->connection->Execute($query,$parameters);
+
+            $exists=false;
+            if (count($resultSet)>0)
+            {
+                $exists=true;
+            }
+            return $exists;
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
         
     }
 

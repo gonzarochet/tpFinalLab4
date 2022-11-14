@@ -13,6 +13,7 @@ class Pet
     private $size;
     private $video;
     private $comments;
+    private $isActive;
 
     public function getIdPet(){
         return $this->idPet;
@@ -81,6 +82,14 @@ class Pet
     }
     public function setComments($comments){
         $this->comments=$comments;
+    }
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+    public function setIsActive($isActive)
+    {
+        $this->isActive=$isActive;
     }
 
 }
