@@ -32,7 +32,7 @@ class User{
     /**
      * Set the value of id
      */
-    public function setId($id): self
+    public function setId($id)//: self
     {
         $this->id = $id;
 

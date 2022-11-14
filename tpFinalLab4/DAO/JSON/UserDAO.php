@@ -11,11 +11,9 @@ class UserDAO{
 
     public function Add(User $user){
         $this->RetrieveData();
-
         $user->setId($this->getLastId()+1);
         array_push($this->userList,$user);
         $this->SaveData();
-
     }
 
     public function GetAll(){
@@ -55,16 +53,18 @@ class UserDAO{
             $arraytoDecode = ($jsonContent) ? json_decode($jsonContent,true) : array();
 
             foreach($arraytoDecode as $valuesArray){
-                $user = new User($valuesArray["id"],$valuesArray["username"], $valuesArray["email"],$valuesArray["password"],$valuesArray["firstName"],
-                $valuesArray["lastName"],$valuesArray["dateBirth"]);
-                /*
-                $owner->setId($valuesArray["id"]);
-                $owner->setDni($valuesArray["dni"]);
-                $owner->setFirstName($valuesArray["firstName"]);
-                $owner->setLastName($valuesArray["lastName"]);
-                $owner->setAge($valuesArray["age"]);
-                $owner->serUsername($valuesArray["username"]);
-                */
+                //$user = new User($valuesArray["id"],$valuesArray["username"], $valuesArray["email"],$valuesArray["password"],$valuesArray["firstName"],$valuesArray["lastName"],$valuesArray["dateBirth"]);
+                
+                $user = new User(); 
+                $user->setId($valuesArray["id"]);
+                $user->setUsername($valuesArray["username"]);
+                $user->setEmail($valuesArray["email"]);
+                $user->setPassword($valuesArray["password"]);
+                $user->setFirstName($valuesArray["firstName"]);
+                $user->setLastName($valuesArray["lastName"]);
+                $user->setDateBirth($valuesArray["dateBirth"]);
+                
+                
                 array_push($this->userList,$user);
             }
         }
@@ -85,8 +85,6 @@ class UserDAO{
             if($lastIndex>0){
                 $id = $arraytoDecode[$lastIndex-1]["id"];
             }
-
-
         }
         return $id;
     }

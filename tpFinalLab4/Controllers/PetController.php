@@ -1,11 +1,14 @@
 <?php namespace Controllers;
 
-use Models\Pet as Pet;
-//use DAO\PetDAO as PetDAO;
+/* 
+use DAO\JSON\PetDAO as PetDAOBD;
+use DAO\JSON\OwnerDAO as OwnerDAOBD;
+*/
 use DAO\BD\PetDAOBD as PetDAOBD;
-use Models\Owner as Owner;
-//use DAO\OwnerDAO as OwnerDAO;
 use DAO\BD\OwnerDAOBD as OwnerDAOBD;
+
+use Models\Pet as Pet;
+use Models\Owner as Owner;
 use DAO\BD\BookingDAOBD as BookingDAOBD;
 
 class PetController
@@ -33,7 +36,7 @@ class PetController
     public function Add($name,$birthDate,$vaccinationPlan, $picture,$breed, $size, $video, $comments)
     {
         $user = $_SESSION["loggedUser"];        
-        //$owner = new Owner();
+        $owner = new Owner();
         $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); //lo busco por el user ID en el owner DAO 
 
         $pet = new Pet();

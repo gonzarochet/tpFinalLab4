@@ -2,8 +2,8 @@
 
 namespace Controllers;
 
-//use DAO\UserDAO as UserDAO;
-use DAO\BD\UserDAOBD as UserDAOBD;
+use DAO\JSON\UserDAO as UserDAOBD;
+//use DAO\BD\UserDAOBD as UserDAOBD;
 //use Dao\JSON\PetDAO AS PET
 use Exception;
 use Models\User as User;
@@ -50,13 +50,12 @@ class UserController
 
     public function Register($username, $email, $password, $firstName, $lastName, $dateBirth)
     {
-        //$exists=$this->userDAO->isEmailExists($email);
-        //var_dump($exists);
         if (!$this->userDAO->isEmailExists($email)) {
             if (!$this->userDAO->isUsernameExists($username)) {
 
                 $user = $this->Add($username, $email, $password, $firstName, $lastName, $dateBirth);
                 $_SESSION["loggedUser"] = $user;
+
 
                 require_once(VIEWS_PATH . "loginV.php");
             } else {
@@ -69,7 +68,6 @@ class UserController
 
     public function Add($username, $email, $password, $firstName, $lastName, $dateBirth)
     {
-
         $user = new User();
         //$user->setId($this->AutoIncrementalID());
         $user->setUsername($username);
@@ -81,9 +79,10 @@ class UserController
 
 
         $this->userDAO->Add($user);
-        $userWithId=$this->userDAO->GetUserByEmail($email);
+        //$userWithId=$this->userDAO->GetUserByEmail($email); //Lo acabo de armar al user, no hace falta buscarlo en el dao
 
-        return $userWithId;
+        //return $userWithId;
+        return $user;
     }
 
     public function changeDataProfile(){

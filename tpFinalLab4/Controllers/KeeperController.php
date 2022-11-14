@@ -2,7 +2,7 @@
 
 use Models\User as User;
 use Models\Keeper as Keeper;
-//use DAO\KeeperDAO as KeeperDAO;
+//use DAO\JSON\KeeperDAO as KeeperDAOBD;
 use DAO\BD\KeeperDAOBD as KeeperDAOBD;
 use Models\Calendar as Calendar;
 
