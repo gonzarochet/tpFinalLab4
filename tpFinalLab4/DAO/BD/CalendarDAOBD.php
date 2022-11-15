@@ -89,11 +89,11 @@ class CalendarDAOBD
         }
     }
 
-    public function SetUnavailable($id)
+    public function RemoveDate($id)
     {
         try 
         {
-            $query="UPDATE ".$this->tableName." SET status='Unavailable' WHERE calendarid= :calendarid ;";
+            $query="DELETE FROM ".$this->tableName." WHERE calendarid= :calendarid ;";
             $parameters["calendarid"]=$id;
 
             $this->connection= Connection::GetInstance();
@@ -134,8 +134,7 @@ class CalendarDAOBD
             $query = "SELECT * FROM ".$this->tableName." WHERE calendarDate = :calendarDate and keeperid = :keeperid ;";
             
             foreach($period as $date){
-                echo $date->format("Y-m-d");
-                
+                                
                 $parameters["calendarDate"] = $date->format("Y-m-d");
                 $parameters["keeperid"] = $keeper->getkeeperId();
 

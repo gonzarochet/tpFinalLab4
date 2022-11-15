@@ -9,7 +9,7 @@ class KeeperDAO implements IKeeperDAO{
 
     public function Add(Keeper $keeper){
         $this->RetrieveData();
-        $keeper->setKeeperId($this->keeperList->GetNextKeeperId());
+        $keeper->setKeeperId($this->GetNextKeeperId());
         array_push($this->keeperList,$keeper);
         $this->SaveData();
     }
@@ -17,8 +17,6 @@ class KeeperDAO implements IKeeperDAO{
     public function getAll(){
         $this->RetrieveData();
         return $this->keeperList;
-
-
     }
 
     private function SaveData(){
@@ -81,7 +79,6 @@ class KeeperDAO implements IKeeperDAO{
                 array_push($this->keeperList,$keeper);
                 
             }
-
         }
     }
 

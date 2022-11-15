@@ -27,9 +27,9 @@ class BookingController
     public function ShowOwnerConfirmationView($startDate, $endDate, $petid,$keeperid)
     {
         $owner=$_SESSION["loggedOwner"];
-
         
         $pet=$this->petList->GetPetByPetId($petid);    
+        $keeper=$this->keeperList->GetKeeperByKeeperId($keeperid);
 
         require_once(VIEWS_PATH."booking-confirmation-owner.php"); //View con previsualizacion de la reserva y envia startDate, endDate, keeperid, petid a Booking/Add
     }
@@ -45,8 +45,7 @@ class BookingController
         $datetime1 = new DateTime($startDate);
         $datetime2 = new DateTime($endDate);
         $difference = $datetime1->diff($datetime2);
-    
-        var_dump($difference->d);       
+          
 
         $totalPrice=$keeper->getFee()*($difference->d+1);   //to calculate the total price: fee x nr of booked day
                                                         
@@ -58,7 +57,7 @@ class BookingController
         $booking->setPet($pet);
         $booking->setTotalPrice($totalPrice);
         $booking->setPaidAmount(0);
-        $booking->setIsAccepted('No');
+        $booking->setStatus('Pending');
         
         $this->bookingDAO->Add($booking);
 
@@ -71,7 +70,7 @@ class BookingController
         $bookingList=array();
         $owner=$_SESSION["loggedOwner"];
     
-        $bookingListAll=$this->bookingDAO->GetBookingByOwner($owner->getOwnerId());
+        $bookingListAll=$this->bookingDAO->GetBookingsByOwnerId($owner->getOwnerId());
 
         foreach($bookingListAll as $booking)
         {
@@ -111,9 +110,9 @@ class BookingController
     }    
 
     //Función que se ejecuta cuando el Keeper acepta el request de reserva. 
-    public function Confirmation($bookingNr)
+    public function Accept($bookingNr)
     {
-        $this->bookingDAO->ConfirmBooking($bookingNr); //Updates IsConfirmed = 'Yes' in booking table. 
+        $this->bookingDAO->AcceptBooking($bookingNr); //Updates IsConfirmed = 'Yes' in booking table. 
 
         $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
         $keeperid=$booking->getKeeper()->getKeeperId();
@@ -122,8 +121,15 @@ class BookingController
         
         require_once(VIEWS_PATH."invoice-view.php");
 
+    }
 
+    //Funcion para cancelar una reserva solicitada
+    public function Cancel($bookingNr)
+    {
+        $this->bookingDAO->CancelBooking($bookingNr);
+
+        $bookingList=$this->bookingDAO->GetAll();
+        require_once(VIEWS_PATH."list-keeper-bookings.php");
     }
 }
-
 ?>

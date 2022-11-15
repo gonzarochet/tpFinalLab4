@@ -37,7 +37,13 @@
                             <td><?php echo $booking->getPet()->getName()?></td>
                             <td><?php echo $booking->getTotalPrice() /2?></td>
                             <td><?php echo $booking->getTotalPrice()?></td>
-                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $bookingNr?>">Send Invoice</button> </td>
+                            <td><?php if ($booking->getStatus() == 'Accepted') {
+                                ?>
+                                    <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Send Invoice</button>
+                            </td>
+                            <?php
+                }
+                ?>
                         </tr>
                 </tbody>
         </form>

@@ -22,12 +22,7 @@ class CalendarController{
         require_once(VIEWS_PATH."addCalendarPeriod.php");
     }
 
-    //No se usa (usamos directamente el ShowListViewByKeeper, de lo contrario un keeper vería la lista de fechas de todos los demas)
-    public function ShowListView(){
-        $calendarList = $this->calendarDAO->GetAll();
-        require_once(VIEWS_PATH."listCalendarPeriod.php");
-    }
-
+    //En lugar de usar ShowListView, usamos directamente el ShowListViewByKeeper, de lo contrario un keeper vería la lista de fechas de todos los demas.
     public function ShowListViewByKeeper(){
         $keeper= $_SESSION["loggedKeeper"];
         $calendarList = $this->calendarDAO->GetAllByKeeper($keeper);
@@ -52,7 +47,7 @@ class CalendarController{
             $flag = $this->calendarDAO->IsPeriodExist($period,$keeper);// check that the period exist
 
             if($flag){
-                $error = "You have already have a dates in your seleccion. Please change the dates and try again";
+                $error = "You already have the selected dates in your selection. Please change the dates and try again";
                 require_once(VIEWS_PATH."addCalendarPeriod.php");
             }else{
                 
@@ -74,9 +69,9 @@ class CalendarController{
                                                 
     }
 
-    public function SetUnavailable($id)
+    public function RemoveDate($id)
     {
-        $this->calendarDAO->SetUnavailable($id);
+        $this->calendarDAO->RemoveDate($id);
  
         $this->ShowListViewByKeeper();
     }
@@ -90,16 +85,14 @@ class CalendarController{
         $owner=$_SESSION["loggedOwner"];
 
         $petList=new PetDAOBD();
-        $petList=$petList->GetPetsByOwnerId($owner->getOwnerId()); 
+        $petList=$petList->GetActivePetsByOwnerId($owner->getOwnerId());  //only shows active pets
         require_once(VIEWS_PATH."searchAvailableKeepers.php");
     }
 
     public function ShowAvailableKeepers($startDate, $endDate, $petid)
     {
-
         $petList=new PetDAOBD();
         $pet=$petList->GetPetByPetId($petid);
-        
 
         if($endDate<$startDate){
             $error = "The end date is incorrect, please insert a correct date";
@@ -108,8 +101,6 @@ class CalendarController{
             $keeperList = $this->SearchAvailableKeepers($startDate, $endDate, $pet->getSize());
             require_once(VIEWS_PATH."listAvailableKeepers.php");
         }
-       
- 
     }
 
     public function SearchAvailableKeepers($startDate, $endDate, $size)

@@ -18,7 +18,7 @@
     ?>
 
     <div class="form-list-view-keeper">
-        <form action="<?php echo FRONT_ROOT ?>Invoice/Add" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Invoice/AddPayment" method="post">
             <table class=keeper-list>
                 <h1>Bookings List</h1>
                 <thead>
@@ -27,7 +27,7 @@
                     <th>End Date</th>
                     <th>Keeper</th>
                     <th>Pet</th>
-                    <th>Accepted</th>
+                    <th>Status</th>
                     <th>Add Payment</th>
                 </thead>
                 <tbody>
@@ -41,8 +41,13 @@
                             <td><?php echo $booking->getEndDate() ?></td>
                             <td><?php echo $booking->getKeeper()->getUser()->getFirstName() . " " . $booking->getKeeper()->getUser()->getLastName() ?></td>
                             <td><?php echo $booking->getPet()->getName() ?></td>
-                            <td><?php echo $booking->getIsAccepted() ?></td>
-                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Add Invoice</button> </td>
+                            <td><?php echo $booking->getStatus() ?></td>
+                            <td><?php if ($booking->getStatus() == 'Accepted') {
+                                ?>
+                                    <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Add Payment </button>
+                                <?php
+                                }?>
+                            </td>
                         </tr>
                     <?php
                     }
@@ -68,7 +73,7 @@
                     <th>End Date</th>
                     <th>Keeper</th>
                     <th>Pet</th>
-                    <th>Accepted</th>
+                    <th>Status</th>
                     <?php // si el review existe -> View, si no existe -> Add 
                     ?>
                     <th>Add Review</th>
@@ -85,6 +90,7 @@
                                 <td><?php echo $booking->getKeeper()->getUser()->getFirstName() . " " . $booking->getKeeper()->getUser()->getLastName() ?></td>
                                 <td><?php echo $booking->getPet()->getName() ?></td>
                                 <td><?php echo $booking->getIsAccepted() ?></td>
+                                
                                 <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber(); ?>">Review</button> </td>
                             </tr>
                     <?php

@@ -40,9 +40,23 @@ create procedure `GetReviewByBooking`(bookingNr int)
 
 
 /*------------------------------------------- OWNER----------------------------------------------------*/
-create procedure `GetBookingsByOwner`(ownerid int)
-	select bookingNr, bookingDate, startDate , endDate, keeperid , booking.petid, totalprice, paidAmount, isAccepted from booking
-	inner join pet on pet.ownerid = ownerid;
+create procedure GetBookingsByOwnerId (ownerid int)
+begin
+	select 
+		b.bookingNr, b.bookingDate , b.startDate, b.endDate, b.paidAmount, b.totalPrice , b.status
+		,k.keeperid, k.reputation, k.fee, k.size 
+		,u.userid, u.username, u.email, u.pass, u.firstName, u.lastName, u.dateBirth 
+		,p.petid, p.name, p.birthDate, p.vaccinationPlan, p.picture, p.breed, p.size, p.video, p.comments
+		,o.ownerid, o.userid as ouserid 
+		,u2.username as ousername , u2.email as oemail , u2.pass as opass ,u2.firstName as ofirstName, u2.lastName as olastName, u2.dateBirth as odateBirth
+	from booking b
+	inner join pet p on p.petid = b.petid
+	inner join keeper k on b.keeperid=k.keeperid 
+	inner join user u on k.userid=u.userid
+	inner join owner o on p.ownerid=o.ownerid
+	inner join user u2 on u2.userid=o.userid
+	where p.ownerid=ownerid;
+end	
 
 
 /*---------------------------------------- FILE-----------------------------------------------------*/

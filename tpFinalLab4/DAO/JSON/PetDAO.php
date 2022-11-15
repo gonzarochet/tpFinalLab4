@@ -20,6 +20,7 @@
 
         public function Add(Pet $pet){
             $this->RetrieveData(); 
+            $pet->setIdPet($this->GetNextPetId());
             array_push($this->petList,$pet);
             $this->SaveData();
         }
@@ -36,7 +37,6 @@
             foreach($this->petList as $pet){
 
                 //$valuesArray["ownerId"] = $owner->getOwnerId();
-                
                 //To pull owner values
                 $valuesArrayOwner["ownerId"]=$pet->getOwner()->getOwnerId();
 

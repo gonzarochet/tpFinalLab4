@@ -15,8 +15,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-keeper">
-        <form action="<?php echo FRONT_ROOT ?>Booking/Confirmation" method="post">
-            <h1>Booking Confirmation Keeper</h1>
+        <h1>Booking Confirmation Keeper</h1>
             <table class="keeper-list">
                 <thead>
                     <th>Booking Number</th>
@@ -31,7 +30,9 @@
                     <th>Picture</th>
                     <th>Vaccination Plan</th>
                     <th>Video </th>
-                    <th>Comments </th>                    
+                    <th>Comments </th> 
+                    <th> </th>        
+                    <th> </th>                    
                 </thead>
                 <tbody>
                         <tr>
@@ -64,7 +65,12 @@
                                 </iframe>
                             </td>
                             <td><?php echo $booking->getPet()->getComments() ?></td>
+                            <form action="<?php echo FRONT_ROOT ?>Booking/Accept" method="post">
                             <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber()?>">Accept </button> </td>
+                            </form>
+                            <form action="<?php echo FRONT_ROOT ?>Booking/Cancel" method="post">
+                            <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber()?>">Cancel </button> </td>                              
+                                                                    </form>
                         </tr>
                 </tbody>
         </form>

@@ -1,10 +1,10 @@
 <?php namespace Controllers;
 
+//use DAO\JSON\KeeperDAO as KeeperDAOBD;  //JSON
+use DAO\BD\KeeperDAOBD as KeeperDAOBD;    //BD
+
 use Models\User as User;
 use Models\Keeper as Keeper;
-//use DAO\KeeperDAO as KeeperDAO;
-use DAO\BD\KeeperDAOBD as KeeperDAOBD;
-use Models\Calendar as Calendar;
 
 
 class KeeperController{
@@ -25,10 +25,6 @@ class KeeperController{
         require_once(VIEWS_PATH."listKeeper.php");
     }
 
-    /*public function showListViewbyOwner(){   //para que estaba esta función??
-        $keeperList = $this->keeperDAO->GetAll();
-        require_once(VIEWS_PATH."listKeeperOwnerView.php");
-    }*/
 
     public function Add(User $user, $fee, $size){
 

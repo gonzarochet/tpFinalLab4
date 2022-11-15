@@ -6,27 +6,34 @@ use Models\Pet as Pet;
 use Models\File as File;
 //use DAO\PetDAO as PetDAO;
 use DAO\BD\PetDAOBD as PetDAOBD;
+/* 
+use DAO\JSON\PetDAO as PetDAOBD;        //JSON
+use DAO\JSON\OwnerDAO as OwnerDAOBD;    //JSON
+*/
+use DAO\BD\OwnerDAOBD as OwnerDAOBD;    //BD
+
 use Models\Owner as Owner;
-//use DAO\OwnerDAO as OwnerDAO;
-use DAO\BD\OwnerDAOBD as OwnerDAOBD;
+use DAO\BD\BookingDAOBD as BookingDAOBD;
 
 class PetController
 {
     private $petDAO;
     private $ownerDAO;
+    private $bookingList;
 
 
 
     public function __construct(){
         $this->petDAO = new PetDAOBD();
         $this->ownerDAO = new OwnerDAOBD();
+        $this->bookingList = new BookingDAOBD();
     }
 
     public function ShowAddView(){
         // aca tengo que levantar el owner id?
         require_once(VIEWS_PATH."add-pet.php");
     }
-    public function ShowListView(){
+    public function ShowListView($message =""){
         $petList=$this->petDAO->GetAll();
         $ownerList=$this->ownerDAO->GetAll();
         require_once(VIEWS_PATH."list-pets.php");
@@ -36,6 +43,8 @@ class PetController
     {
         $user = $_SESSION["loggedUser"];        
         $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); 
+        $owner = new Owner();
+        $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); //lo busco por el user ID en el owner DAO 
 
         $pet = new Pet();
         $pet->setName($name);
@@ -63,12 +72,13 @@ class PetController
         {
             $pet->setVideo($path_File3);
         }
+        $pet->setIsActive('Yes');
         
         $this->petDAO->Add($pet);
         
     }
 
-    public function ShowListPetsByOwner (){
+    public function ShowListPetsByOwner ($message=""){
         
         $user = $_SESSION["loggedUser"];        
         $ownerId=$this->ownerDAO->GetOwnerByUserId($user->getId())->getOwnerId();
@@ -78,11 +88,18 @@ class PetController
         require_once(VIEWS_PATH."list-pets.php");
     }
 
-    public function Remove($id)
+    public function DeactivatePet($petid)
         {
-            $this->petDAO->Remove($id);
-
-            $this->ShowListPetsByOwner();
+            $petBelongsToFutureBooking = $this->bookingList->SearchPetInFutureBookings($petid);
+            if($petBelongsToFutureBooking== true){
+                $message = "The pet belongs to a current or future booking. You can deactivate it once the related booking is finished.";
+                $this->ShowListPetsByOwner($message);
+                
+            }else{
+                $this->petDAO->DeactivatePet($petid);
+                $message="Succesfully deactivated";
+                $this->ShowListPetsByOwner();
+            }
         }
-
 }
+?>

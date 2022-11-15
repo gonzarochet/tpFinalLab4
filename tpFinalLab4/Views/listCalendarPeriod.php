@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Pets</title>
+    <title>Calendar List</title>
     <link href="<?php echo CSS_PATH ?>styles.css" rel="stylesheet" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-calendar">
-        <form action="<?php echo FRONT_ROOT ?>Calendar/SetUnavailable" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Calendar/RemoveDate" method="post">
             <h1>Calendar Dates List</h1>
             <table class="calendar-list">
                 <thead>
@@ -34,7 +34,7 @@
                                 {
                                     ?>
                                 <button type="submit" name="id" class="btn-set-unavaliable-calendar" value="<?php echo $calendar->getCalendarId() 
-                                                                                    ?>">Set Unavailable</button> 
+                                                                                    ?>">Remove Date</button> 
                                 <?php } ?>                                                   
                             </td>
 

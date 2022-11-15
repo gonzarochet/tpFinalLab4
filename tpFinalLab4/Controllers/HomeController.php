@@ -1,9 +1,6 @@
 <?php
     namespace Controllers;
 
-    use DAO\BD\UserDAO as UserDAO;
-    use Models\User as User;
-
     class HomeController
     {
         

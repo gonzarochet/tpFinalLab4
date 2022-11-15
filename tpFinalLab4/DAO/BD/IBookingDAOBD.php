@@ -7,7 +7,8 @@ interface IBookingDAOBD
     public function GetAll();
     public function Add(Booking $booking);
     public function GetBookingBybookingNr($bookingNr);
-    public function ConfirmBooking($bookingNr);
+    public function AcceptBooking($bookingNr);
+    public function GetBookingsByOwnerId($ownerid);
     
 }
 

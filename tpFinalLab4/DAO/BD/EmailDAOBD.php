@@ -5,7 +5,7 @@ namespace DAO\BD;
 use \Exception as Exception;
 use DAO\BD\Connection as Connection;
 
-class EmailDAOBD //implements IEmailDAOBD
+class EmailDAOBD implements IEmailDAOBD
 {
     private $connection;
     private $tableName = "email";

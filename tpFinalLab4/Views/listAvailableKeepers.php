@@ -21,11 +21,9 @@
             <thead>
                 <th>Username</th>
                 <th>Email</th>
-                <th>LastName</th>
-                <th>FirstName</th>
+                <th>Name</th>
                 <th>Age</th>
                 <th>Reputation</th>
-                <th>DateFrom
                 <th>Book</th>
             </thead>
             <tbody>
@@ -35,8 +33,7 @@
                     <tr>
                         <td><?php echo $keeper->getUser()->getUsername() ?></td>
                         <td><?php echo $keeper->getUser()->getEmail() ?></td>
-                        <td><?php echo $keeper->getUser()->getLastName() ?></td>
-                        <td><?php echo $keeper->getUser()->getFirstName() ?></td>
+                        <td><?php echo $keeper->getUser()->getFirstName()." ".$keeper->getUser()->getLastName() ?></td>
                         <td><?php echo $keeper->getUser()->getAge() ?></td>
                         <td><?php echo $keeper->getReputation() ?></td>
                         <input type="hidden" name="startDate" value="<?php echo $startDate?>"/>
