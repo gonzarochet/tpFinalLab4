@@ -6,7 +6,7 @@ interface IFileDAOBD{
 
     function Add(File $file);
 
-    function GetFileById($idFile);
+    function GetFileByName($fileName);
 
 
 }

@@ -77,7 +77,7 @@ class FileController{
                             $message = "The size of the file is more bigger than 50mb";
                         }
                     }else{
-                       $message = "The file already exists";
+                        $flag = $this->uploadFilePath."/".$type."/".$fileName;
                     }
                 }else{
                     $message = "The file extension is not available. Please the extension avaliables are: ";

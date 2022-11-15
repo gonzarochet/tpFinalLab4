@@ -22,10 +22,6 @@ class FileDAOBD implements IFileDAOBD{
         
     }
 
-    public function GetFileById($idFile)
-    {
-        
-    }
     public function GetFileByName($FileName)
     {
         try{
