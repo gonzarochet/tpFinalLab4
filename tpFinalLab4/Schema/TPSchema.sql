@@ -110,5 +110,17 @@ create table review(
     constraint fk_booking foreign key (bookingNr) references booking (bookingNr)
 )
 
+create table File(
+	idFile int auto_increment,
+    nameFile varchar (100) not null,
+    typeFile varchar(100) not null,
+    sizefile double,
+    tmp_nameFile varchar (100) not null,
+    fullPath varchar(100) not null,
+    errorFile varchar(100) not null,
+    
+    constraint pk_idFile primary key (idFile)
+)
+
 
 
