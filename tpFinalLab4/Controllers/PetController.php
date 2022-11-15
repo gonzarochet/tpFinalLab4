@@ -4,13 +4,12 @@ use DAO\BD\FileDAOBD;
 use DAO\JSON\PetDAO;
 use Models\Pet as Pet;
 use Models\File as File;
-//use DAO\PetDAO as PetDAO;
-use DAO\BD\PetDAOBD as PetDAOBD;
-/* 
-use DAO\JSON\PetDAO as PetDAOBD;        //JSON
-use DAO\JSON\OwnerDAO as OwnerDAOBD;    //JSON
-*/
+
+//use DAO\JSON\PetDAO as PetDAOBD;      //JSON 
+//use DAO\JSON\OwnerDAO as OwnerDAOBD;    //JSON
+
 use DAO\BD\OwnerDAOBD as OwnerDAOBD;    //BD
+use DAO\BD\PetDAOBD as PetDAOBD;        //BD
 
 use Models\Owner as Owner;
 use DAO\BD\BookingDAOBD as BookingDAOBD;
@@ -30,7 +29,6 @@ class PetController
     }
 
     public function ShowAddView(){
-        // aca tengo que levantar el owner id?
         require_once(VIEWS_PATH."add-pet.php");
     }
     public function ShowListView($message =""){
@@ -39,18 +37,15 @@ class PetController
         require_once(VIEWS_PATH."list-pets.php");
     }
 
-    public function Add($name,$birthDate, $breed, $size, $comments, $files)
+    public function Add($name,$birthDate, $breed, $size, $comments, $vaccinationPlan, $picture, $video)
     {
         $user = $_SESSION["loggedUser"];        
         $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); 
-        $owner = new Owner();
-        $owner=$this->ownerDAO->GetOwnerByUserId($user->getId()); //lo busco por el user ID en el owner DAO 
 
         $pet = new Pet();
         $pet->setName($name);
         $pet->setBirthDate($birthDate);
         $pet->setOwner($owner);
-
         $pet->setBreed($breed);
         $pet->setSize($size);
         $pet->setComments($comments);

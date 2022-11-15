@@ -26,7 +26,7 @@ class InvoiceController
         $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
 
         $invoice = new Invoice();
-        $invoice->setInvoiceNr ($this->invoiceDAO->getNextId());
+        $invoice->setInvoiceNr ($this->invoiceDAO->getNextInvoiceNr());
         $invoice->setDate(date('Y-m-d'));
         $invoice->setBooking($booking);
         $invoice->setValue($booking->getTotalPrice()/2);
@@ -34,9 +34,9 @@ class InvoiceController
         $this->invoiceDAO->Add($invoice);
 
         $email=$booking->getPet()->getOwner()->getUser()->getEmail();
-        $sena=$booking->getTotalPrice()/2;
+        $initialDeposit=$booking->getTotalPrice()/2;
 
-        $body='Reserva aceptada. Para confirmar debe abonar el siguiente importe en concepto de seña: $'.$sena;
+        $body='Booking Accepted. Please, pay the following initial deposit to confirm the booking: $'.$initialDeposit;
         $message=Mailer::SendEmail($email,$body);
 
         $this->emailDAO->Add(date('Y-m-d'),$email,$body,$bookingNr,$message);

@@ -1,18 +1,20 @@
 <?php namespace DAO\JSON;
 
 Use Models\User as User;
+use DAO\JSON\IUserDAO as IUserDAO;
 
-Use Controllers\HomeController as HomeController;
+class UserDAO implements IUserDAO{
 
-class UserDAO{
-
-    private $userList;
-
+    private $userList=array();
 
     public function Add(User $user){
+        
         $this->RetrieveData();
+        var_dump($this->userList);
         $user->setId($this->getLastId()+1);
+        var_dump($user);
         array_push($this->userList,$user);
+        var_dump($this->userList);
         $this->SaveData();
     }
 
@@ -64,9 +66,9 @@ class UserDAO{
                 $user->setLastName($valuesArray["lastName"]);
                 $user->setDateBirth($valuesArray["dateBirth"]);
                 
-                
                 array_push($this->userList,$user);
             }
+           
         }
 
     }

@@ -67,3 +67,39 @@ create procedure `AddFile`(nameFile varchar (100) , typeFile varchar(100), sizef
 create procedure `GetFileByName`(nameFile varchar(100))
 	select * from File
     where File.nameFile = nameFile
+
+
+/*---------------------------------------- INVOICE-----------------------------------------------------*/
+create procedure GetAllInvoices ()
+begin 
+	select 
+		i.invoiceid, i.invoiceNr, i.invoiceDate, i.value 
+		,b.bookingNr, b.bookingDate , b.startDate, b.endDate, b.paidAmount, b.totalPrice , b.status
+		,p.petid, p.name, p.birthDate, p.vaccinationPlan, p.picture, p.breed, p.size, p.video, p.comments
+		,o.ownerid, o.userid as ouserid
+		,u2.username as ousername , u2.email as oemail , u2.pass as opass ,u2.firstName as ofirstName, u2.lastName as olastName, u2.dateBirth as odateBirth
+	from invoice i
+		inner join booking b on i.bookingNr=b.bookingNr 
+		inner join pet p on b.petid=p.petid 
+		inner join owner o on p.ownerid=o.ownerid
+		inner join user u2 on o.userid=u2.userid;
+end
+
+
+/*---------------------------------------- PAYMENT-----------------------------------------------------*/
+create procedure GetAllPayments ()
+begin 
+	select 
+		py.paymentid,py.paymentDate, py.amount, py.paymentImage
+		,i.invoiceid, i.invoiceNr, i.invoiceDate, i.value 
+		,b.bookingNr, b.bookingDate , b.startDate, b.endDate, b.paidAmount, b.totalPrice , b.status
+		,p.petid, p.name, p.birthDate, p.vaccinationPlan, p.picture, p.breed, p.size, p.video, p.comments
+		,o.ownerid, o.userid as ouserid
+		,u2.username as ousername , u2.email as oemail , u2.pass as opass ,u2.firstName as ofirstName, u2.lastName as olastName, u2.dateBirth as odateBirth
+	from payment py
+		inner join invoice i on py.invoiceid=i.invoiceid
+		inner join booking b on i.bookingNr=b.bookingNr 
+		inner join pet p on b.petid=p.petid 
+		inner join owner o on p.ownerid=o.ownerid
+		inner join user u2 on o.userid=u2.userid;
+end

@@ -70,15 +70,15 @@ class BookingController
         $bookingList=array();
         $owner=$_SESSION["loggedOwner"];
     
-        $bookingListAll=$this->bookingDAO->GetBookingsByOwnerId($owner->getOwnerId());
+        $bookingList=$this->bookingDAO->GetBookingsByOwnerId($owner->getOwnerId());  
 
-        foreach($bookingListAll as $booking)
+        /*foreach($bookingListAll as $booking)
         {
             if($booking->getPet()->getOwner() == $owner)
             {
                 array_push($bookingList,$booking);
             }
-        }
+        } Es redundante*/
         require_once(VIEWS_PATH."list-owner-bookings.php");
     }
 
@@ -131,5 +131,6 @@ class BookingController
         $bookingList=$this->bookingDAO->GetAll();
         require_once(VIEWS_PATH."list-keeper-bookings.php");
     }
+
 }
 ?>

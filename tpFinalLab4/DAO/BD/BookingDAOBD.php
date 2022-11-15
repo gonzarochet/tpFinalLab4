@@ -118,10 +118,10 @@ class BookingDAOBD implements IBookingDAOBD
     public function GetBookingsByOwnerId($ownerid){
 
         try{
-            $query = "CALL GetBookingsByOwnerId('".$ownerid."');";
-
+            $query = "CALL GetBookingsByOwnerId( :ownerid);";
+            $parameters["ownerid"]=$ownerid;
             $this->connection = Connection::GetInstance();
-            $resultSet = $this->connection->Execute($query);
+            $resultSet = $this->connection->Execute($query, $parameters);
 
             $bookingList=array();
             foreach ($resultSet as $row)
@@ -176,7 +176,6 @@ class BookingDAOBD implements IBookingDAOBD
                 $booking->setTotalPrice($row["totalPrice"]);
                 $booking->setPaidAmount($row["paidAmount"]);
                 $booking->setStatus($row["status"]);
-                
 
                 array_push($bookingList, $booking);
             }
@@ -210,6 +209,19 @@ class BookingDAOBD implements IBookingDAOBD
         }
         
     }
+
+    public function ConfirmBooking($bookingNr)
+    {
+        try {
+            $query = "UPDATE " . $this->tableName . " SET status='Confirmed' WHERE bookingNr= :bookingNr;";
+            $parameters["bookingNr"] = $bookingNr;
+
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }    
 
 }
 ?>

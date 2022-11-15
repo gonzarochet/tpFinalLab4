@@ -18,7 +18,7 @@
     ?>
 
     <div class="form-list-view-keeper">
-        <form action="<?php echo FRONT_ROOT ?>Invoice/AddPayment" method="post">
+        
             <table class=keeper-list>
                 <h1>Bookings List</h1>
                 <thead>
@@ -29,6 +29,7 @@
                     <th>Pet</th>
                     <th>Status</th>
                     <th>Add Payment</th>
+                    <th>Payments</th>
                 </thead>
                 <tbody>
                     <?php
@@ -42,12 +43,22 @@
                             <td><?php echo $booking->getKeeper()->getUser()->getFirstName() . " " . $booking->getKeeper()->getUser()->getLastName() ?></td>
                             <td><?php echo $booking->getPet()->getName() ?></td>
                             <td><?php echo $booking->getStatus() ?></td>
-                            <td><?php if ($booking->getStatus() == 'Accepted') {
+                            <form action="<?php echo FRONT_ROOT ?>Payment/ShowAddView" method="post">
+                            <td><?php if ($booking->getStatus() == 'Accepted' or $booking->getStatus() == 'Confirmed') {
                                 ?>
                                     <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Add Payment </button>
                                 <?php
                                 }?>
                             </td>
+                            </form>
+                            <form action="<?php echo FRONT_ROOT ?>Payment/ShowListView" method="post">
+                            <td><?php if ($booking->getStatus() == 'Confirmed') {
+                                ?>
+                                    <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Show Payments </button>
+                                <?php
+                                }?>
+                            </td>
+                            </form>
                         </tr>
                     <?php
                     }
@@ -57,7 +68,7 @@
                 </tbody>
             </table>
             <a class="cancel-register-register" href="<?php echo FRONT_ROOT?>Owner/OwnerLogin">Go to the Dashsboard</a>
-        </form>
+
 
     </div>
 

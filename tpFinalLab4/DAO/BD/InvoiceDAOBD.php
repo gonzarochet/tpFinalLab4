@@ -3,6 +3,9 @@ namespace DAO\BD;
 
 use Models\Invoice as Invoice;
 use Models\Booking as Booking;
+use Models\Owner as Owner;
+use Models\Pet as Pet;
+
 use \Exception as Exception;
 use DAO\BD\Connection as Connection;
 
@@ -33,20 +36,31 @@ class InvoiceDAOBD implements IInvoiceDAOBD
     {
         try{
             $invoiceList=array();
-            $query="SELECT * FROM ".$this->tableName." I INNER JOIN BOOKING B ON I.BOOKINGNR=B.BOOKINGNR;";
+            $query = "CALL GetAllInvoices();";
+            //$query="SELECT * FROM ".$this->tableName." I INNER JOIN BOOKING B ON I.BOOKINGNR=B.BOOKINGNR;";
 
             $this->connection=Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
 
             foreach($resultSet as $row)
             {
-                $invoice=new Invoice();
+                $owner = new Owner();
+                $owner->setOwnerId($row["ownerid"]);
+
+                $pet = new Pet();
+                $pet->setIdPet($row["petid"]);
+                $pet->setName($row["name"]);
+                $pet->setBirthDate($row["birthDate"]);
+                $pet->setOwner($owner);
+                
                 $booking=new Booking();
                 $booking->setBookingNumber($row["bookingNr"]);
                 $booking->setBookingDate($row["bookingDate"]);
                 $booking->setStartDate($row["startDate"]);
-                $booking->setEndDate($row["endDate"]); //it's missing the keeper and pet id
-                
+                $booking->setEndDate($row["endDate"]);
+                $booking->setPet($pet);
+
+                $invoice=new Invoice();
                 $invoice->setInvoiceId($row["invoiceid"]);
                 $invoice->setInvoiceNr($row["invoiceNr"]);
                 $invoice->setDate($row["invoiceDate"]);
@@ -65,7 +79,7 @@ class InvoiceDAOBD implements IInvoiceDAOBD
         }
     }
 
-    public function GetNextId()
+    public function GetNextInvoiceNr()
         {
             try{
                 
@@ -86,6 +100,37 @@ class InvoiceDAOBD implements IInvoiceDAOBD
         {
             throw $ex;
         }
+    }
+
+    public function GetInvoiceByInvoiceId($invoiceId)
+    {
+        $invoiceList=$this->GetAll();
+            
+        foreach ($invoiceList as $invoice)
+        {
+            if($invoiceId == $invoice->getInvoiceId())
+            {
+                $invoiceFound=$invoice;
+            }
+        }
+        return $invoiceFound;
+    }
+
+    public function getInvoicesByBookingNr($bookingNr)
+    {
+        $invoiceList=$this->GetAll();
+        $invoiceListReturn = array();
+            
+        foreach ($invoiceList as $invoice)
+        {
+            if($bookingNr == $invoice->getBooking()->getBookingNumber())
+            {
+                array_push($invoiceListReturn, $invoice);
+            }
+        }
+        return $invoiceListReturn;
+
+
     }
 }
 ?>

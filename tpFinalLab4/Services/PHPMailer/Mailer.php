@@ -12,12 +12,8 @@ class Mailer
     public static function SendEmail($emailRecipient, $body)
     {
 
-        //$bookingDAO = new BookingDAOBD();
-        //$booking=$bookingDAO->GetBookingBybookingNr($bookingNr);
-
         try {
             $mail = new PHPMailer(true);
-            // $this->mailDAO = new MailDAOBD();
 
             // Server settings
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER; // for detailed debug output
@@ -46,10 +42,7 @@ class Mailer
                 $message=$mail->ErrorInfo;
             } 
 
-            //$this->mailDAO->Add(date('Y-m-d'),$emailRecipient,$this->mail->Body,$booking->getBookingNumber(),$message );
-
             return $message;
-            //require_once(VIEWS_PATH."keeper-dashboard.php");
 
         }
         catch(Exception $ex)
