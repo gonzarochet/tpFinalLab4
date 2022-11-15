@@ -16,6 +16,7 @@ class PetDAOBD implements IPetDAOBD
 
     public function Add(Pet $pet)
     {
+
         try
         {
             $query="INSERT INTO ".$this->tableName." (name, breed, birthDate, ownerid, vaccinationPlan,picture,size,video,comments) VALUES (:name,:breed, :birthDate, :ownerid, :vaccinationPlan, :picture, :size, :video, :comments);";
@@ -23,7 +24,7 @@ class PetDAOBD implements IPetDAOBD
             $parameters["breed"]=$pet->getBreed();
             $parameters["birthDate"]=$pet->getBirthDate();
             $parameters["ownerid"]=$pet->getOwner()->getOwnerId();
-            $parameters["vaccinationPlan"]=$pet->getVaccinationPlan()->getTmpName();
+            $parameters["vaccinationPlan"]=$pet->getVaccinationPlan();
             $parameters["picture"]=$pet->getPicture();
             $parameters["size"]=$pet->getSize();
             $parameters["video"]=$pet->getVideo();
@@ -50,10 +51,6 @@ class PetDAOBD implements IPetDAOBD
             $ownerList = new OwnerDAOBD();
             $owner = new Owner();
             $owner=$ownerList->GetOwnerByOwnerId($row["ownerid"]);
-
-            $fileList = new FileDAOBD();
-            $fileVaccination = new File();
-            $fileVaccination = $fileList->GetFileById($row["vaccinationPlan"]);
 
             $pet= new Pet();
             $pet->setIdPet($row["petid"]);
@@ -106,6 +103,13 @@ class PetDAOBD implements IPetDAOBD
                     $ownerList = new OwnerDAOBD();
                     $owner = new Owner();
                     $owner=$ownerList->GetOwnerByOwnerId($resultFirstRow["ownerid"]);
+
+                    $fileList = new FileDAOBD();
+                    $fileVaccination = new File();
+                    $filePicture = new File();
+                    $fileVideo = new File();
+
+                    $fileVaccination=$fileList->GetFileByName($resultFirstRow["vaccinationPlan"]);
 
                     $pet->setIdPet($resultFirstRow["petid"]);
                     $pet->setName($resultFirstRow["name"]);

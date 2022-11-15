@@ -19,7 +19,7 @@
     <?php include("nav.php"); ?>
     <section id="add-pet-principal">
         <div class="form-add-pet">
-            <form action="<?php echo FRONT_ROOT ?>Pet/Add" method="POST">
+            <form action="<?php echo FRONT_ROOT ?>Pet/Add" method="POST" enctype="multipart/form-data">
                 <h1>Add Pet</h1>
                 <div class="form-content-add-pet">
                     <label for="">Name of Pet</label>
@@ -32,11 +32,11 @@
 
                 <div class="form-content-add-pet">
                     <label for="">Breed</label>
-                    <input type="text" name="breed">
+                <input type="text" name="breed" required>
                 </div>
                 <div class="form-content-add-pet">
                     <label for="">Size</label>
-                    <select name="size">
+                    <select name="size" required>
                         <option value="Small">Small</option>
                         <option value="Medium">Medium</option>
                         <option value="Big">Big</option>

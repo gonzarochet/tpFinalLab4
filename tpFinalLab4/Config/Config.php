@@ -8,7 +8,7 @@ define("VIEWS_PATH", "Views/");
 define("CSS_PATH",FRONT_ROOT.VIEWS_PATH."css/");
 //define("JS_PATH",FRONT_ROOT.VIEWS_PATH."js/");
 define("IMAGES_PATH",FRONT_ROOT.VIEWS_PATH."images/");
-define("UPLOADS_PATH", FRONT_ROOT."Data/Uploads/");
+define("UPLOADS_PATH", "Data/Uploads/");
 define("DB_HOST", "localhost:3306");
 define("DB_NAME", "pethero");
 define("DB_USER", "root");

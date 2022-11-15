@@ -46,6 +46,10 @@ create procedure `GetBookingsByOwner`(ownerid int)
 
 
 /*---------------------------------------- FILE-----------------------------------------------------*/
-create procedure `AddFile`(nameFile varchar (100) , typeFile varchar(100), sizefile double, tmp_namefile varchar (100))
-	insert into File(nameFile, ypefile, sizefile, tmp_nameFile) 
-    values(nameFile,typeFile,sizefile,tmp_nameFile);
+create procedure `AddFile`(nameFile varchar (100) , typeFile varchar(100), sizefile double, tmp_namefile varchar (100),fullPath varchar (100),errorFile varchar (100))
+	insert into File(nameFile, typefile, sizefile, tmp_nameFile,fullPath,errorFile) 
+    values(nameFile,typeFile,sizefile,tmp_nameFile,fullPath,errorFile);
+
+create procedure `GetFileByName`(nameFile varchar(100))
+	select * from File
+    where File.nameFile = nameFile

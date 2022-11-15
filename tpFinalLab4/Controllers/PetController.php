@@ -14,13 +14,12 @@ class PetController
 {
     private $petDAO;
     private $ownerDAO;
-    private $FileDAO;
+
 
 
     public function __construct(){
         $this->petDAO = new PetDAOBD();
         $this->ownerDAO = new OwnerDAOBD();
-        $this->FileDAO = new PetDAOBD();
     }
 
     public function ShowAddView(){
@@ -49,26 +48,24 @@ class PetController
 
         $fileController = new FileController();
 
-        var_dump($files['picture']);
+        //echo $_FILES["vaccinationPlan"]["name"];
 
-
-        if($path_File2 = $fileController->Upload($files["picture"],"vaccination-plan"))
+        if($path_File2 = $fileController->Upload($_FILES["vaccinationPlan"],"vaccination-plan"))
         {
             $pet->setVaccinationPlan($path_File2);
         }
-        if($path_File1 = $fileController->Upload($files["vaccinationplan"],"profile-photo-pet"))
+        if($path_File1 = $fileController->Upload($_FILES["picture"],"profile-photo-pet"))
         {
             $pet->setPicture($path_File1);
         }
         
-        if($path_File3 = $fileController->Upload($files["video"],"video"))
+        if($path_File3 = $fileController->Upload($_FILES["video"],"video"))
         {
             $pet->setVideo($path_File3);
         }
         
-       // $this->petDAO->Add($pet);
+        $this->petDAO->Add($pet);
         
-       // $this->ShowAddView();
     }
 
     public function ShowListPetsByOwner (){

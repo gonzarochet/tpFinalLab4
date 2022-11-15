@@ -40,7 +40,16 @@
                             <td><?php echo $pet->getAge() ?></td>
                             <td><?php echo $pet->getBreed() ?></td>
                             <td><?php echo $pet->getSize() ?></td>
-                            <td><?php $image = $pet->getPicture();
+                            <td><img width="60" height="60" src="<?php echo FRONT_ROOT.$pet->getPicture()?>"></td>
+                            <td><img width="60" height="60" src="<?php echo FRONT_ROOT.$pet->getVaccinationPlan()?>"></td>
+                            <?php if(!$pet->getVideo()){?>    
+                            <td><img width="100" height="100" src="https://descubrecomohacerlo.com/wp-content/uploads/mch/error-youtube-videos_4028.jpg" alt="Video no disponible" title="Video no disponible"> </td>
+                            <?php } else{ ?>
+                            <td><video width="200" height="200" autoplay muted> <source src="<?php echo FRONT_ROOT.$pet->getVideo();?>" type="video/mp4"></video></td>
+                            <?php } ?>
+
+                             
+                            <!--<td><?php $image = $pet->getPicture();
                                 if (!filter_var($image, FILTER_VALIDATE_URL) === false) {
                                     $imageData = base64_encode(file_get_contents($image));
                                     echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="100">';
@@ -58,7 +67,8 @@
                                                                             echo $pet->getVideo();
                                                                         } ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                                 </iframe>
-                            </td>
+                            </td>-->
+                            
                             <td><?php echo $pet->getComments() ?></td>
                             <td><button type="submit" name="id" class="btn-table" value="<?php echo $pet->getIdPet() ?>"> Remove </button> </td>
                         </tr>

@@ -2,54 +2,56 @@
 namespace Models;
 
 class File{
-    private $nameFile;
-    private $typeFile;
-    private $sizeFile;
-    private $tmp_nameFile;
+    private $name;
+    private $type;
+    private $size;
+    private $tmp_name;
+    private $error;
     private $fullPath;
 
 
-    public function __construct($nameFile ,$typeFile,$sizeFile,$tmp_nameFile,$fullPath){
-        $this->nameFile = $nameFile;
-        $this->typeFile = $typeFile;
-        $this->sizeFile = $sizeFile;
-        $this->tmp_nameFile = $tmp_nameFile;
+    public function __construct($name="",$fullPath="",$type="",$error="",$tmp_name="",$size=""){
+        $this->name = $name;
+        $this->type = $type;
+        $this->size = $size;
+        $this->error = $error;
+        $this->tmp_name = $tmp_name;
         $this->fullPath = $fullPath;
 
     }
 
 
-    public function getNameFile(){
-        return $this->nameFile;
+    public function getName(){
+        return $this->name;
     }
 
-    public function setNameFile($newNameFile){
-        $this->nameFile = $newNameFile;
+    public function setName($newNameFile){
+        $this->name = $newNameFile;
     }
 
-    public function getTypeFile(){
-        return $this->typeFile;
+    public function getType(){
+        return $this->type;
 
     }
 
-    public function setTypeFile($newTypeFile){
-        $this->typeFile = $newTypeFile;
+    public function setType($newTypeFile){
+        $this->type = $newTypeFile;
     }
 
-    public function getSizeFile(){
-        return $this->sizeFile;
+    public function getSize(){
+        return $this->size;
     }
     
-    public function setSizeFile($newSizeFile){
-        $this->sizeFile = $newSizeFile;
+    public function setSize($newSizeFile){
+        $this->size = $newSizeFile;
     }
 
     public function getTmpName(){
-        return $this->tmp_nameFile;
+        return $this->tmp_name;
     }
 
     public function setTmpName($tmp_nameFile){
-        $this->tmp_nameFile = $tmp_nameFile;
+        $this->tmp_name = $tmp_nameFile;
     }
 
     public function getFullPath(){
@@ -58,6 +60,14 @@ class File{
 
     public function setFullPath($newFullPath){
         $this->fullPath = $newFullPath;
+    }
+
+    public function getError(){
+        return $this->error;
+
+    }
+    public function setError($newError){
+        $this->error = $newError;
     }
 
 
