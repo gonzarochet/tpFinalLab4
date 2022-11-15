@@ -9,7 +9,7 @@
     //use Controllers\OwnerController as OwnerController;
 
     class OwnerDAOBD implements IOwnerDAOBD{
-        private $conection;
+        private $connection;
         private $tableName="owner";
         private $userList;
 

@@ -4,6 +4,7 @@ namespace DAO\BD;
 
 use \Exception as Exception;
 use DAO\BD\Connection as Connection;
+use Models\File;
 use Models\Owner as Owner;
 Use Models\Pet as Pet;
 use DAO\BD\IPetDAOBD as IPetDAOBD;
@@ -22,7 +23,7 @@ class PetDAOBD implements IPetDAOBD
             $parameters["breed"]=$pet->getBreed();
             $parameters["birthDate"]=$pet->getBirthDate();
             $parameters["ownerid"]=$pet->getOwner()->getOwnerId();
-            $parameters["vaccinationPlan"]=$pet->getVaccinationPlan();
+            $parameters["vaccinationPlan"]=$pet->getVaccinationPlan()->getTmpName();
             $parameters["picture"]=$pet->getPicture();
             $parameters["size"]=$pet->getSize();
             $parameters["video"]=$pet->getVideo();
@@ -50,6 +51,9 @@ class PetDAOBD implements IPetDAOBD
             $owner = new Owner();
             $owner=$ownerList->GetOwnerByOwnerId($row["ownerid"]);
 
+            $fileList = new FileDAOBD();
+            $fileVaccination = new File();
+            $fileVaccination = $fileList->GetFileById($row["vaccinationPlan"]);
 
             $pet= new Pet();
             $pet->setIdPet($row["petid"]);

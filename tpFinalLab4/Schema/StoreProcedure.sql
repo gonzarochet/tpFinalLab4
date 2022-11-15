@@ -45,3 +45,7 @@ create procedure `GetBookingsByOwner`(ownerid int)
 	inner join pet on pet.ownerid = ownerid;
 
 
+/*---------------------------------------- FILE-----------------------------------------------------*/
+create procedure `AddFile`(nameFile varchar (100) , typeFile varchar(100), sizefile double, tmp_namefile varchar (100))
+	insert into File(nameFile, ypefile, sizefile, tmp_nameFile) 
+    values(nameFile,typeFile,sizefile,tmp_nameFile);

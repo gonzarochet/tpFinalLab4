@@ -27,17 +27,9 @@
                 </div>
                 <div class="form-content-add-pet">
                     <label for="">Birth of Pet</label>
-                    <input type="date" name="birthDate" required>
+                    <input type="date" name="birthDate" max = "<?php $hoy=date("Y-m-d"); echo $hoy;?>"required>
                 </div>
 
-                <div class="form-content-add-pet">
-                    <label for="">VaccinationPlan</label>
-                    <input type="text" name="vaccinationPlan">
-                </div>
-                <div class="form-content-add-pet">
-                    <label for="">Photo</label>
-                    <input type="text" name="picture">
-                </div>
                 <div class="form-content-add-pet">
                     <label for="">Breed</label>
                     <input type="text" name="breed">
@@ -51,15 +43,24 @@
                     </select>
                 </div>
                 <div class="form-content-add-pet">
-                    <label for="">Video</label>
-                    <input type="text" name="video">
-                </div>
-                <div class="form-content-add-pet">
                     <label for="">Comments</label>
                     <textarea name="comments" cols="50" rows="10"></textarea>
                 </div>
+                <div class="form-content-add-pet">
+                    <label for="">VaccinationPlan</label>
+                    <input type="file" name="vaccinationPlan" id ="vaccinationPlan" required>
+                </div>
+                <div class="form-content-add-pet">
+                    <label for="">Photo</label>
+                    <!--<input type= "text" name = "picture">-->
+                    <input type="file" name="picture" id ="picture" required>
+                </div>
+                <div class="form-content-add-pet">
+                    <label for="">Video</label>
+                    <input type="file" name="video" id="video">
+                </div>
                 <div class="form-content-add-pet-btn">
-                    <input type="submit" class="btn" value="Agregar" />
+                    <input type="submit" class="btn" value="Agregar">
                 </div>
             </form>
             <a class="btn-goback" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashboard</a>
