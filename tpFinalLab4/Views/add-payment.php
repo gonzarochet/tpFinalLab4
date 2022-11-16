@@ -17,7 +17,7 @@
     <?php include("nav.php"); ?>
     <section id="add-pet-principal">
         <div class="form-add-pet">
-            <form action="<?php echo FRONT_ROOT ?>Payment/Add" method="POST">
+            <form action="<?php echo FRONT_ROOT ?>Payment/Add" method="post" enctype="multipart/form-data">
                 <h1>Add Payment</h1>
                 <div class="form-content-add-pet">
                     <label for="">Select Invoice</label>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-content-add-pet">
                     <label for="">Payment Image</label>
-                    <input type="text" name="paymentImage" required>
+                    <input type="file" name="file"  required>
                 </div>
                 <div class="form-content-add-pet-btn">
                     <input type="submit" class="btn" value="Agregar" />
