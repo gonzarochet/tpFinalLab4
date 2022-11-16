@@ -38,19 +38,15 @@ class PaymentController
     
         $fileController = new FileController();
 
-        if($path_File = $fileController->Upload($file,"payment-image"))
+        if($path_File = $fileController->Upload($file))
         {
-            $payment->setPaymentImage($path_File);
+            $payment->setPaymentImage($file["name"]);
         }
 
         $this->paymentDAO->Add($payment);
         
         $this->ConfirmBooking($invoice->getBooking()->getBookingNumber()); //Cambia estado de reserva a confirmada
-    
-        //$bookingList=$this->bookingDAO->GetBookingsByOwnerId($invoice->getBooking()->getPet()->getOwner()->getOwnerId());
-        //require_once(VIEWS_PATH."list-owner-bookings.php");
-
-        
+       
 
         $message="Payment Successfully added";
         $this->ShowListView($invoice->getBooking()->getBookingNumber(),$message);

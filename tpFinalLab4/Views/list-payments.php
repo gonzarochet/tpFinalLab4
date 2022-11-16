@@ -15,11 +15,10 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-pet">
-    <form action="<?php echo FRONT_ROOT ?>Payment/ShowListView" method="post">
+    <!--<form action="<?php echo FRONT_ROOT ?>Payment/ShowAddView" method="post">-->
             <h1>Payments List</h1>
             <table class="list-pet">
                 <thead>
-                    <th>ID</th>
                     <th>Date</th>
                     <th>Amount</th>
                     <th>Inovoice Nr</th>
@@ -27,27 +26,38 @@
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($paymentList as $payment) {
+                        foreach ($paymentList as $payment) {
+                        ?>
+                            <tr>
+                                <td><?php echo $payment->getPaymentDate() ?></td>
+                                <td><?php echo $payment->getAmount() ?></td>
+                                <td><?php echo $payment->getInvoice()->getInvoiceNr() ?></td>
+                                <td>
+                                    <?php
+                                        if(null!== $payment->getPaymentImage())
+                                        {
+                                            ?>
+                                                <img src="<?php echo FRONT_ROOT.UPLOADS_PATH.$payment->getPaymentImage() ?>" width="auto" height="100">
+                                            <?php
+                                        }
+                                    ?>
+                                </td>                                          
+                            </tr>
+                        <?php
+                            }
                     ?>
-                        <tr>
-                            <td><?php echo $payment->getPaymentId() ?></td>
-                            <td><?php echo $payment->getPaymentDate() ?></td>
-                            <td><?php echo $payment->getAmount() ?></td>
-                            <td><?php echo $payment->getInvoice()->getInvoiceNr() ?></td>
-                            <td><?php echo $payment->getPaymentImage() ?></td>                        
-                        </tr>
-                    <?php
-                    }
-                    ?>
-
+                    <!--<div class="btn-list-pet">
+                    <td><button type="submit" name="bookingNr" class="" value="<?php echo $bookingNr?>">Add another payment</button> </td> 
+                    </div> -->
                 </tbody>
-    </div>
-    </table>
-    <?php echo $message ?><br><br>
-
-    <div class="btn-list-pet">
-    <td><button type="submit" name="bookingNr" class="" value="<?php echo $bookingNr?>">Add another payment</button> </td>
-                </div>
+            </table>
+            </form>
+            
+            <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashboard</a>
+        </div>
+    
+    
+    
     
 </body>
 

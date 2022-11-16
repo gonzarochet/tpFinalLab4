@@ -107,9 +107,9 @@ class PetDAOBD implements IPetDAOBD
                     $owner=$ownerList->GetOwnerByOwnerId($resultFirstRow["ownerid"]);
 
                     $fileList = new FileDAOBD();
-                    $fileVaccination = new File();
+                    /*$fileVaccination = new File();
                     $filePicture = new File();
-                    $fileVideo = new File();
+                    $fileVideo = new File();*/
 
                     $fileVaccination=$fileList->GetFileByName($resultFirstRow["vaccinationPlan"]);
 

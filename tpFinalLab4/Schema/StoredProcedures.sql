@@ -60,7 +60,7 @@ end
 
 
 /*---------------------------------------- FILE-----------------------------------------------------*/
-create procedure `AddFile`(nameFile varchar (100) , typeFile varchar(100), sizefile double, tmp_namefile varchar (100),fullPath varchar (100),errorFile varchar (100))
+create procedure `AddFile`(nameFile varchar (500) , typeFile varchar(100), sizefile double, tmp_namefile varchar (500),fullPath varchar (100),errorFile varchar (100))
 	insert into File(nameFile, typefile, sizefile, tmp_nameFile,fullPath,errorFile) 
     values(nameFile,typeFile,sizefile,tmp_nameFile,fullPath,errorFile);
 

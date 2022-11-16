@@ -15,7 +15,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-keeper">
-        <form action="<?php echo FRONT_ROOT ?>Booking/ShowKeeperConfirmationView" method="post">
+        
             <table class=keeper-list>
                 <h1>Bookings List</h1>
                 <thead>
@@ -26,7 +26,8 @@
                     <th>Pet Name</th>
                     <th>Pet Size</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Preview</th>
+                    <th>Payments</th>
                 </thead>
                 <tbody>
                     <?php
@@ -40,12 +41,27 @@
                             <td><?php echo $booking->getPet()->getName() ?></td>
                             <td><?php echo $booking->getPet()->getSize() ?></td>
                             <td><?php echo $booking->getStatus() ?></td>
-                            <td><?php if ($booking->getStatus() == 'Pending') {
+                            <form action="<?php echo FRONT_ROOT ?>Booking/ShowKeeperConfirmationView" method="post">
+                                <td><?php if ($booking->getStatus() == 'Pending') 
+                                    {
+                                        ?>
+                                            <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>"> Preview </button>
+                                        <?php
+                                    }
                                 ?>
-                                    <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>"> Preview </button>
-                                <?php
-                                }?>
-                            </td>
+                                </td>
+                            </form>
+                            <form action="<?php echo FRONT_ROOT ?>Payment/ShowListView" method="post">
+                                <td><?php if ($booking->getStatus() == 'Confirmed') 
+                                    {
+                                        ?>
+                                            <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Show Payments </button>
+                                        <?php
+                                    }
+                                ?>
+                                </td>
+                            </form>
+
                         </tr>
 
                     <?php
