@@ -13,30 +13,29 @@ class ReviewController{
         $this->reviewDAO = new ReviewDAOBD();
     }
 
-    public function showReviewAddView($asociatedBooking){
+    public function showReviewAddView($bookingNr){
 
-        if($this->reviewDAO->isReviewExist($asociatedBooking)){
-            $reviewList = $this->reviewDAO->GetReviewByBooking($asociatedBooking);
+        if($this->reviewDAO->isReviewExist($bookingNr)){
+            $reviewList = $this->reviewDAO->GetReviewByBooking($bookingNr);
             require_once(VIEWS_PATH."show-review-view.php");
         }else{
             require_once(VIEWS_PATH."add-review-view.php");
         }
     }
 
-    public function GenerateReview($score,$comment,$asociatedBooking){
-        if(!$this->reviewDAO->isReviewExist($asociatedBooking)){
+    public function GenerateReview($score,$comment,$bookingNr){
+        if(!$this->reviewDAO->isReviewExist($bookingNr)){
             $review = new Review ();
             $review->setScore($score);
             $review->setComment($comment);
-            $review->setAsociatedBooking($asociatedBooking);
+            $review->setAsociatedBooking($bookingNr);
             $this->reviewDAO->Add($review);
             
-            $reviewList = $this->reviewDAO->GetReviewByBooking($asociatedBooking);
+            $reviewList = $this->reviewDAO->GetReviewByBooking($bookingNr);
             require_once(VIEWS_PATH."show-review-view.php");
             
         }
     }
-
 
 
     public function ShowListReviewByKeeper()    

@@ -52,11 +52,13 @@
                             </td>
                             </form>
                             <form action="<?php echo FRONT_ROOT ?>Payment/ShowListView" method="post">
-                            <td><?php if ($booking->getStatus() == 'Confirmed') {
+                            <td><?php if ($booking->getStatus() == 'Confirmed') 
+                                    {
+                                        ?>
+                                            <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Show Payments </button>
+                                        <?php
+                                    }
                                 ?>
-                                    <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Show Payments </button>
-                                <?php
-                                }?>
                             </td>
                             </form>
                         </tr>
@@ -100,7 +102,7 @@
                                 <td><?php echo $booking->getEndDate() ?></td>
                                 <td><?php echo $booking->getKeeper()->getUser()->getFirstName() . " " . $booking->getKeeper()->getUser()->getLastName() ?></td>
                                 <td><?php echo $booking->getPet()->getName() ?></td>
-                                <td><?php echo $booking->getIsAccepted() ?></td>
+                                <td><?php echo $booking->getStatus() ?></td>
                                 
                                 <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber(); ?>">Review</button> </td>
                             </tr>

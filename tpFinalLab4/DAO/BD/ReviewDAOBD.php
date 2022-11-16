@@ -84,10 +84,10 @@ class ReviewDAOBD implements IReviewDAOBD{
 
     }
 
-    public function isReviewExist($asociatedBooking){
+    public function isReviewExist($bookingNr){
 
        try{
-        $query = "CALL isReviewExist('".$asociatedBooking."');";
+        $query = "CALL isReviewExist('".$bookingNr."');";
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         $flag = false;

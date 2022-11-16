@@ -35,7 +35,7 @@
                     <input type="text" name="comment" required>
                     <span class="error"><?php echo @$message ?></span>
                 </div>
-                <button type="submit" name = "bookingNr" value = "<?php echo @$asociatedBooking?>" class="btn">Accept</button>
+                <button type="submit" name = "bookingNr" value = "<?php echo $bookingNr?>" class="btn">Accept</button>
 
             </form>
             <a class="cancel-register-register" href="<?php echo FRONT_ROOT?>Owner/OwnerLogin">Cancel</a>
