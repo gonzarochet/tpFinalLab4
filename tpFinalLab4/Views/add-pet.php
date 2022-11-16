@@ -60,7 +60,7 @@
                     <input type="file" name="video" id="video">
                 </div>
                 <div class="form-content-add-pet-btn">
-                    <input type="submit" class="btn" value="Agregar">
+                    <input type="submit" class="btn add-pet" value="Agregar">
                 </div>
             </form>
             <a class="btn-goback" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashboard</a>

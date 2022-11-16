@@ -168,5 +168,18 @@ class KeeperDAOBD implements IKeeperDAOBD
                 throw $ex;
             }
         }
+
+
+        public function updateKeeper($keeperid, $fee,$size){
+            try{
+                $query = "CALL updateKeeper('".$keeperid."','".$fee."','".$size."');";
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query);
+
+            }catch(Exception $ex){
+                throw $ex;
+            }
+
+        }
 }
 ?>

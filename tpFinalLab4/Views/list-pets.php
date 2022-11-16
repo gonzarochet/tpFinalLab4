@@ -19,7 +19,6 @@
             <h1>Pets List</h1>
             <table class="list-pet">
                 <thead>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Age</th>
                     <th>Breed</th>
@@ -28,7 +27,7 @@
                     <th>Vaccination Plan</th>
                     <th>Video </th>
                     <th>Comments </th>
-                    <th>Is Active </th>
+                    <th>Available</th>
                     <th> </th>
                 </thead>
                 <tbody>
@@ -36,7 +35,6 @@
                     foreach ($ownerPetList as $pet) {
                     ?>
                         <tr>
-                            <td><?php echo $pet->getIdPet() ?></td>
                             <td><?php echo $pet->getName() ?></td>
                             <td><?php echo $pet->getAge() ?></td>
                             <td><?php echo $pet->getBreed() ?></td>
@@ -74,7 +72,7 @@
                             <td><?php echo $pet->getIsActive() ?></td>
                             <td><?php if ($pet->getIsActive() == 'Yes') {
                                 ?>
-                                    <td><button type="submit" name="petid" class="btn-table" value="<?php echo $pet->getIdPet() ?>">Deactivate Pet </button> </td>
+                                    <td><button type="submit" name="petid" class="btn-table" value="<?php echo $pet->getIdPet() ?>">Desactivate Pet </button> </td>
                                 <?php
                                 }?>
                             </td>

@@ -23,14 +23,6 @@ class FileController{
         
     }
 
-    public function ShowImage($idfile){
-
-    }
-
-    public function ShowFile($idFile){
-
-    }
-
     public function Upload($file,$type=null){
         try{
             
@@ -80,7 +72,7 @@ class FileController{
                         $flag = $this->uploadFilePath."/".$type."/".$fileName;
                     }
                 }else{
-                    $message = "The file extension is not available. Please the extension avaliables are: ";
+                    $message = "The file extension is not available. Please the extensions avaliables are: ";
                 }
             return $flag;
         }catch(Exception $ex){

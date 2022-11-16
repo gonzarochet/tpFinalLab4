@@ -3,6 +3,7 @@
 use Models\Owner as Owner;
 use Models\User as User;
 use MODELS\Keeper as Keeper;
+use Services\SessionsHelper;
 
 ?>
 
@@ -13,25 +14,20 @@ use MODELS\Keeper as Keeper;
         <div class=nav-part2>
             <ul class="nav-list">
                <?php
-               if(isset($_SESSION["loggedUser"])){
+               if(SessionsHelper::sessionUserExist()){
                     $user = new User();
-                    $user = $_SESSION["loggedUser"];
+                    $user = SessionsHelper::getUserSession();
                    ?> 
-                    <?php if(isset($_SESSION["loggedOwner"]) && $_SESSION["type"]=="owner"){
-                         
+                    <?php if(SessionsHelper::sessionOwnerExist() && SessionsHelper::getSessionType()=="owner"){
                          $owner = new Owner();
-                         $owner = $_SESSION["loggedOwner"];
+                         $owner = SessionsHelper::getOwnerSession();
                     ?>
                     <li class="nav-item">
                          <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/changeDataProfile">Edit Profile</a>
                     </li>
-                    <!--
+                    
                     <li class="nav-item">
-                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/Logout">Notifications</a>
-                    </li>
-                    -->
-                    <li class="nav-item">
-                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ChangeType">Change View</a>
+                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ChangeType">Change to Keeper</a>
                     </li>
                     <li class="nav-item">
                          <a class="nav-link" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Back to Menu</a>
@@ -39,17 +35,25 @@ use MODELS\Keeper as Keeper;
                     <li class="nav-item">
                          <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Logout">Logout</a>
                     </li>
-                    <?php } elseif(isset($_SESSION["loggedKeeper"])&& $_SESSION["type"]=="keeper"){
-                         
+                    <?php } elseif(SessionsHelper::sessionKeeperExist()&& SessionsHelper::getSessionType()=="keeper"){
                          $keeper = new Keeper();
-                         $keeper = $_SESSION["loggedKeeper"];
+                         $keeper = SessionsHelper::getKeeperSession();
+          
                          ?>
-                          <li class="nav-item">
-                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/Logout">Keeper Option</a>
+                          
+                         <li class="nav-item">
+                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Keeper/changeDataKeeperView">Edit Profile</a>
                          </li>
                          <li class="nav-item">
-                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Logout">Logout</a>
-                    </li>
+                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/changeType">Change to Owner</a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Keeper/showDashboardView">Back to Menu</a>
+                         </li>
+
+                         <li class="nav-item">
+                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Logout">Logout</a>
+                         </li>
                     
                 <?php }}else{?>
                     <li class="nav-item">

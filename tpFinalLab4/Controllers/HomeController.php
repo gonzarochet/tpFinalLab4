@@ -1,5 +1,7 @@
 <?php
-    namespace Controllers;
+namespace Controllers;
+
+use Services\SessionsHelper;
 
     class HomeController
     {
@@ -10,7 +12,7 @@
         }
 
         public function Logout($message = " "){
-            session_destroy();
+            SessionsHelper::logoutSession();
             require_once(VIEWS_PATH."confirmation-logout.php");
         }
   

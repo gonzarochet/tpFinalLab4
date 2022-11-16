@@ -2,10 +2,10 @@
 
 //use DAO\JSON\KeeperDAO as KeeperDAOBD;  //JSON
 use DAO\BD\KeeperDAOBD as KeeperDAOBD;    //BD
-
+use Exception;
 use Models\User as User;
 use Models\Keeper as Keeper;
-
+use Services\SessionsHelper;
 
 class KeeperController{
     private $keeperDAO;
@@ -18,7 +18,17 @@ class KeeperController{
         require_once(VIEWS_PATH."home.php");
     }
     
-    public function showAddView(){}
+    public function showDashboardView()
+    {
+        SessionsHelper::validateSessionKeeper();
+        require_once(VIEWS_PATH."keeper-dashboard.php");
+    }
+
+    public function showRegistrationView(){
+        SessionsHelper::validateSession();
+        require_once(VIEWS_PATH."keeper-registration.php");
+
+    }
 
     public function showListView(){
         $keeperList = $this->keeperDAO->GetAll();
@@ -26,7 +36,7 @@ class KeeperController{
     }
 
 
-    public function Add(User $user, $fee, $size){
+    private function Add(User $user, $fee, $size){
 
         $keeper = new Keeper();
 
@@ -38,33 +48,86 @@ class KeeperController{
         $this->keeperDAO->Add($keeper);
     }
 
-    public function KeeperLogin(){
-        require_once(VIEWS_PATH."validate-session.php");
+    private function ShowModalKeeperLogin($message = "")
+    {
+        require_once(VIEWS_PATH . "/modal/modal-keeper-login.php");
+    }
 
-        $user = $_SESSION["loggedUser"];
+    public function KeeperLogin(){
+
+        $message = "";
+        SessionsHelper::validateSession();
+        try{
+        $user = SessionsHelper::getUserSession();
 
         $userExistsInKeepers = $this->keeperDAO->UserExistsInKeepers($user);
 
         if($userExistsInKeepers){
-            $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
-            $_SESSION["type"] = "keeper";
+            SessionsHelper::initKeeperSession($this->keeperDAO->GetKeeperByUserId($user->getId()));
             require_once(VIEWS_PATH."keeper-dashboard.php");
         }else{
-           //$this->Add($user);
-            //$_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
             require_once(VIEWS_PATH."keeper-registration.php");
         }
+        }catch(Exception $ex){
+            $this->ShowModalKeeperLogin($ex->getMessage());
+        }
+    }
+
+    private function ShowModalKeeperRegister($message = "",$flag)
+    {
+        require_once(VIEWS_PATH . "/modal/modal-keeper-register.php");
     }
 
     public function RegisterKeeper($fee, $size)
     {
-        $user = $_SESSION["loggedUser"];
-        
-        $this->Add($user,$fee,$size);
-        $_SESSION["loggedKeeper"]=$this->keeperDAO->GetKeeperByUserId($user->getId());
-        $_SESSION["type"] = "keeper";
-        require_once(VIEWS_PATH."keeper-dashboard.php");
+        SessionsHelper::validateSession();
+        $message = "";
+        $flag = false;
 
+        try{
+            $user = SessionsHelper::getUserSession();
+            $this->Add($user,$fee,$size);
+            SessionsHelper::initKeeperSession($this->keeperDAO->GetKeeperByUserId($user->getId()));
+            $message = "Keeper registration succesfully";
+            $flag = true;
+            //require_once(VIEWS_PATH."keeper-dashboard.php");
+
+        }catch(Exception $ex){
+            $message = $ex->getMessage();
+            
+        }finally{
+            $this->ShowModalKeeperRegister($message, $flag);
+        }
+
+    }
+
+    public function changeDataKeeperView()
+    {
+        SessionsHelper::validateSession();
+        require_once(VIEWS_PATH . "change-data-keeper.php");
+    }
+
+    private function ShowModalKeeperUpdate($message = "",$flag)
+    {
+        require_once(VIEWS_PATH . "/modal/modal-keeper-update.php");
+    }
+
+    public function changeDataKeeper($fee,$size)
+    {
+        $message = "";
+        $flag = false;
+        SessionsHelper::validateSessionKeeper();
+        $keeper = new Keeper();
+        $keeper = SessionsHelper::getKeeperSession();
+        try {
+                $this->keeperDAO->updateKeeper($keeper->getKeeperId(),$fee,$size);
+                $message="Data Keeper update succesfully";
+                $flag = true;
+        } catch (Exception $ex) {
+           $message = $ex->getMessage();
+        }finally{
+            $this->ShowModalKeeperUpdate($message,$flag);
+        }
     }
    
 

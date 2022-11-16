@@ -753,7 +753,43 @@ nav ul li a{
     font-size: 14px;
 }
 
+/* Modal View*/
 
+.modal{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color:#fed99bff;
+}
+
+.modal-body{
+
+    border-radius: 5%;
+    border: 0;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+}
+
+.modal-body .btn-list-pet{
+    background-color: #d6efffff;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    border: 0;
+    margin: 1%;
+    padding: 1%;
+}
 
 
 

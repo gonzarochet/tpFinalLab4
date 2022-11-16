@@ -15,9 +15,10 @@
 <body>
     <?php 
     use Models\User;
+    use Services\SessionsHelper;
     include("nav.php"); 
     $user = new User();
-    $user = $_SESSION["loggedUser"];          
+    $user = SessionsHelper::getUserSession();       
     ?>
     <section class="principal-register">
         <div class="form-register">
@@ -50,9 +51,8 @@
                     <input type="date" name="dateBirth" value = "<?php echo $user->getDateBirth()?>" placeholder= "<?php echo $user->getDateBirth()?> "max = "<?php $hoy=date("Y-m-d"); echo $hoy;?>" required >
                 </div>
                 <button type="submit" class="btn">Accept</button>
-
             </form>
-            <a class="cancel-register-register" href="<?php echo FRONT_ROOT ?>">Cancel</a>
+            <a class="cancel-register-register" href="#">Cancel</a>
         </div>
 
 

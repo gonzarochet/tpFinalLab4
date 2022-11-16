@@ -12,7 +12,7 @@
 <body> 
      <?php include("nav.php");?>
 
-        <?php echo "an ERROR have been ocurred->  " . @$ex;?>
+        <?php echo "An ERROR have been ocurred->  " . @$ex;?>
 </body>
 
 </html>

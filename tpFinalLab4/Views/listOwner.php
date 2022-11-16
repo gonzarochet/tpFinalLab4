@@ -16,14 +16,10 @@ require_once('nav.php');
 <body>
 <table>
     <thead>
-        <th>IdOwner</th>
-        <th>IdUser</th>
         <th>Username</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>LastName</th>
-        <th>FirstName</th>
-        <th>Date of Birth</th>
+        <th>Fullname</th>
+        <th>Age</th>
+        <th>Date of Register</th>
     </thead>
     <tbody>
         <?php
@@ -31,13 +27,8 @@ require_once('nav.php');
             {
                 ?>
                     <tr>
-                        <td><?php echo $owner->getOwnerId()?></td>
-                        <td><?php echo $owner->getUser()->getId() ?></td>
                         <td><?php echo $owner->getUser()->getUsername() ?></td>
-                        <td><?php echo $owner->getUser()->getEmail() ?></td>
-                        <td><?php echo $owner->getUser()->getPassword() ?></td>
-                        <td><?php echo $owner->getUser()->getLastName() ?></td>
-                        <td><?php echo $owner->getUser()->getFirstName() ?></td>
+                        <td><?php echo $owner->getUser()->getLastName(). " ".$owner->getFirstName()?></td>
                         <td><?php echo $owner->getUser()->getDateBirth() ?></td>
                     </tr>
                 <?php

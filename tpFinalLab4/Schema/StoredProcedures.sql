@@ -103,3 +103,10 @@ begin
 		inner join owner o on p.ownerid=o.ownerid
 		inner join user u2 on o.userid=u2.userid;
 end
+
+
+
+/* -----------------------------------------------KEEPER-------------------------------------*/
+create procedure `updateKeeper`(keeperid int, fee int, size varchar (10))
+	update keeper set keeper.fee = fee,
+    keeper.size = size where keeper.keeperid = keeperid;
