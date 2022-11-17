@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-content-add-pet">
                     <label for="">Video</label>
-                    <input type="file" name="video" id="video">
+                    <input type="text" name="video" id="video">
                 </div>
                 <div class="form-content-add-pet-btn">
                     <input type="submit" class="btn add-pet" value="Agregar">

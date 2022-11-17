@@ -66,7 +66,7 @@
                                 <td><?php if ($booking->getStatus() == 'Accepted') 
                                     {
                                         ?>
-                                            <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Send Invoice </button>
+                                            <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Invoices </button>
                                         <?php
                                     }
                                 ?>

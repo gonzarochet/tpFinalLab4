@@ -41,11 +41,19 @@
                             <td><?php echo $pet->getSize() ?></td>
                             <td><img width="60" height="60" src="<?php echo FRONT_ROOT.$pet->getPicture()?>"></td>
                             <td><img width="60" height="60" src="<?php echo FRONT_ROOT.$pet->getVaccinationPlan()?>"></td>
-                            <?php if(!$pet->getVideo()){?>    
+                            
+                            <!--<?php if(!$pet->getVideo()){?>    
                             <td><img width="100" height="100" src="https://descubrecomohacerlo.com/wp-content/uploads/mch/error-youtube-videos_4028.jpg" alt="Video no disponible" title="Video no disponible"> </td>
                             <?php } else{ ?>
                             <td><video width="200" height="200" autoplay muted> <source src="<?php echo FRONT_ROOT.$pet->getVideo();?>" type="video/mp4"></video></td>
-                            <?php } ?>
+                            <?php } ?>-->
+
+                            <td>
+                                <iframe width="150" height="130" src="<?php if (!filter_var($pet->getVideo(), FILTER_VALIDATE_URL) === false) {
+                                                                            echo $pet->getVideo();
+                                                                        } ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                </iframe>
+                            </td>
 
                              
                             <!--<td><?php $image = $pet->getPicture();

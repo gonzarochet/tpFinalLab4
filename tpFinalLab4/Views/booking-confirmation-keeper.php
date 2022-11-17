@@ -50,13 +50,21 @@
                                 </td>
                             <td><?php $image = $booking->getPet()->getVaccinationPlan(); ?>
                                 <img src="<?php echo FRONT_ROOT.$image ?>" width="auto" height="100">
-                                ?></td>
+                            </td>
+                            
                             <td>
                                 <iframe width="150" height="130" src="<?php if (!filter_var($booking->getPet()->getVideo(), FILTER_VALIDATE_URL) === false) {
                                                                             echo $booking->getPet()->getVideo();
                                                                         } ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                                 </iframe>
                             </td>
+                            
+                            <!--    <td>
+                                <iframe width="150" height="130" src="<?php if (!filter_var($booking->getPet()->getVideo(), FILTER_VALIDATE_URL) === false) {
+                                                                            echo $booking->getPet()->getVideo();
+                                                                        } ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                </iframe>
+                            </td>-->
                             <td><?php echo $booking->getPet()->getComments() ?></td>
                             <form action="<?php echo FRONT_ROOT ?>Booking/Accept" method="post">
                             <td><button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber()?>">Accept </button> </td>
