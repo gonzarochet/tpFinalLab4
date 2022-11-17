@@ -16,23 +16,7 @@ use Services\SessionsHelper;
     <div class = "modal">
           <div class = "modal-body">
                <h3><?php echo $message?></h3>
-               <?php if($flag){?>
-                <section class="principal-register">
-        <div        class="form-register">
-                <h1>Update Data Successfully</h1>
-                <div class="data-visualizer">
-                    <h3>New Fee</h3>
-                    <p><?php echo SessionsHelper::getKeeperSession()->getFee()?></p>
-                </div>
-                <div class="data-visualizer">
-                    <h3>Size</h3>
-                    <p><?php echo SessionsHelper::getKeeperSession()->getSize()?></p>
-                </div>
-               </section>
-                <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>User/ChangeType">Enter to System</a>
-            <?php }else{?>
                 <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>User/IndexRegister">Try Again</a>
-               <?php }?>
           </div>
     </div>
 </body>

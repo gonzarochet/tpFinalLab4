@@ -7,7 +7,7 @@
         function GetAll();
         function GetUserByEmail($email);
         function GetUserByUserId($userid);
-        function isUsernameExists($username);
+        function isUsernameOrEmailExists($username,$email);
         function isEmailExists($email);
     } 
 ?>

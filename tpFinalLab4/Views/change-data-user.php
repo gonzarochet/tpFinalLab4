@@ -52,7 +52,15 @@
                 </div>
                 <button type="submit" class="btn">Accept</button>
             </form>
-            <a class="cancel-register-register" href="#">Cancel</a>
+            <?php if(SessionsHelper::sessionOwnerExist()){ ?>
+                        <div class="data-visualizer-buttom">
+                            <a class="cancel-register-register" href="<?php echo FRONT_ROOT?>/Owner/OwnerLogin">Cancel</a>
+                        </div>
+                    <?php }else if(SessionsHelper::sessionKeeperExist()){ ?>
+                        <div class="data-visualizer-buttom">
+                            <a class="cancel-register-register" href="<?php echo FRONT_ROOT?>/Keeper/KeeperLogin">Cancel </a>
+                        </div>
+                        <?php }?>
         </div>
 
 

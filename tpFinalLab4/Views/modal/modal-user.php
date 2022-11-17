@@ -12,11 +12,7 @@
     <div class = "modal">
           <div class = "modal-body">
                <h3><?php echo $message?></h3>
-               <?php if($flag){?>
-                <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>User/ChangeType">Enter to System</a>
-            <?php }else{?>
                 <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>User/ShowLoginView">Try Again</a>
-               <?php }?>
           </div>
     </div>
 </body>

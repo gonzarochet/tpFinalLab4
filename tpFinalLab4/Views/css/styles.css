@@ -98,6 +98,11 @@ nav ul li a{
     margin-top: 5%;
 }
 
+.form-content{
+    display: grid;
+    padding: auto;
+}
+
 .card-content-text .form-content input{
    background-color: #d6efffff;
    border-radius: 5%;
@@ -110,6 +115,12 @@ nav ul li a{
     font-size: 14px;
    
 }
+
+.form-content .error{
+    padding: 3%;
+    margin-top: 5%;
+
+ }
 
 .card-content-text .button-form{
     display: flex;

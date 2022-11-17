@@ -8,7 +8,11 @@ use Services\SessionsHelper;
 ?>
 
 <header id= "menu">
-    <a href="<?php echo FRONT_ROOT ?>"><img src="<?php echo IMAGES_PATH ?>/petHeroLogo" class="logo"></a>
+<?php if(SessionsHelper::sessionUserExist()){?>
+    <a href="<?php echo FRONT_ROOT?>User/ChangeType"><img src="<?php echo IMAGES_PATH ?>/petHeroLogo" class="logo"></a>
+<?php }else{?>
+     <a href="<?php echo FRONT_ROOT?>Home/Index"><img src="<?php echo IMAGES_PATH ?>/petHeroLogo" class="logo"></a>
+<?php }?>
     <h1>Pet Hero</h1>
     <nav>
         <div class=nav-part2>
@@ -23,9 +27,8 @@ use Services\SessionsHelper;
                          $owner = SessionsHelper::getOwnerSession();
                     ?>
                     <li class="nav-item">
-                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/changeDataProfile">Edit Profile</a>
+                         <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ChangeDataProfile">Profile Info</a> 
                     </li>
-                    
                     <li class="nav-item">
                          <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ChangeType">Change to Keeper</a>
                     </li>
@@ -40,9 +43,11 @@ use Services\SessionsHelper;
                          $keeper = SessionsHelper::getKeeperSession();
           
                          ?>
-                          
                          <li class="nav-item">
-                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>Keeper/changeDataKeeperView">Edit Profile</a>
+                              <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ChangeDataProfile">Profile Info</a> 
+                         </li>
+                         <li class="nav-item">
+                              <a class = "nav-link" href="<?php echo FRONT_ROOT ?>Keeper/changeDataKeeperView">Keeper Info</a>
                          </li>
                          <li class="nav-item">
                               <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/changeType">Change to Owner</a>
@@ -56,9 +61,10 @@ use Services\SessionsHelper;
                          </li>
                     
                 <?php }}else{?>
+                    <!--
                     <li class="nav-item">
                          <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Index">About</a>
-                    </li>
+                    </li>-->
                <?php }?>
             </ul>
         </div>

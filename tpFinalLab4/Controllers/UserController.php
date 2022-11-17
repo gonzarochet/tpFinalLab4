@@ -22,32 +22,28 @@ class UserController
 
     public function IndexRegister($message = "")
     {
+        SessionsHelper::logoutSession();
         require_once(VIEWS_PATH . "registerUser.php");
     }
 
-    public function ShowModalUserLogin($message = "", $flag)
+    public function ShowModalUserLogin($message = "")
     {
         require_once(VIEWS_PATH . "/modal/modal-user.php");
     }
 
     public function Login($email, $password)
     {
-        $message = "";
-        $flag = false;
         try {
             $user = $this->userDAO->GetUserByEmail($email);
-
             if (($user != null) && ($user->getPassword() === $password)) {
                 SessionsHelper::initUserSession($user);
-                $message = "Succesfully Login";
-                $flag = true;
+                $this->changeType();
             } else {
                 $message = "The username or password are incorrect";
+                $this->ShowLoginView($message);
             }
         } catch (Exception $ex) {
-            $ex->getMessage();
-        } finally {
-            $this->ShowModalUserLogin($message, $flag);
+            $this->ShowModalUserLogin($ex->getMessage());
         }
     }
 
@@ -57,32 +53,25 @@ class UserController
         $this->ShowLoginView();
     }
 
-    public function ShowModalUserRegister($message = "", $flag)
+    public function ShowModalUserRegister($message = "")
     {
         require_once(VIEWS_PATH . "/modal/modal-user-register.php");
     }
 
     public function Register($username, $email, $password, $firstName, $lastName, $dateBirth)
     {
-
         $message = "";
-        $flag = false;
         try {
-            if (!$this->userDAO->isEmailExists($email)) {
-                if (!$this->userDAO->isUsernameExists($username)) {
+                if (!$this->userDAO->isUsernameOrEmailExists($username,$email)) {
                     $user = $this->Add($username, $email, $password, $firstName, $lastName, $dateBirth);
                     SessionsHelper::initUserSession($user);
-                    $flag = true;
+                    $this->changeType();
                 } else {
-                    $message = "The username already exists";
+                    $message = "The username or email already exists";
+                    $this->IndexRegister($message);
                 }
-            } else {
-                $message = "The email already exists";
-            }
-        } catch (Exception $ex) {
-            $message = $ex->getMessage();
-        } finally {
-            $this->ShowModalUserRegister($message,$flag);
+            } catch (Exception $ex) {
+            $this->ShowModalUserRegister($ex->getMessage());
         }
     }
 
@@ -135,13 +124,15 @@ class UserController
         require_once(VIEWS_PATH . "loginV.php");
     }
 
-    public function ShowLoginView()
+    public function ShowLoginView($message="")
     {
+        SessionsHelper::logoutSession();
         require_once(VIEWS_PATH . "home.php");
     }
 
     public function ShowAddView()
     {
+        SessionsHelper::logoutSession();
         require_once(VIEWS_PATH . "registerUser.php");
     }
 

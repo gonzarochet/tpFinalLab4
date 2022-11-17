@@ -117,7 +117,7 @@ class UserDAOBD implements IUserDAOBD{
             if (count($resultSet) > 0) {
                 $resultValue = array_shift($resultSet[0]); //I need to extract the value from the array to compare it to 1 or 0. 
 
-                if ($resultValue == 1) {
+                if ($resultValue >= 1) {
                     $flag = true;
                 }
             }
@@ -127,22 +127,22 @@ class UserDAOBD implements IUserDAOBD{
         }
     }
 
-    public function isUsernameExists($username)
+    public function isUsernameOrEmailExists($username,$email)
     {
         try {
-            $query = "SELECT count(*) FROM " . $this->tableName . " WHERE username = :username";
+            $query = "SELECT count(*) FROM " . $this->tableName . " WHERE username = :username or email = :email";
 
             $parameters["username"] =  $username;
+            $parameters["email"] = $email;
 
             $this->connection = Connection::GetInstance();
 
-            $resultSet = $this->connection->Execute($query, $parameters); //1 if exists, 0 if it doesn't exist.
-
+             $resultSet = $this->connection->Execute($query, $parameters); //1 if exists, 0 if it doesn't exist.
             $flag = false;
             if (count($resultSet) > 0) {
                 $resultValue = array_shift($resultSet[0]); //I need to extract the value from the array to compare it to 1 or 0. 
 
-                if ($resultValue == 1) {
+                if ($resultValue >=1) {
                     $flag = true;
                 }
             }
@@ -189,19 +189,8 @@ class UserDAOBD implements IUserDAOBD{
         try{
             $query = "call updateUser('".$userid."','".$email.
             "','".$username."','".$password."','".$firstName."','".$lastName."','".$dateBirth."');";
-            /*
-            $parameters["useridFind"] = $userid;
-            $parameters["newEmail"] = $email;
-            $parameters["newUsername"] = $username;
-            $parameters["newPass"] = $password;
-            $parameters["newfirstName"] = $firstName;
-            $parameters["newLastName"] = $lastName;
-            $parameters["newDateBirth"] = $dateBirth;
-
-            */
 
             $this->connection = Connection::GetInstance();
-
             $this->connection->ExecuteNonQuery($query);
 
         }catch(Exception $ex){

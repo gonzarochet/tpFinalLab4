@@ -29,13 +29,12 @@
                               <label for = "username">Enter your Email</label>
                               <br>
                               <input type="text" name = "email" required> 
-                              <span class = "error"><//?php echo $errUsername;?></span>
                          </div>
                          <div class = "form-content"> 
                               <label for = "password">Enter your Password</label>
                               <br>
                               <input type="password" name = "password" required> 
-                              <span class = "error"><//?php echo $errPassword;?></span>
+                              <span class = "error"><?php echo @$message?></span>
                          </div>
                          <div class = "button-form">
                               <input id="button" type="submit" href = "<?php echo FRONT_ROOT ?>User/Login" value= "Login" ></input>
