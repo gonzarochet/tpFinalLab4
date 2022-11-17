@@ -85,7 +85,7 @@ class KeeperController{
         $flag = false;
 
         try{
-            $user = SessionsHelper::getUserSession();
+            $user = SessionsHelper::getUserSession();        
             $this->Add($user,$fee,$size);
             SessionsHelper::initKeeperSession($this->keeperDAO->GetKeeperByUserId($user->getId()));
             $message = "Keeper registration succesfully";

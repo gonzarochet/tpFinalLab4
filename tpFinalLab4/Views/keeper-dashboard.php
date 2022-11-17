@@ -1,5 +1,6 @@
 <?php
 use Models\user as User;
+use Services\SessionsHelper;
 ?>
 
 
@@ -25,7 +26,7 @@ use Models\user as User;
      <section id="keeper-principal">
           <p id="welcome-message"><?php
                                    $user = new User();
-                                   $user = $_SESSION["loggedUser"];
+                                   $user = SessionsHelper::getUserSession();
                                    $userName = $user->getFirstName();
                                    echo "Bienvenido $userName - Keeper View"; ?>
           </p>
@@ -46,11 +47,10 @@ use Models\user as User;
                     <div id="keeper-button-option">
                          <a href="<?php echo FRONT_ROOT ?>Invoice/ShowListView" class="btn">Show Invoices</a>
                     </div>
-                    <!--
                     <div id="keeper-button-option">
-                         <a href="<?php location:"loginV.php"?>" class="btn">Back to Choise Profile</a>
+                         <a href="<?php echo FRONT_ROOT ?>Review/ShowListReviewByKeeper" class="btn">Show All Reviews</a>
                     </div>
-                    -->
+
                </div>
           </div>
      </section>

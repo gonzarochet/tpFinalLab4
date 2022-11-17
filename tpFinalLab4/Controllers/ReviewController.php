@@ -6,6 +6,7 @@ use DAO\BD\ReviewDAO;
 use DAO\BD\ReviewDAOBD;
 use DAO\JSON\KeeperDAO;
 use LDAP\Result;
+use Models\Keeper;
 use Models\Review;
 use Services\SessionsHelper;
 
@@ -23,6 +24,7 @@ class ReviewController{
     }
 
     public function showReviewAddView($bookingNr){
+        SessionsHelper::validateSession();
 
         if($this->reviewDAO->isReviewExist($bookingNr)){
             $reviewList = $this->reviewDAO->GetReviewByBooking($bookingNr);
