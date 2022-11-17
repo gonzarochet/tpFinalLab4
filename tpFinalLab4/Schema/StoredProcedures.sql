@@ -38,6 +38,15 @@ create procedure `GetReviewByBooking`(bookingNr int)
 	select * from review
     where review.bookingNr = bookingNr;
 
+create procedure `GetAllReviewByKeeperId`(keeperid int)
+    select r.bookingNr,u.username,r.score, r.comment,b.endDate from  review r 
+    inner join booking b on b.bookingNr = r.bookingNr
+    inner join keeper k  on b.keeperid = k.keeperid
+    inner join user u on u.userid = k.userid
+    where k.keeperid = keeperid;
+
+
+
 
 /*------------------------------------------- OWNER----------------------------------------------------*/
 create procedure GetBookingsByOwnerId (ownerid int)
@@ -60,7 +69,7 @@ end
 
 
 /*---------------------------------------- FILE-----------------------------------------------------*/
-create procedure `AddFile`(nameFile varchar (500) , typeFile varchar(100), sizefile double, tmp_namefile varchar (500),fullPath varchar (100),errorFile varchar (100))
+create procedure `AddFile`(nameFile varchar (500) , typeFile varchar(100), sizefile double, tmp_namefile varchar (500),fullPath varchar (500),errorFile varchar (100))
 	insert into File(nameFile, typefile, sizefile, tmp_nameFile,fullPath,errorFile) 
     values(nameFile,typeFile,sizefile,tmp_nameFile,fullPath,errorFile);
 
@@ -110,3 +119,7 @@ end
 create procedure `updateKeeper`(keeperid int, fee int, size varchar (10))
 	update keeper set keeper.fee = fee,
     keeper.size = size where keeper.keeperid = keeperid;
+
+create procedure `updateReputation`(keeperid int, reputation float)
+	update keeper set keeper.reputation = reputation
+    where keeper.keeperid = keeperid;

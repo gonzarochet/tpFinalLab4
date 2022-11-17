@@ -8,6 +8,10 @@ use DAO\BD\CalendarDAOBD;
 use DAO\BD\EmailDAOBD;
 use Models\Booking as Booking;
 use \DateTime;
+use Exception;
+use Models\Owner;
+use Services\SessionsHelper;
+use SessionHandler;
 
 class BookingController
 {
@@ -23,21 +27,35 @@ class BookingController
         $this->emailDAO=new EmailDAOBD;
     }
 
-    //Función que levanta al View con la previsualización de la resera, y envía datos a Controladora Booking en caso de confirmar.
+    //Función que levanta al View con la previsualización de la reserva, y envía datos a Controladora Booking en caso de confirmar.
     public function ShowOwnerConfirmationView($startDate, $endDate, $petid,$keeperid)
     {
-        $owner=$_SESSION["loggedOwner"];
-        
-        $pet=$this->petList->GetPetByPetId($petid);    
-        $keeper=$this->keeperList->GetKeeperByKeeperId($keeperid);
-
-        require_once(VIEWS_PATH."booking-confirmation-owner.php"); //View con previsualizacion de la reserva y envia startDate, endDate, keeperid, petid a Booking/Add
+        SessionsHelper::validateSession();
+        $owner = new Owner();
+        $owner = SessionsHelper::getOwnerSession();
+        try{
+            $pet=$this->petList->GetPetByPetId($petid);    
+            $keeper=$this->keeperList->GetKeeperByKeeperId($keeperid);
+            require_once(VIEWS_PATH."booking-confirmation-owner.php"); //View con previsualizacion de la reserva y envia startDate, endDate, keeperid, petid a Booking/Add
+        }catch(Exception $ex){
+            $this->ShowModalConfirmationView($ex->getMessage());
+        }
+    
     }
+
+    private function ShowModalConfirmationView($message = "")
+    {
+        require_once(VIEWS_PATH . "/modal/modal-booking-confirmation.php");
+    } 
 
     //Función que crea el objeto booking y lo envía al BookingDAO para que se persita. 
     public function Add($petid,$startDate, $endDate, $keeperid) 
     {
+        $message = "";
+        $flag = false;
+        SessionsHelper::validateSessionOwner();
 
+        try{
         $pet=$this->petList->GetPetByPetId($petid);   //Busco el objeto pet para agregarlo en $booking.
 
         $keeper=$this->keeperList->GetKeeperByKeeperId($keeperid);  //Busco objeto Keeper para agregarlo en $booking.
@@ -61,15 +79,28 @@ class BookingController
         
         $this->bookingDAO->Add($booking);
 
-        $this->ShowListOwnerView();      //Una vez que confirmó y se agrega, redirecciono a la vista de reservas del owner para que la vea. 
+        $message = "Booking Create with success ";
+        $flag = true;
+        }catch(Exception $ex){
+            $message = $ex->getMessage();
+        }finally{
+            $this->ShowModalBookingAddView($message,$flag);
+        }   
+      //Una vez que confirmó y se agrega, redirecciono a la vista de reservas del owner para que la vea. 
     }
+
+    private function ShowModalBookingAddView($message = "",$flag)
+    {
+        require_once(VIEWS_PATH . "/modal/modal-booking-add.php");
+    } 
 
     //Función que muestra el listado de reservas solicitadas por el owner loggeado. 
     public function ShowListOwnerView()    
     {
+        SessionsHelper::validateSessionOwner();
+
         $bookingList=array();
-        $owner=$_SESSION["loggedOwner"];
-    
+        $owner=SessionsHelper::getOwnerSession();
         $bookingList=$this->bookingDAO->GetBookingsByOwnerId($owner->getOwnerId());  
 
         /*foreach($bookingListAll as $booking)
@@ -85,8 +116,9 @@ class BookingController
     //Función que muestra el listado de solicitudes de reservas que recibió el Keeper loggeado. 
     public function ShowListKeeperView()
     {
+        SessionsHelper::validateSessionKeeper();
         $bookingList=array();
-        $keeper=$_SESSION["loggedKeeper"];
+        $keeper=SessionsHelper::getKeeperSession();
     
         $bookingListAll=$this->bookingDAO->GetAll();
 
@@ -104,14 +136,16 @@ class BookingController
     Si Keeper Acepta, manda datos a Booking/Confirmation*/
     public function ShowKeeperConfirmationView($bookingNr)
     {
-        $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
+        SessionsHelper::validateSession();
 
+        $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
         require_once(VIEWS_PATH."booking-confirmation-keeper.php");
     }    
 
     //Función que se ejecuta cuando el Keeper acepta el request de reserva. 
     public function Accept($bookingNr)
     {
+        SessionsHelper::validateSession();
         $this->bookingDAO->AcceptBooking($bookingNr); //Updates IsConfirmed = 'Yes' in booking table. 
 
         $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
@@ -126,8 +160,8 @@ class BookingController
     //Funcion para cancelar una reserva solicitada
     public function Cancel($bookingNr)
     {
+        SessionsHelper::validateSession();
         $this->bookingDAO->CancelBooking($bookingNr);
-
         $bookingList=$this->bookingDAO->GetAll();
         require_once(VIEWS_PATH."list-keeper-bookings.php");
     }

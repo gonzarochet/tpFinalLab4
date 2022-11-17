@@ -9,6 +9,7 @@ use DateTime as DateTime;
 use DateInterval as DateInterval;
 use DatePeriod as DatePeriod;
 use \Exception as Exception;
+use Services\SessionsHelper;
 
 class CalendarController{
     
@@ -19,24 +20,27 @@ class CalendarController{
     }
 
     public function ShowAddView(){
+        SessionsHelper::validateSession();
         require_once(VIEWS_PATH."addCalendarPeriod.php");
     }
 
     //En lugar de usar ShowListView, usamos directamente el ShowListViewByKeeper, de lo contrario un keeper vería la lista de fechas de todos los demas.
     public function ShowListViewByKeeper(){
-        $keeper= $_SESSION["loggedKeeper"];
+        $keeper= SessionsHelper::getKeeperSession();
         $calendarList = $this->calendarDAO->GetAllByKeeper($keeper);
         require_once(VIEWS_PATH."listCalendarPeriod.php");
     }
 
     public function Add( $startDate, $endDate){
 
+        SessionsHelper::validateSession();
+
         if($endDate<$startDate){
             $error = "The end date is incorrect, please insert a correct date";
             require_once(VIEWS_PATH."addCalendarPeriod.php");
         }else{
 
-            $keeper=$_SESSION['loggedKeeper']; 
+            $keeper=SessionsHelper::getKeeperSession(); 
 
             $interval = new DateInterval('P1D');  // Variable that store the date interval of period 1 day
             $end = new DateTime($endDate);
@@ -71,8 +75,9 @@ class CalendarController{
 
     public function RemoveDate($id)
     {
+        SessionsHelper::validateSession();
+
         $this->calendarDAO->RemoveDate($id);
- 
         $this->ShowListViewByKeeper();
     }
 
@@ -82,29 +87,53 @@ class CalendarController{
     */
     public function ShowAvailableKeepersSearchView()
     {
-        $owner=$_SESSION["loggedOwner"];
-
+        $owner=SessionsHelper::getOwnerSession();
         $petList=new PetDAOBD();
-        $petList=$petList->GetActivePetsByOwnerId($owner->getOwnerId());  //only shows active pets
+        $petList=$petList->GetActivePetsByOwnerId($owner->getOwnerId()); //only shows active pets
         require_once(VIEWS_PATH."searchAvailableKeepers.php");
     }
 
     public function ShowAvailableKeepers($startDate, $endDate, $petid)
     {
+        SessionsHelper::validateSessionOwner();
+        $message = "";
+        $flag = false;
+
+        try{
+
         $petList=new PetDAOBD();
         $pet=$petList->GetPetByPetId($petid);
 
         if($endDate<$startDate){
-            $error = "The end date is incorrect, please insert a correct date";
-            require_once(VIEWS_PATH."searchAvailableKeepers.php");
+            $message = "The end date is incorrect, please insert a correct date";
+            $this->ListAvailableKeepers($message,$flag); 
         }else{
             $keeperList = $this->SearchAvailableKeepers($startDate, $endDate, $pet->getSize());
-            require_once(VIEWS_PATH."listAvailableKeepers.php");
+            if($keeperList){
+                $flag = true;
+                $message = "We found Keepers availables for you";
+                require_once(VIEWS_PATH."listAvailableKeepers.php");
+            }else{
+                $message = "Don't available keepers in the dates that you required";
+                $this->ListAvailableKeepers($message,$flag);
+            }
+        }
+        }catch(Exception $ex){
+            $message = $ex->getMessage();
         }
     }
 
-    public function SearchAvailableKeepers($startDate, $endDate, $size)
+    public function ListAvailableKeepers($message="",$flag){
+        SessionsHelper::validateSessionOwner();
+        require_once(VIEWS_PATH."listAvailableKeepers.php");
+        
+    }
+
+
+    private function SearchAvailableKeepers($startDate, $endDate, $size)
     {
+
+        try{
         $requiredInterval = new DateInterval('P1D'); 
         $end = new DateTime($endDate);
         $end->add($requiredInterval);
@@ -129,14 +158,17 @@ class CalendarController{
             }
 
 
-            if ($available == true  && ($_SESSION["loggedOwner"]->getUser() != $keeper->getUser()) && $keeper->getSize()==$size) //if it's still available after checking all dates, 
+            if ($available == true  && (SessionsHelper::getUserSession() != $keeper->getUser()) && $keeper->getSize()==$size) //if it's still available after checking all dates, 
             {                                                                                     // and it's not the same user as the logged Owner (Owner and Keeper can't be the same in 1 booking)
                 array_push($availableKeepersList, $keeper);                                         // then it's pushed into the array
             }
         }
-        return $availableKeepersList;                 
+        return $availableKeepersList; 
+        } 
+        catch(Exception $ex){
+            throw $ex;
+        }               
     }      
     
     
 }
-?>

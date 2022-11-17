@@ -72,6 +72,19 @@ class BookingDAOBD implements IBookingDAOBD
         }
     }
 
+    public function GetKeeperBybookingNr($bookingNr){
+        $bookingList = $this->GetAll();
+        foreach ($bookingList as $booking)
+        {
+            if($bookingNr == $booking->getBookingNumber())
+            {
+                $keeper= $booking->getKeeper();
+            }
+        }
+        return $keeper;
+        
+    }
+
 
     public function GetBookingBybookingNr($bookingNr)
     {

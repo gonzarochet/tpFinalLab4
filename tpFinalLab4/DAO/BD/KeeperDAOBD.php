@@ -181,5 +181,29 @@ class KeeperDAOBD implements IKeeperDAOBD
             }
 
         }
+
+        public function updateReputation($keeper){
+            try{
+                $query = "CALL GetAllReviewByKeeperId('".$keeper->getKeeperId()."');";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                $reputation = 0.0;
+                $i = 0;
+
+                foreach($resultSet as $row)
+                {
+                    $reputation = $row["score"];
+                    $i++;
+                }
+
+                $queryReputation = "CALL updateReputation('".$keeper->getKeeperId()."','".$reputation."');";
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($queryReputation);
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
 }
 ?>
