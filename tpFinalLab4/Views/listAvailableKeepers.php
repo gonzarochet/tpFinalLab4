@@ -37,7 +37,7 @@
                                 <td><?php echo $keeper->getUser()->getEmail() ?></td>
                                 <td><?php echo $keeper->getUser()->getFirstName() . " " . $keeper->getUser()->getLastName() ?></td>
                                 <td><?php echo $keeper->getUser()->getAge() ?></td>
-                                <td><?php echo $keeper->getReputation() ?></td>
+                                <td><?php echo round($keeper->getReputation(),2) ?></td>
                                 <input type="hidden" name="startDate" value="<?php echo $startDate ?>" />
                                 <input type="hidden" name="endDate" value="<?php echo $endDate ?>" />
                                 <input type="hidden" name="petid" value="<?php echo $petid ?>" />

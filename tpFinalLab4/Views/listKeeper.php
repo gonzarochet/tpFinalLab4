@@ -35,7 +35,7 @@
                         <td><?php echo $keeper->getUser()->getLastName() ?></td>
                         <td><?php echo $keeper->getUser()->getFirstName() ?></td>
                         <td><?php echo $keeper->getUser()->getDateBirth() ?></td>
-                        <td><?php echo $keeper->getReputation() ?></td>
+                        <td><?php echo round($keeper->getReputation(),1) ?></td>
                     </tr>
                 <?php
                 }
