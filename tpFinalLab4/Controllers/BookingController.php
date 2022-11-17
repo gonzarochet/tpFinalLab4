@@ -147,14 +147,17 @@ class BookingController
     {
         SessionsHelper::validateSession();
         $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
+        
         if ($booking->getStatus()=="Pending")
         {
-            $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
+            
             $keeperid=$booking->getKeeper()->getKeeperId();
             $calendarList=new CalendarDAOBD();
             $calendarList->SetDatesUnavailable($keeperid,$booking->getStartDate(),$booking->getEndDate());       //Sets dates unavailable in calendar table. 
             $this->bookingDAO->AcceptBooking($bookingNr); //Updates status = 'Accepted' in booking table. 
-        }         
+            $booking=$this->bookingDAO->GetBookingBybookingNr($bookingNr);
+        }  
+        
         require_once(VIEWS_PATH."invoice-view.php");
 
     }

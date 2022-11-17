@@ -100,6 +100,7 @@ class BookingDAOBD implements IBookingDAOBD
         return $bookingFound;
     }
 
+
     public function AcceptBooking($bookingNr)
     {
         try {
@@ -126,6 +127,22 @@ class BookingDAOBD implements IBookingDAOBD
         }catch(Exception $ex){
             throw $ex;
         }
+    }
+
+    public function GetBookingByKeeperId($keeperid)
+    {
+        $bookingList=$this->GetAll();
+        $bookingListReturn=array();
+            
+        foreach ($bookingList as $booking)
+        {
+            if($keeperid == $booking->getKeeper()->getKeeperId())
+            {
+                array_push($bookingListReturn,$booking);
+                
+            }
+        }
+        return $bookingListReturn;
     }
 
     public function GetBookingsByOwnerId($ownerid){

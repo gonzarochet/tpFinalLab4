@@ -188,16 +188,19 @@ class KeeperDAOBD implements IKeeperDAOBD
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
 
-                $reputation = 0.0;
+                $reputationSum = 0.0;
                 $i = 0;
 
                 foreach($resultSet as $row)
                 {
-                    $reputation = $row["score"];
+                    $reputationSum = $reputationSum + $row["score"];
                     $i++;
                 }
 
-                $queryReputation = "CALL updateReputation('".$keeper->getKeeperId()."','".$reputation."');";
+                $averageReputation=$reputationSum/$i;
+                
+
+                $queryReputation = "CALL updateReputation('".$keeper->getKeeperId()."','".$averageReputation."');";
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($queryReputation);
 
