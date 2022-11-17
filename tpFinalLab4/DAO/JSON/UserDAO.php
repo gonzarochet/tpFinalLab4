@@ -10,11 +10,11 @@ class UserDAO implements IUserDAO{
     public function Add(User $user){
         
         $this->RetrieveData();
-        var_dump($this->userList);
+        //var_dump($this->userList);
         $user->setId($this->getLastId()+1);
-        var_dump($user);
+        //var_dump($user);
         array_push($this->userList,$user);
-        var_dump($this->userList);
+        //var_dump($this->userList);
         $this->SaveData();
     }
 
@@ -131,6 +131,16 @@ class UserDAO implements IUserDAO{
             }
             return $flag;
 
+        }
+
+        public function isUserNameOrEmailExists($username, $email)
+        {
+            $flag=false;
+            if ($this->isUsernameExists($username)==true or $this->isEmailExists($email))
+            {
+               $flag=true;
+            }
+            return $flag;
         }
 }
 ?> 
