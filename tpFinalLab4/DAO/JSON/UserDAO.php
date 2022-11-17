@@ -10,7 +10,7 @@ class UserDAO implements IUserDAO{
     public function Add(User $user){
         
         $this->RetrieveData();
-        $user->setId($this->getLastId()+1);
+        $user->setId($this->GetNextUserId());
         array_push($this->userList,$user);
         $this->SaveData();
         
@@ -71,9 +71,23 @@ class UserDAO implements IUserDAO{
 
     }
 
+    public function GetNextUserId()
+        {
+            $id = 0;
+            foreach($this->userList as $user)
+            {
+                $id = ($user->getId() > $id) ? $user->getId() : $id;
+            }
+            return $id + 1;
+        }
 
+<<<<<<< HEAD
     public function getLastId(){
         //$this->userList = array();
+=======
+    /*public function getLastId(){
+        $this->userList = array();
+>>>>>>> db6edaca65332a6bab9c41d90c7f247a48d828ce
         $id = 0;
 
         if(file_exists('Data/users.json')){
@@ -87,7 +101,7 @@ class UserDAO implements IUserDAO{
             }
         }
         return $id;
-    }
+    }*/
 
     public function GetUserByEmail($email)
         {
