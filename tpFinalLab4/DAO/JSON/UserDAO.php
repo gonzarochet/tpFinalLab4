@@ -10,12 +10,10 @@ class UserDAO implements IUserDAO{
     public function Add(User $user){
         
         $this->RetrieveData();
-        //var_dump($this->userList);
         $user->setId($this->getLastId()+1);
-        //var_dump($user);
         array_push($this->userList,$user);
-        //var_dump($this->userList);
         $this->SaveData();
+        
     }
 
     public function GetAll(){
@@ -47,7 +45,7 @@ class UserDAO implements IUserDAO{
 
     private function RetrieveData(){
 
-        $this->userList = array();
+        //$this->userList = array();
 
         if(file_exists('Data/users.json')){
             $jsonContent = file_get_contents('Data/users.json');
@@ -75,7 +73,7 @@ class UserDAO implements IUserDAO{
 
 
     public function getLastId(){
-        $this->userList = array();
+        //$this->userList = array();
         $id = 0;
 
         if(file_exists('Data/users.json')){

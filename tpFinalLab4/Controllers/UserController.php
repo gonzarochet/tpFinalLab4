@@ -77,7 +77,7 @@ class UserController
 
     private function Add($username, $email, $password, $firstName, $lastName, $dateBirth)
     {
-       
+    
         $user = new User();
         //$user->setId($this->AutoIncrementalID());
         $user->setUsername($username);
@@ -90,8 +90,7 @@ class UserController
         $userWithId=$this->userDAO->GetUserByEmail($email); //Para devolver el user completo con el id
 
         return $userWithId;
-        return $user;
-             
+        
     }
 
     public function changeDataProfile()
