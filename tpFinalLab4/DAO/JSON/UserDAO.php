@@ -81,13 +81,8 @@ class UserDAO implements IUserDAO{
             return $id + 1;
         }
 
-<<<<<<< HEAD
-    public function getLastId(){
-        //$this->userList = array();
-=======
     /*public function getLastId(){
         $this->userList = array();
->>>>>>> db6edaca65332a6bab9c41d90c7f247a48d828ce
         $id = 0;
 
         if(file_exists('Data/users.json')){
