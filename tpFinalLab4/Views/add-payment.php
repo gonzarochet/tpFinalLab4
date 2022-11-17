@@ -31,16 +31,15 @@
                         ?>
                     </select>
                 </div>
-               
-                <div class="form-content-add-pet">
-                    <label for="">Payment Date</label>
-                    <input type="date" name="paymentDate" required>
-                </div>
-                
                 <div class="form-content-add-pet">
                     <label for="">Paid Amount</label>
                     <input type="text" name="amount" required>
                 </div>
+                <div class="form-content-add-pet">
+                    <label for="">Payment Date</label>
+                    <input type="date" name="paymentDate" required>
+                </div>
+            
                 <div class="form-content-add-pet">
                     <label for="">Payment Image</label>
                     <input type="file" name="file"  required>

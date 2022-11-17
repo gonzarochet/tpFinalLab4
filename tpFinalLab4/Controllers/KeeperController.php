@@ -107,26 +107,25 @@ class KeeperController{
         require_once(VIEWS_PATH . "change-data-keeper.php");
     }
 
-    private function ShowModalKeeperUpdate($message = "",$flag="")
+    public function ShowModalKeeperUpdate($message = "",$flag="")
     {
+        SessionsHelper::validateSession();
         require_once(VIEWS_PATH . "/modal/modal-keeper-update.php");
     }
 
     public function changeDataKeeper($fee,$size)
     {
         $message = "";
-        $flag = false;
         SessionsHelper::validateSessionKeeper();
         $keeper = new Keeper();
         $keeper = SessionsHelper::getKeeperSession();
         try {
                 $this->keeperDAO->updateKeeper($keeper->getKeeperId(),$fee,$size);
                 $message="Data Keeper update succesfully";
-                $flag = true;
+                require_once(VIEWS_PATH . "/modal/modal-keeper-update.php");
         } catch (Exception $ex) {
            $message = $ex->getMessage();
-        }finally{
-            $this->ShowModalKeeperUpdate($message,$flag);
+           require_once(VIEWS_PATH . "/modal/modal-keeper-update.php");
         }
     }
 

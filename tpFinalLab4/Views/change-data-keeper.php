@@ -16,7 +16,8 @@
     <?php 
     use Models\Keeper;
     use Services\SessionsHelper;
-    include("nav.php");          
+    include("nav.php");      
+    SessionsHelper::validateSessionKeeper();
     ?>
     <section class="principal-register">
         <div class="form-register">
@@ -30,7 +31,7 @@
                     </div>
                     <div class = "form-content-register">
                         <label for="">Change to Size Pet to keep</label>
-                        <select name="size" value = "<?php echo SessionsHelper::getKeeperSession()->getSize()?>" placeholder= "<?php echo SessionsHelper::getKeeperSession()->getSize()?>">
+                        <select name="size" value = "<?php echo SessionsHelper::getKeeperSession()->getSize()?>" placeholder= "<?php echo SessionsHelper::getKeeperSession()->getSize()?>" required>
                             <option value="Small">Small</option>
                             <option value="Medium">Medium</option>
                             <option value="Big">Big</option>

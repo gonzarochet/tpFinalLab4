@@ -16,21 +16,7 @@ use Services\SessionsHelper;
     <div class = "modal">
           <div class = "modal-body">
                <h3><?php echo $message?></h3>
-               <?php if($flag){?>
-                <section class="principal-register">
-                    <div class="form-register">
-                    <div class="data-visualizer">
-                        <h3>Fee</h3>
-                        <p><?php echo SessionsHelper::getKeeperSession()->getFee()?></p>
-                    </div>
-                    <div class="data-visualizer">
-                        <h3>Size</h3>
-                        <p><?php echo SessionsHelper::getKeeperSession()->getSize()?></p>
-                    </div>
                 <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>Keeper/changeDataKeeperView">Accept</a>
-            <?php }else{?>
-                <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>Keeper/changeDataKeeperView">Try Again</a>
-               <?php }?>
           </div>
     </div>
 </body>

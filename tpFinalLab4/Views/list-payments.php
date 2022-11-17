@@ -15,7 +15,7 @@
 <body>
     <?php include("nav.php"); ?>
     <div class="form-list-view-pet">
-    <!--<form action="<?php echo FRONT_ROOT ?>Payment/ShowAddView" method="post">-->
+        <div class = "form-content-payment">
             <h1>Payments List</h1>
             <table class="list-pet">
                 <thead>
@@ -46,18 +46,12 @@
                         <?php
                             }
                     ?>
-                    <!--<div class="btn-list-pet">
-                    <td><button type="submit" name="bookingNr" class="" value="<?php echo $bookingNr?>">Add another payment</button> </td> 
-                    </div> -->
+                    
                 </tbody>
             </table>
-            </form>
-            
-            <a class="btn-list-pet" href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashboard</a>
+            <a class="btn-list-pet" id = payment href="<?php echo FRONT_ROOT ?>Owner/OwnerLogin">Go back to Dashboard</a>
         </div>
-    
-    
-    
+    </div>
     
 </body>
 

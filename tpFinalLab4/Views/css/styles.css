@@ -800,21 +800,9 @@ nav ul li a{
     border: 0;
     margin: 1%;
     padding: 1%;
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.form-content-payment{
+    display: grid;
+}
