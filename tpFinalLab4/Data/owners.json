@@ -70,5 +70,41 @@
             "lastName": "Jorgelin",
             "dateBirth": "2022-01-31"
         }
+    },
+    {
+        "ownerId": 7,
+        "user": {
+            "userId": 7,
+            "username": "jorgerojas",
+            "email": "jorgerojas@gmail.com",
+            "password": "1234",
+            "firstName": "Jorge",
+            "lastName": "Rojas",
+            "dateBirth": "1985-07-05"
+        }
+    },
+    {
+        "ownerId": 8,
+        "user": {
+            "userId": 8,
+            "username": "gonzarochet",
+            "email": "rochetgonzalo@gmail.com",
+            "password": "1234",
+            "firstName": "Gonzalo",
+            "lastName": "Rochet",
+            "dateBirth": "2022-11-11"
+        }
+    },
+    {
+        "ownerId": 9,
+        "user": {
+            "userId": 9,
+            "username": "jorgerojas",
+            "email": "jorgerojas@gmail.com",
+            "password": "1234",
+            "firstName": "Jorge",
+            "lastName": "Rojas",
+            "dateBirth": "2022-09-23"
+        }
     }
 ]

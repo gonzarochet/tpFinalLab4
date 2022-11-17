@@ -13,6 +13,7 @@ class UserDAO implements IUserDAO{
         $user->setId($this->GetNextUserId());
         array_push($this->userList,$user);
         $this->SaveData();
+        
     }
 
     public function GetAll(){
@@ -44,7 +45,7 @@ class UserDAO implements IUserDAO{
 
     private function RetrieveData(){
 
-        $this->userList = array();
+        //$this->userList = array();
 
         if(file_exists('Data/users.json')){
             $jsonContent = file_get_contents('Data/users.json');

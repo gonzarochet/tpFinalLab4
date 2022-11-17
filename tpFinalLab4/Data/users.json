@@ -1,56 +1,38 @@
 [
     {
-        "id": 1,
+        "id": 10,
         "username": "gonzarochet",
         "email": "rochetgonzalo@gmail.com",
-        "password": "bgfngfn",
+        "password": "1234",
         "firstName": "Gonzalo",
         "lastName": "Rochet",
-        "dateBirth": "2001-07-18"
+        "dateBirth": "2022-11-11"
     },
     {
-        "id": 2,
-        "username": "nicolK",
-        "email": "knicoletti@gmail.com",
-        "password": "159753",
-        "firstName": "Karina",
-        "lastName": "Nicoletti",
-        "dateBirth": "2022-08-31"
-    },
-    {
-        "id": 3,
-        "username": "user1",
-        "email": "user@gmail.com",
+        "id": 10,
+        "username": "gonzarochet",
+        "email": "rochetgonzalo@gmail.com",
         "password": "1234",
-        "firstName": "Maria",
-        "lastName": "Perez",
-        "dateBirth": "2005-06-28"
+        "firstName": "Gonzalo",
+        "lastName": "Rochet",
+        "dateBirth": "2022-11-11"
     },
     {
-        "id": 4,
-        "username": "bichobolita",
-        "email": "gonzarochet@gmail.com",
-        "password": "123456",
-        "firstName": "bicho",
-        "lastName": "Bolita",
-        "dateBirth": "2022-03-25"
-    },
-    {
-        "id": 5,
-        "username": "pepito",
-        "email": "pepito@gmail.com",
+        "id": 10,
+        "username": "gonzarochet",
+        "email": "rochetgonzalo@gmail.com",
         "password": "1234",
-        "firstName": "pepito",
-        "lastName": "jorge",
-        "dateBirth": "2022-10-01"
+        "firstName": "Gonzalo",
+        "lastName": "Rochet",
+        "dateBirth": "2022-11-11"
     },
     {
-        "id": 6,
-        "username": "rochi",
-        "email": "rochi@gmail.com",
+        "id": 11,
+        "username": "jorgerojas",
+        "email": "jorgerojas@gmail.com",
         "password": "1234",
-        "firstName": "Panchito",
-        "lastName": "Jorgelin",
-        "dateBirth": "2022-01-31"
+        "firstName": "Jorge",
+        "lastName": "Rojas",
+        "dateBirth": "2022-11-11"
     }
 ]
