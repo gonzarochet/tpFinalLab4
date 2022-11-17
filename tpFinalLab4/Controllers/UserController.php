@@ -87,9 +87,9 @@ class UserController
         $user->setLastName($lastName);
         $user->setDateBirth($dateBirth);
         $this->userDAO->Add($user);
-        //$userWithId=$this->userDAO->GetUserByEmail($email); //Lo acabo de armar al user, no hace falta buscarlo en el dao
+        $userWithId=$this->userDAO->GetUserByEmail($email); //Para devolver el user completo con el id
 
-        //return $userWithId;
+        return $userWithId;
         return $user;
              
     }
