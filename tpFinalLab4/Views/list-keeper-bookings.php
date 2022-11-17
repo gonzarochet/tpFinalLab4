@@ -28,6 +28,7 @@
                     <th>Status</th>
                     <th>Preview</th>
                     <th>Payments</th>
+                    <th>Invoice</th>
                 </thead>
                 <tbody>
                     <?php
@@ -56,6 +57,16 @@
                                     {
                                         ?>
                                             <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Show Payments </button>
+                                        <?php
+                                    }
+                                ?>
+                                </td>
+                            </form>
+                            <form action="<?php echo FRONT_ROOT ?>Booking/Accept" method="post">
+                                <td><?php if ($booking->getStatus() == 'Accepted') 
+                                    {
+                                        ?>
+                                            <button type="submit" name="bookingNr" class="btn-table" value="<?php echo $booking->getBookingNumber() ?>">Send Invoice </button>
                                         <?php
                                     }
                                 ?>

@@ -123,7 +123,7 @@ class CalendarController{
         }
     }
 
-    public function ListAvailableKeepers($message="",$flag){
+    public function ListAvailableKeepers($message="",$flag=""){
         SessionsHelper::validateSessionOwner();
         require_once(VIEWS_PATH."listAvailableKeepers.php");
         
