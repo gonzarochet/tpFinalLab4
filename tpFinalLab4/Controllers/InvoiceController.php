@@ -29,7 +29,7 @@ class InvoiceController
         $invoice->setInvoiceNr ($this->invoiceDAO->getNextInvoiceNr());
         $invoice->setDate(date('Y-m-d'));
         $invoice->setBooking($booking);
-        $invoice->setValue($booking->getTotalPrice()/2);
+        $invoice->setValue($booking->getTotalPrice());
 
         $this->invoiceDAO->Add($invoice);
 
