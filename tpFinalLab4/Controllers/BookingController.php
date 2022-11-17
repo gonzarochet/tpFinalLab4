@@ -89,7 +89,7 @@ class BookingController
       //Una vez que confirmó y se agrega, redirecciono a la vista de reservas del owner para que la vea. 
     }
 
-    private function ShowModalBookingAddView($message = "",$flag)
+    private function ShowModalBookingAddView($message = "",$flag="")
     {
         require_once(VIEWS_PATH . "/modal/modal-booking-add.php");
     } 

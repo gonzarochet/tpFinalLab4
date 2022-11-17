@@ -45,18 +45,11 @@
                             <td><?php echo $booking->getPet()->getAge() ?></td>
                             <td><?php echo $booking->getPet()->getBreed() ?></td>
                             <td><?php echo $booking->getPet()->getSize() ?></td>
-                            <td><?php $image = $booking->getPet()->getPicture();
-                                if (!filter_var($image, FILTER_VALIDATE_URL) === false) {
-                                    $imageData = base64_encode(file_get_contents($image));
-                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="100">';
-                                }
-                                ?></td>
-                            <td><?php $image = $booking->getPet()->getVaccinationPlan();
-                                if (!filter_var($image, FILTER_VALIDATE_URL) === false) //valdiates if url is valid
-                                {
-                                    $imageData = base64_encode(file_get_contents($image));
-                                    echo '<img src="data:image/jpeg;base64,' . $imageData . '" width="auto" height="100">';
-                                }
+                            <td><?php $image = $booking->getPet()->getPicture();  ?>
+                                <img src="<?php echo FRONT_ROOT.$image ?>" width="auto" height="100">
+                                </td>
+                            <td><?php $image = $booking->getPet()->getVaccinationPlan(); ?>
+                                <img src="<?php echo FRONT_ROOT.$image ?>" width="auto" height="100">
                                 ?></td>
                             <td>
                                 <iframe width="150" height="130" src="<?php if (!filter_var($booking->getPet()->getVideo(), FILTER_VALIDATE_URL) === false) {
