@@ -34,14 +34,15 @@ class InvoiceController
         $this->invoiceDAO->Add($invoice);
 
         $email=$booking->getPet()->getOwner()->getUser()->getEmail();
-        $initialDeposit=$booking->getTotalPrice()/2;
+        $totalPrice=$booking->getTotalPrice();
+        $deposit=$totalPrice/2;
 
-        $body='Booking Accepted. Please, pay the following initial deposit to confirm the booking: $'.$initialDeposit;
+        $body='Booking Accepted. Please, pay the following initial deposit to confirm the booking: $'.$deposit;
         $message=Mailer::SendEmail($email,$body);
 
         $this->emailDAO->Add(date('Y-m-d'),$email,$body,$bookingNr,$message);
 
-        $bookingList=$this->bookingDAO->GetAll();
+        $bookingList=$this->bookingDAO->GetBookingByKeeperId($booking->getKeeper()->getKeeperId());
         require_once(VIEWS_PATH."list-keeper-bookings.php"); 
     }
 

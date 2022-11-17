@@ -150,7 +150,6 @@ class BookingController
         
         if ($booking->getStatus()=="Pending")
         {
-            var_dump("llega");
             
             $keeperid=$booking->getKeeper()->getKeeperId();
             $calendarList=new CalendarDAOBD();
