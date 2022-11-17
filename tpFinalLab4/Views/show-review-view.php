@@ -15,6 +15,9 @@
 <body>
     <?php include("nav.php"); 
     use Models\Booking;
+use Models\Keeper;
+use Services\SessionsHelper;
+
     ?>
 
     <div class="form-list-view-keeper">
@@ -24,7 +27,11 @@
                 <thead>
                     <th>Booking Nr</th>
                     <th>Pet</th>
-                    <th>Keeper</th>
+                    <?php if(SessionsHelper::sessionKeeperExist()){?>
+                    <th>Owner</th>
+                        <?php } elseif(SessionsHelper::sessionOwnerExist()){?>
+                    <th>KeepeR</th>
+                        <?php }?>
                     <th>Score</th>
                     <th>Comments</th>
                 </thead>
@@ -35,7 +42,11 @@
                         <tr>
                             <td><?php echo $review->getAsociatedBooking()->getBookingNumber()?></td>
                             <td><?php echo $review->getAsociatedBooking()->getPet()->getName(); ?></td>
-                            <td><?php echo $review->getAsociatedBooking()->getKeeper()->getUser()->getFirstName(); ?></td>
+                            <?php if(SessionsHelper::sessionKeeperExist()){?>
+                            <td><?php echo $review->getAsociatedBooking()->getPet()->getOwner()->getUser()->getUsername(); ?></td>
+                            <?php } elseif(SessionsHelper::sessionOwnerExist()){?>
+                            <td><?php echo $review->getAsociatedBooking()->getKeeper()->getUser()->getUsername(); ?></td>
+                            <?php }?>
                             <td><?php echo $review->getScore()?></td>
                             <td><?php echo $review->getComment()?></td>
                         </tr>
@@ -45,6 +56,10 @@
                     </tr>
                 </tbody>
             </table>
-            <a class="cancel-register-register" href="<?php echo FRONT_ROOT?>Owner/OwnerLogin">Go to the Dashsboard</a>
+            <?php if(SessionsHelper::sessionKeeperExist()){?>
+                <a class="cancel-register-register" href="<?php echo FRONT_ROOT?>Keeper/KeeperLogin">Go to the Dashsboard</a>
+            <?php }elseif(SessionsHelper::sessionOwnerExist()){?>
+                <a class="cancel-register-register" href="<?php echo FRONT_ROOT?>Owner/OwnerLogin">Go to the Dashsboard</a>
+                <?php }?>
         </form>
     </div>

@@ -60,14 +60,12 @@ class ReviewController{
         $reviewList=array();
         $keeper=SessionsHelper::getKeeperSession();
     
-        $reviewListAll=$this->reviewDAO->GetReviewByKeeper($keeper->getKeeperid());
+        $reviewListAll=$this->reviewDAO->GetReviewByKeeperIdforOwner($keeper->getKeeperId());
+
 
         foreach($reviewListAll as $review)
         {
-            if($review->getBooking()->getKeeper() == $keeper)
-            {
-                array_push($reviewList,$review);
-            }
+            array_push($reviewList,$review);
         }
         require_once(VIEWS_PATH."show-review-view.php");
     }

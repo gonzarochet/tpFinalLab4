@@ -45,16 +45,14 @@ create procedure `GetAllReviewByKeeperId`(keeperid int)
     inner join user u on u.userid = k.userid
     where k.keeperid = keeperid;
 
-/*
 create procedure `GetAllReviewByKeeperIdforOwner`(keeperid int)
-    select r.bookingNr,u.username,r.score, r.comment,b.endDate from  review r 
+    select * from  review r 
     inner join booking b on b.bookingNr = r.bookingNr
     inner join pet p on b.petid = p.petid
     inner join owner o  on p.ownerid = o.ownerid
     inner join keeper k on k.keeperid = b.keeperid
     inner join user u on o.userid = u.userid
-    where k.keeperid = "1";
-*/
+    where k.keeperid = keeperid;
 
 
 
