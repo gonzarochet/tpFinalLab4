@@ -52,7 +52,6 @@ class OwnerController{
         
         if ($userExistsInOwners) // If exists --> shows owner dashboard
         {
-            // necesito levantar el owner id?
             SessionsHelper::initOwnerSession($this->ownerDAO->GetOwnerByUserId($user->getId()));
             require_once(VIEWS_PATH."owner-dashboard.php");
 

@@ -32,7 +32,7 @@
                     <span class="error"><?php echo @$message ?></span>
                 </div>
                 <div class = "form-content-register">
-                    <label for="">Choise your Password</label>
+                    <label for="">Choose your Password</label>
                     <input type="password" name="password" required>
                 </div>
                 <div class = "form-content-register">

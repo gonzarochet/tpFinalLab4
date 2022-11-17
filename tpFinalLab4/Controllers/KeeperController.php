@@ -44,7 +44,7 @@ class KeeperController{
         $keeper->setReputation(0);
         $keeper->setFee($fee);
         $keeper->setSize($size);
-
+    
         $this->keeperDAO->Add($keeper);
     }
 
@@ -57,8 +57,8 @@ class KeeperController{
 
         $message = "";
         SessionsHelper::validateSession();
+        $user=SessionsHelper::getUserSession();
         try{
-        $user = SessionsHelper::getUserSession();
 
         $userExistsInKeepers = $this->keeperDAO->UserExistsInKeepers($user);
 
@@ -73,7 +73,7 @@ class KeeperController{
         }
     }
 
-    private function ShowModalKeeperRegister($message = "",$flag)
+    private function ShowModalKeeperRegister($message = "",$flag="")
     {
         require_once(VIEWS_PATH . "/modal/modal-keeper-register.php");
     }
@@ -107,7 +107,7 @@ class KeeperController{
         require_once(VIEWS_PATH . "change-data-keeper.php");
     }
 
-    private function ShowModalKeeperUpdate($message = "",$flag)
+    private function ShowModalKeeperUpdate($message = "",$flag="")
     {
         require_once(VIEWS_PATH . "/modal/modal-keeper-update.php");
     }

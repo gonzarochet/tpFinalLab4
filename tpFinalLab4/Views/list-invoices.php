@@ -16,12 +16,10 @@
         <table class = keeper-list>
             <h1>Invoices List</h1>
             <thead>
+                <th>Invoice Number</th>    
                 <th>Booking Nr</th>
                 <th>Start Date</th>
-                <th>End Date</th>
-                
-                
-                <th>Invoice Number</th>
+                <th>End Date</th>      
                 <th>Invoice Date</th>
             </thead>
             <tbody>
@@ -29,11 +27,10 @@
                 foreach ($invoiceList as $invoice) {
                 ?>
                     <tr>
+                        <td><?php echo $invoice->getInvoiceNr() ?></td>
                         <td><?php echo $invoice->getBooking()->getBookingNumber() ?></td>
                         <td><?php echo $invoice->getBooking()->getStartDate() ?></td>
                         <td><?php echo $invoice->getBooking()->getEndDate() ?></td>
-                        
-                        <td><?php echo $invoice->getInvoiceNr() ?></td>
                         <td><?php echo $invoice->getInvoiceDate() ?></td>
                     
                 </tr>

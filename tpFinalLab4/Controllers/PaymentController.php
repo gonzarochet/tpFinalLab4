@@ -68,6 +68,21 @@ class PaymentController
         require_once(VIEWS_PATH."list-payments.php");
     }   
 
+    public function ShowListKeeperView($bookingNr, $message="")
+    {
+        $paymentListAll=$this->paymentDAO->GetAll();
+        $paymentList=array();
+
+        foreach ($paymentListAll as $payment)
+        {
+            if($payment->getInvoice()->getBooking()->getBookingNumber()== $bookingNr)
+            {
+                array_push($paymentList,$payment);
+            }
+        }
+        require_once(VIEWS_PATH."list-payments-keeper.php");
+    }   
+
     public function ConfirmBooking($bookingNr)
     {
         $this->bookingDAO->ConfirmBooking($bookingNr);

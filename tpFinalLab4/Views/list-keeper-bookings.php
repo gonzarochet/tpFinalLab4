@@ -51,7 +51,7 @@
                                 ?>
                                 </td>
                             </form>
-                            <form action="<?php echo FRONT_ROOT ?>Payment/ShowListView" method="post">
+                            <form action="<?php echo FRONT_ROOT ?>Payment/ShowListKeeperView" method="post">
                                 <td><?php if ($booking->getStatus() == 'Confirmed') 
                                     {
                                         ?>
