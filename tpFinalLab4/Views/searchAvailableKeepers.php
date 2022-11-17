@@ -33,16 +33,13 @@
 
                 </div>
                 <div class="">
-                                <label for="">Select pet</label>
-                                <select name="petid">
-                                    <?php foreach($petList as $pet)
-                                    {
-                                        ?>
-                                        <option value="<?php echo $pet->getIdPet()?>"><?php echo $pet->getName()?></option>
-                                    <?php 
-                                    }
-                                    ?>
-                                </select>
+                    <label for="">Select pet</label>
+                    <select name="petid" required>
+                    <?php foreach($petList as $pet)
+                    {?>
+                      <option value="<?php echo $pet->getIdPet()?>"><?php echo $pet->getName()?></option>
+                    <?php }?>
+                    </select>
                 </div>
                 
                 <button type="submit" class="btn-calendar">Search</button>

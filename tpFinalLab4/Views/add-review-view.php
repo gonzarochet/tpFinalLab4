@@ -16,10 +16,11 @@
     <?php 
     use Models\Owner;
     use Models\Review;
+use Services\SessionsHelper;
 
     include("nav.php"); 
     $owner = new Owner();
-    $owner = $_SESSION["loggedOwner"];          
+    $owner = SessionsHelper::getOwnerSession();          
     ?>
     <section class="principal-register">
         <div class="form-register">
@@ -27,7 +28,13 @@
                 <h1>Share your review</h1>
                 <div class="form-content-register">
                     <label for="">Score</label>
-                    <input type="text" name="score" required>
+                    <select name="score">
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars </option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
                     <span class="error"><?php echo @$message ?></span>
                 </div>
                 <div class="form-content-register">

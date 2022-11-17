@@ -14,8 +14,10 @@ use DAO\BD\OwnerDAOBD as OwnerDAOBD;    //BD
 use DAO\BD\PetDAOBD as PetDAOBD;        //BD
 
 use Models\Owner as Owner;
+use Models\User as User;
 use DAO\BD\BookingDAOBD as BookingDAOBD;
 use Exception;
+use Services\SessionsHelper;
 
 class PetController
 {
@@ -34,21 +36,30 @@ class PetController
 
     public function ShowAddView()
     {
+        SessionsHelper::validateSessionOwner();
         require_once(VIEWS_PATH . "add-pet.php");
     }
     public function ShowListView($message = "")
     {
-        $petList = $this->petDAO->GetAll();
-        $ownerList = $this->ownerDAO->GetAll();
-        require_once(VIEWS_PATH . "list-pets.php");
+        SessionsHelper::validateSession();
+        try{
+            $petList = $this->petDAO->GetAll();
+            $ownerList = $this->ownerDAO->GetAll();
+            require_once(VIEWS_PATH . "list-pets.php");
+        }catch(Exception $ex){
+            $this->ShowModalAddPet($ex->getMessage());
+        }
+        
     }
 
     public function Add($name, $birthDate, $breed, $size, $comments, $vaccinationPlan, $picture, $video)
     {
+        SessionsHelper::validateSessionOwner();
         $message = "";
         try {
 
-            $user = $_SESSION["loggedUser"];
+            $user = new User();
+            $user = SessionsHelper::getUserSession();
             $owner = $this->ownerDAO->GetOwnerByUserId($user->getId());
 
             $pet = new Pet();
@@ -85,28 +96,34 @@ class PetController
         }
     }
 
-    public function ShowModalAddPet($message = "")
+    private function ShowModalAddPet($message = "")
     {
         require_once(VIEWS_PATH . "/modal/modal-pet.php");
     }
 
     public function ShowListPetsByOwner($message = "")
     {
+        SessionsHelper::validateSession();
 
-        $user = $_SESSION["loggedUser"];
-        $ownerId = $this->ownerDAO->GetOwnerByUserId($user->getId())->getOwnerId();
-
-        $ownerPetList = $this->petDAO->GetPetsByOwnerId($ownerId);
-
-        require_once(VIEWS_PATH . "list-pets.php");
+        try{
+            $user = new User();
+            $user = SessionsHelper::getUserSession();
+            $ownerId = $this->ownerDAO->GetOwnerByUserId($user->getId())->getOwnerId();
+            $ownerPetList = $this->petDAO->GetPetsByOwnerId($ownerId);
+            require_once(VIEWS_PATH . "list-pets.php");
+        }catch(Exception $ex){
+            $this->ShowModalAddPet($ex->getMessage());
+        }
     }
 
     public function ShowModalDeactivatePet($message = ""){
+        SessionsHelper::validateSession();
         require_once(VIEWS_PATH . "/modal/modal-pet.php");
     }
 
     public function DeactivatePet($petid)
     {
+        SessionsHelper::validateSessionOwner();
         $message = "";
         try {
             $petBelongsToFutureBooking = $this->bookingList->SearchPetInFutureBookings($petid);

@@ -1,16 +1,25 @@
 <?php namespace Controllers;
 
+use DAO\BD\BookingDAOBD;
+use DAO\BD\KeeperDAOBD;
 use DAO\BD\ReviewDAO;
 use DAO\BD\ReviewDAOBD;
+use DAO\JSON\KeeperDAO;
 use LDAP\Result;
 use Models\Review;
+use Services\SessionsHelper;
 
 class ReviewController{
 
     private $reviewDAO;
+    private $bookingDAO;
+
+    private $keeperDAO;
 
     public function __construct(){
         $this->reviewDAO = new ReviewDAOBD();
+        $this->bookingDAO = new BookingDAOBD();
+        $this->keeperDAO = new KeeperDAOBD();
     }
 
     public function showReviewAddView($bookingNr){
@@ -24,12 +33,17 @@ class ReviewController{
     }
 
     public function GenerateReview($score,$comment,$bookingNr){
+        SessionsHelper::validateSession();
         if(!$this->reviewDAO->isReviewExist($bookingNr)){
             $review = new Review ();
             $review->setScore($score);
             $review->setComment($comment);
             $review->setAsociatedBooking($bookingNr);
             $this->reviewDAO->Add($review);
+
+            $keeper = $this->bookingDAO->GetKeeperBybookingNr($bookingNr);
+
+            $this->keeperDAO->updateReputation($keeper);
             
             $reviewList = $this->reviewDAO->GetReviewByBooking($bookingNr);
             require_once(VIEWS_PATH."show-review-view.php");
@@ -40,8 +54,9 @@ class ReviewController{
 
     public function ShowListReviewByKeeper()    
     {
+        SessionsHelper::validateSession();
         $reviewList=array();
-        $keeper=$_SESSION["keeperOwner"];
+        $keeper=SessionsHelper::getKeeperSession();
     
         $reviewListAll=$this->reviewDAO->GetReviewByKeeper($keeper->getKeeperid());
 
@@ -57,6 +72,7 @@ class ReviewController{
 
     public function ShowListReviewByBooking($asociatedBooking)    
     {
+        SessionsHelper::validateSession();
         
         $reviewListAll=$this->reviewDAO->GetReviewByBooking($asociatedBooking);
 
