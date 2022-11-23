@@ -2,109 +2,25 @@
     {
         "ownerId": 1,
         "user": {
-            "userId": 2,
-            "username": "nicolK",
-            "email": "knicoletti@gmail.com",
-            "password": "159753",
-            "firstName": "Karina",
-            "lastName": "Nicoletti",
-            "dateBirth": "2022-08-31"
+            "userId": 1,
+            "username": "gonzarochet",
+            "email": "rochetgonzalo@gmail.com",
+            "password": "1234",
+            "firstName": "Gonzalo",
+            "lastName": "Rochet",
+            "dateBirth": "2022-05-12"
         }
     },
     {
         "ownerId": 2,
         "user": {
-            "userId": 1,
-            "username": "gonzarochet",
-            "email": "rochetgonzalo@gmail.com",
-            "password": "bgfngfn",
-            "firstName": "Gonzalo",
-            "lastName": "Rochet",
-            "dateBirth": "2001-07-18"
-        }
-    },
-    {
-        "ownerId": 3,
-        "user": {
-            "userId": 3,
-            "username": "user1",
-            "email": "user@gmail.com",
-            "password": "1234",
-            "firstName": "Maria",
-            "lastName": "Perez",
-            "dateBirth": "2005-06-28"
-        }
-    },
-    {
-        "ownerId": 4,
-        "user": {
-            "userId": 4,
-            "username": "bichobolita",
-            "email": "gonzarochet@gmail.com",
-            "password": "123456",
-            "firstName": "bicho",
-            "lastName": "Bolita",
-            "dateBirth": "2022-03-25"
-        }
-    },
-    {
-        "ownerId": 5,
-        "user": {
-            "userId": 5,
-            "username": "pepito",
-            "email": "pepito@gmail.com",
-            "password": "1234",
-            "firstName": "pepito",
-            "lastName": "jorge",
-            "dateBirth": "2022-10-01"
-        }
-    },
-    {
-        "ownerId": 6,
-        "user": {
-            "userId": 6,
-            "username": "rochi",
-            "email": "rochi@gmail.com",
-            "password": "1234",
-            "firstName": "Panchito",
-            "lastName": "Jorgelin",
-            "dateBirth": "2022-01-31"
-        }
-    },
-    {
-        "ownerId": 7,
-        "user": {
-            "userId": 7,
+            "userId": 2,
             "username": "jorgerojas",
             "email": "jorgerojas@gmail.com",
             "password": "1234",
             "firstName": "Jorge",
             "lastName": "Rojas",
-            "dateBirth": "1985-07-05"
-        }
-    },
-    {
-        "ownerId": 8,
-        "user": {
-            "userId": 8,
-            "username": "gonzarochet",
-            "email": "rochetgonzalo@gmail.com",
-            "password": "1234",
-            "firstName": "Gonzalo",
-            "lastName": "Rochet",
-            "dateBirth": "2022-11-11"
-        }
-    },
-    {
-        "ownerId": 9,
-        "user": {
-            "userId": 9,
-            "username": "jorgerojas",
-            "email": "jorgerojas@gmail.com",
-            "password": "1234",
-            "firstName": "Jorge",
-            "lastName": "Rojas",
-            "dateBirth": "2022-09-23"
+            "dateBirth": "2022-08-11"
         }
     }
 ]

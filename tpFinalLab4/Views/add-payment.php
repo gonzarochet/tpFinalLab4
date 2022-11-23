@@ -37,7 +37,7 @@
                 </div>
                 <div class="form-content-add-pet">
                     <label for="">Payment Date</label>
-                    <input type="date" name="paymentDate" required>
+                    <input type="date" name="paymentDate" max=<?php echo date("Y-m-d")?> required>
                 </div>
             
                 <div class="form-content-add-pet">

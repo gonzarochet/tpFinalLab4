@@ -52,7 +52,7 @@ class PetController
         
     }
 
-    public function Add($name, $birthDate, $breed, $size, $comments, $vaccinationPlan, $picture, $video)
+    public function Add($name, $birthDate, $breed, $size, $comments,$video, $vaccinationPlan, $picture)
     {
         SessionsHelper::validateSessionOwner();
         $message = "";
@@ -69,7 +69,8 @@ class PetController
             $pet->setBreed($breed);
             $pet->setSize($size);
             $pet->setComments($comments);
-
+            
+            
             $fileController = new FileController();
 
             //echo $_FILES["vaccinationPlan"]["name"];
@@ -80,10 +81,13 @@ class PetController
             if ($path_File1 = $fileController->Upload($_FILES["picture"], "profile-photo-pet")) {
                 $pet->setPicture($path_File1);
             }
-
+            
+            $pet->setVideo($video);
+            /*
             if ($path_File3 = $fileController->Upload($_FILES["video"], "video")) {
                 $pet->setVideo($path_File3);
             }
+            */
             $pet->setIsActive('Yes');
 
             $this->petDAO->Add($pet);
