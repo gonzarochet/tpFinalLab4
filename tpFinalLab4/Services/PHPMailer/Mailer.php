@@ -9,7 +9,7 @@ class Mailer
 {
 
     //Function that sends the email 
-    public static function SendEmail($emailRecipient, $body)
+    public static function SendEmail($emailRecipient, $body,$pdfPath)
     {
 
         try {
@@ -36,6 +36,7 @@ class Mailer
             $mail->IsHTML(true);
             $mail->Subject = "Pet Hero - Booking accepted";
             $mail->Body = $body;
+            $mail->addAttachment($pdfPath);
 
             $message='Sent';
             if(!$mail->send()) {
