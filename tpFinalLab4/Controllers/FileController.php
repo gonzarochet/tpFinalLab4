@@ -19,8 +19,8 @@ class FileController{
         $this->FileDAO = new FileDAOBD();
         $this->allowedExtensions = array('png','jpg','jpeg','gif','mp4','pdf');
         $this->maxSize = 100000000;
-        $this->uploadFilePath = UPLOADS_PATH;
         
+        $this->uploadFilePath = UPLOADS_PATH."/payments/";
     }
 
     public function Upload($file,$type=null){

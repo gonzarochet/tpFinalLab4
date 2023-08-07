@@ -41,7 +41,7 @@
                 </div>
             
                 <div class="form-content-add-pet">
-                    <label for="">Payment Image</label>
+                    <label for="">Payment PDF</label>
                     <input type="file" name="file"  required>
                 </div>
                 <div class="form-content-add-pet-btn">

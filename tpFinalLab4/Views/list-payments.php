@@ -37,7 +37,7 @@
                                         if(null!== $payment->getPaymentImage())
                                         {
                                             ?>
-                                                <embed src="<?php echo FRONT_ROOT.UPLOADS_PATH.$payment->getPaymentImage() ?> width="800" height="600" type="application/pdf">
+                                                <embed src="<?php echo FRONT_ROOT.UPLOADS_PATH.'/payments/'.$payment->getPaymentImage() ?> " width="auto" height="auto" type="application/pdf">
                                                 <!--<img src="<?php echo FRONT_ROOT.UPLOADS_PATH.$payment->getPaymentImage() ?>" width="auto" height="100">-->
                                             <?php
                                         }

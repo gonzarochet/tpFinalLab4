@@ -10,6 +10,8 @@ class Payment
     private $amount;
     private $paymentImage;
 
+    private $paymentPdfPath;
+
     public function getPaymentId()
     {
         return $this->paymentId;
@@ -49,6 +51,14 @@ class Payment
     public function setPaymentImage($paymentImage)
     {
         $this->paymentImage=$paymentImage;
-    }    
+    }
+    
+    public function getPaymentPdf(){
+        return $this->paymentPdfPath;
+    }
+
+    public function setPaymentPdf($path){
+        $this->paymentPdfPath=$path;
+    }
 }
 ?>
