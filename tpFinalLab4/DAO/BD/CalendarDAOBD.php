@@ -64,7 +64,8 @@ class CalendarDAOBD
     {
         try 
         {
-            $query="SELECT * FROM ".$this->tableName." WHERE keeperid = :keeperid ;";
+            $query="SELECT * FROM ".$this->tableName." WHERE keeperid = :keeperid ;"; // aqui podriamos agregar que solo pueda ver a futuro
+            // and 
             $parameters["keeperid"]=$keeper->getKeeperId();
 
             $this->connection=Connection::GetInstance();

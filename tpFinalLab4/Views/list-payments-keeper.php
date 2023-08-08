@@ -35,9 +35,9 @@
                                 <td>
                                     <?php
                                         if(null!== $payment->getPaymentImage())
-                                        {
-                                            ?>
-                                                <img src="<?php echo FRONT_ROOT.UPLOADS_PATH.$payment->getPaymentImage() ?>" width="auto" height="100">
+                                        {?>
+                                                <embed src="<?php echo FRONT_ROOT.UPLOADS_PATH.'/payments/'.$payment->getPaymentImage() ?> " width="auto" height="auto" type="application/pdf">
+                                                <!--<img src="<?php echo FRONT_ROOT.UPLOADS_PATH.$payment->getPaymentImage() ?>" width="auto" height="100">
                                             <?php
                                         }
                                     ?>
